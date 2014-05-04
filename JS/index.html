@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>日麻算分器 Version 1.0</title>
+	<link rel="stylesheet" href="./style.css" type="text/css" />
+	<link rel="stylesheet" href="./tabstyle.css" type="text/css" />
+	<script type="text/javascript" src="Majiong.js"></script>
+	<script type="text/javascript" src="tab.js"></script>
+</head>
+	<div class="nTab">
+		<div class="TabTitle">
+			<ul id="myTab0">
+				<li class="active" onclick="nTabs(this,0);">设置</li>
+				<li class="normal" onclick="nTabs(this,1);">辅助</li>
+				<li class="normal" onclick="nTabs(this,2);">统计</li>
+				<li class="normal" onclick="nTabs(this,3);">帮助</li>
+				<li class="normal" onclick="nTabs(this,4);">关于</li>
+			</ul>
+		</div>
+		<div class="TabContent">
+			<div id="myTab0_Content0">
+				<fieldset>
+					<legend>游戏设置</legend>
+					<fieldset id = "playerName">
+						<legend>姓名</legend>
+						<form>
+							东家:
+							<input type="text" name="Player1Name" value="Aさん" />
+							<br />
+							南家:
+							<input type="text" name="Player2Name" value="Bさん" />
+							<br />
+							西家:
+							<input type="text" name="Player3Name" value="Cさん" />
+							<br />
+							北家:
+							<input type="text" name="Player4Name" value="Dさん" />
+						</form>
+					</fieldset>
+					<fieldset id = "gamemode">
+						<legend>游戏模式</legend>
+						<form>
+							<input type="radio" name="gamemoderadio" value="dongfengmode" />
+							东风
+							<br />
+							<input type="radio" name="gamemoderadio" value="banzhuangmode" checked="checked" />
+							半庄
+							<br />
+							<input type="radio" name="gamemoderadio" value="quanzhuangmode" />
+							全庄
+							<br />
+							<input type="radio" name="gamemoderadio" value="endlessmode" />
+							无尽
+						</form>
+					</fieldset>
+					<fieldset id = "zeropointsetting">
+						<legend>0分出现</legend>
+						<form>
+							<input type="radio" name="zeropointraadio" value="continuegame" />
+							继续游戏
+							<br />
+							<input type="radio" name="zeropointraadio" value="endgame" checked="checked" />
+							游戏结束
+						</form>
+					</fieldset>
+					<input type="button" value="OK" id = "updatesetting" ></fieldset>
+
+			</div>
+			<div id="myTab0_Content1" class="none">
+				<fieldset id="randpos">
+					<legend>随机选座</legend>
+					<form>
+						<input type="text" name="Player1Name_pos" value="Aさん" class="nameedit" />
+						<span id="player1_random_pos" >东</span>
+						<br />
+						<input type="text" name="Player2Name_pos" value="Bさん" class="nameedit" />
+						<span id="player2_random_pos">南</span>
+						<br />
+						<input type="text" name="Player3Name_pos" value="Cさん" class="nameedit" />
+						<span id="player3_random_pos">西</span>
+						<br />
+						<input type="text" name="Player4Name_pos" value="Dさん" class="nameedit" />
+						<span id="player4_random_pos">北</span>
+						<br />
+					</form>
+					<input type="button" value="随机分配座位" id = "randomposbutton" onclick="make_random_position()" >
+					<input type="button" value="确定" id = "randomposcommitbutton" onclick="update_position()" ></fieldset>
+			</div>
+			<div id="myTab0_Content2" class="none">成绩统计，开发中</div>
+			<div id="myTab0_Content3" class="none">使用说明，待补充</div>
+			<div id="myTab0_Content4" class="none">
+				Version： 1.0
+				<br />
+				版权归
+				<a href="http://www.kylen314.com">Vespa</a>
+				所有
+				<br />
+				项目主页：
+				<a href="https://github.com/Mahosyojyo">https://github.com/Mahosyojyo</a>
+				<br />
+			</div>
+
+		</div>
+		<!-- Tab End-->
+		<div id="gamearea">
+			
+
+		</div>
+		<!-- Game Area End-->
+	</div>
+</html>
