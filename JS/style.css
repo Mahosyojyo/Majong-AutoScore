@@ -1,8 +1,14 @@
+
+
 body {
 	font-family: arial;
 	font-size: 12px;
 	text-align: center;
 	margin: 0;
+}
+
+.clear{
+	clear: both;
 }
 
 fieldset#playerName{
@@ -26,4 +32,68 @@ fieldset#randpos{
 
 .nameedit{
 	width:80px;
+}
+
+#gamearea{
+	/*background:待添加*/
+	width: 500px;
+	height: 500px;
+	border: 3px solid #0F0;
+	border-radius: 10px;
+	position: relative;
+}
+
+.playerinfoarea{
+	width: 150px;
+	height: 150px;
+	border: 3px solid #F00;
+	border-radius: 3px;
+	position: absolute;
+	text-align: left;
+}
+
+#player1{
+	left: 35%;
+	top: 69%;
+}
+
+#player2{
+	left: 69%;
+	top: 35%;
+}
+
+#player3{
+	left: 35%;
+}
+
+#player4{
+	top: 35%;
+}
+
+.playerpos{
+	font-family: 'Tangerine', serif;
+    font-size: 48px;
+    text-shadow: 4px 4px 4px #aaa;
+    text-align: right;
+	float: left;
+}
+
+.playername{
+	font-family: 'Droid Serif', serif;
+	font-size: 30px;
+	float: right;
+}
+
+.playerscore{
+	font-family: "Comic Sans MS"
+	font-size: 30px;
+}
+
+/*根据正负再继续添加删除class*/
+.playerscorediff{
+
+}
+
+.weici{
+
 }
