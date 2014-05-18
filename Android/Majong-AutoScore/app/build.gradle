@@ -2,10 +2,10 @@ apply plugin: 'android'
 
 android {
     compileSdkVersion 19
-    buildToolsVersion "19.0.3"
+    buildToolsVersion '19.0.3'
 
     defaultConfig {
-        minSdkVersion 8
+        minSdkVersion 11
         targetSdkVersion 19
         versionCode 1
         versionName "1.0"
@@ -19,8 +19,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:support-v4:19.0.1'
-    compile 'com.android.support:appcompat-v7:19.0.1'
-    compile 'com.android.support:gridlayout-v7:19.0.1'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //    compile 'com.android.support:support-v4:19.0.1'
+    //    compile 'com.android.support:appcompat-v7:19.0.1'
+    //    compile 'com.android.support:gridlayout-v7:19.0.1'
 }

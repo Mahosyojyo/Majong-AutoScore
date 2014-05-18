@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--Game信息-->
+    <PreferenceCategory android:title="@string/pref_title_gameInfo" >
+        <!--对局名称-->
+        <EditTextPreference
+            android:key="@string/pref_gameName_key"
+            android:title="@string/pref_gameInfo_name"
+            android:defaultValue="@string/pref_gameInfo_defaultName"
+            android:selectAllOnFocus="true"
+            android:inputType="text"
+            android:capitalize="words"
+            android:singleLine="true"
+            android:maxLines="1" />
+
+        <!--对局人数-->
+        <ListPreference
+            android:key="@string/pref_playerNumber_key"
+            android:title="@string/pref_gameInfo_playerNumber"
+            android:defaultValue="4"
+            android:entries="@array/pref_playerNumber_titles"
+            android:entryValues="@array/pref_playerNumber_values"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null" />
+
+        <!--对局长度-->
+        <ListPreference
+            android:key="@string/pref_gameLength_key"
+            android:title="@string/pref_gameInfo_gameLength"
+            android:entries="@array/pref_gameLength_titles"
+            android:entryValues="@array/pref_gameLength_values"
+            android:defaultValue="8"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null" />
+    </PreferenceCategory>
+
+    <!--0分设置-->
+    <PreferenceCategory android:title="@string/pref_title_zeroRule" >
+        <!--0分继续-->
+        <CheckBoxPreference
+            android:key="@string/pref_zeroContinue_key"
+            android:title="@string/pref_zeroContinue"
+            android:summary="@string/pref_zeroSummary"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+
+    <!--西入设置-->
+    <PreferenceCategory
+            android:key="@string/pref_enterWestCategory_key"
+            android:title="@string/pref_title_enterWest"
+            android:persistent="false" >
+
+        <!--西入？-->
+        <CheckBoxPreference
+            android:key="@string/pref_enterWest_key"
+            android:title="@string/pref_enterWest"
+            android:summary="@string/pref_enterWest_summary"
+            android:defaultValue="true" />
+
+        <!--结束条件-->
+        <ListPreference
+            android:key="@string/pref_enterWest_endCondition_key"
+            android:title="@string/pref_enterWest_endCondition"
+            android:dependency="@string/pref_enterWest_key"
+            android:entries="@array/pref_enterWest_endCondition_titles"
+            android:entryValues="@array/pref_enterWest_endCondition_values"
+            android:defaultValue="1"
+            android:positiveButtonText="@null"
+            android:negativeButtonText="@null" />
+
+        <!--西场结束无人超3W点判定-->
+        <ListPreference
+            android:key="@string/pref_enterWest_westEnd_key"
+            android:title="@string/pref_enterWest_westEnd"
+            android:dependency="@string/pref_enterWest_key"
+            android:entries="@array/pref_enterWest_westEnd_titles"
+            android:entryValues="@array/pref_enterWest_westEnd_values"
+            android:defaultValue="2"
+            android:positiveButtonText="@null"
+            android:negativeButtonText="@null" />
+
+    </PreferenceCategory>
+</PreferenceScreen>
