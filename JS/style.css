@@ -85,7 +85,7 @@ fieldset#randpos{
 }
 
 .playerscore{
-	font-family: "Comic Sans MS"
+	font-family: "Comic Sans MS";
 	font-size: 30px;
 }
 
@@ -95,5 +95,6 @@ fieldset#randpos{
 }
 
 .weici{
-
+    font-size: 25px;    
 }
+

@@ -5,7 +5,8 @@
 	<title>日麻算分器 Version 1.0</title>
 	<link rel="stylesheet" href="./style.css" type="text/css" />
 	<link rel="stylesheet" href="./tabstyle.css" type="text/css" />
-	<script type="text/javascript" src="Majiong.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+	<script type="text/javascript" src="Majong.js"></script>
 	<script type="text/javascript" src="tab.js"></script>
 </head>
 	<div class="nTab">
@@ -26,16 +27,16 @@
 						<legend>姓名</legend>
 						<form>
 							东家:
-							<input type="text" name="Player1Name" value="Aさん" />
+							<input type="text" name="Player1Name" value="" />
 							<br />
 							南家:
-							<input type="text" name="Player2Name" value="Bさん" />
+							<input type="text" name="Player2Name" value="" />
 							<br />
 							西家:
-							<input type="text" name="Player3Name" value="Cさん" />
+							<input type="text" name="Player3Name" value="" />
 							<br />
 							北家:
-							<input type="text" name="Player4Name" value="Dさん" />
+							<input type="text" name="Player4Name" value="" />
 						</form>
 					</fieldset>
 					<fieldset id = "gamemode">
@@ -71,21 +72,21 @@
 				<fieldset id="randpos">
 					<legend>随机选座</legend>
 					<form>
-						<input type="text" name="Player1Name_pos" value="Aさん" class="nameedit" />
+						<input type="text" name="Player1Name_pos" value="" class="nameedit" disabled="disabled" />
 						<span id="player1_random_pos" >东</span>
 						<br />
-						<input type="text" name="Player2Name_pos" value="Bさん" class="nameedit" />
+						<input type="text" name="Player2Name_pos" value="" class="nameedit" disabled="disabled" />
 						<span id="player2_random_pos">南</span>
 						<br />
-						<input type="text" name="Player3Name_pos" value="Cさん" class="nameedit" />
+						<input type="text" name="Player3Name_pos" value="" class="nameedit" disabled="disabled" />
 						<span id="player3_random_pos">西</span>
 						<br />
-						<input type="text" name="Player4Name_pos" value="Dさん" class="nameedit" />
+						<input type="text" name="Player4Name_pos" value="" class="nameedit" disabled="disabled" />
 						<span id="player4_random_pos">北</span>
 						<br />
 					</form>
 					<input type="button" value="随机分配座位" id = "randomposbutton" onclick="make_random_position()" >
-					<input type="button" value="确定" id = "randomposcommitbutton" onclick="update_position()" ></fieldset>
+        </fieldset>
 			</div>
 			<div id="myTab0_Content2" class="none">成绩统计，开发中</div>
 			<div id="myTab0_Content3" class="none">使用说明，待补充</div>
@@ -108,34 +109,34 @@
 	<div id="gamearea">
 			<div class="playerinfoarea" id="player1">
 				<div class="playerpos">东</div>
-				<div class="playername">Aさん</div>
+				<div class="playername"></div>
 				<div class="clear">  </div>
 				<div class="playerscore">25000</div>
-				<div class="playerscorediff">---</div>
+				<div class="playerscorediff">-------------------------------------</div>
 				<div class="weici">1位</div>
 			</div>
 			<div class="playerinfoarea" id="player2">
 				<div class="playerpos">南</div>
-				<div class="playername">Bさん</div>
+				<div class="playername"></div>
 				<div class="clear">  </div>
 				<div class="playerscore">25000</div>
-				<div class="playerscorediff">---</div>
+				<div class="playerscorediff">-------------------------------------</div>
 				<div class="weici">2位</div>
 			</div>
 			<div class="playerinfoarea" id="player3">
 				<div class="playerpos">西</div>
-				<div class="playername">Cさん</div>
+				<div class="playername"></div>
 				<div class="clear">  </div>
 				<div class="playerscore">25000</div>
-				<div class="playerscorediff">---</div>
+				<div class="playerscorediff">-------------------------------------</div>
 				<div class="weici">3位</div>
 			</div>
 			<div class="playerinfoarea" id="player4">
 				<div class="playerpos">北</div>
-				<div class="playername">Dさん</div>
+				<div class="playername"></div>
 				<div class="clear">  </div>
 				<div class="playerscore">25000</div>
-				<div class="playerscorediff">---</div>
+				<div class="playerscorediff">-------------------------------------</div>
 				<div class="weici">4位</div>
 			</div>
 
