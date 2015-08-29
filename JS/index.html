@@ -1,145 +1,144 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>日麻算分器 Version 1.0</title>
-	<link rel="stylesheet" href="./style.css" type="text/css" />
-	<link rel="stylesheet" href="./tabstyle.css" type="text/css" />
-	<script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-	<script type="text/javascript" src="Majong.js"></script>
-	<script type="text/javascript" src="tab.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>日麻算分器 Version 1.0</title>
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+    <link rel="stylesheet" href="./tabstyle.css" type="text/css" />
+    <link rel="stylesheet" href="./switch.css" type="text/css" />
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script type="text/javascript" src="Majong.js"></script>
+    <script type="text/javascript" src="tab.js"></script>
 </head>
-	<div class="nTab">
-		<div class="TabTitle">
-			<ul id="myTab0">
-				<li class="active" onclick="nTabs(this,0);">设置</li>
-				<li class="normal" onclick="nTabs(this,1);">辅助</li>
-				<li class="normal" onclick="nTabs(this,2);">统计</li>
-				<li class="normal" onclick="nTabs(this,3);">帮助</li>
-				<li class="normal" onclick="nTabs(this,4);">关于</li>
-			</ul>
-		</div>
-		<div class="TabContent">
-			<div id="myTab0_Content0">
-				<fieldset>
-					<legend>游戏设置</legend>
-					<fieldset id = "playerName">
-						<legend>姓名</legend>
-						<form>
-							东家:
-							<input type="text" name="Player1Name" value="" />
-							<br />
-							南家:
-							<input type="text" name="Player2Name" value="" />
-							<br />
-							西家:
-							<input type="text" name="Player3Name" value="" />
-							<br />
-							北家:
-							<input type="text" name="Player4Name" value="" />
-						</form>
-					</fieldset>
-					<fieldset id = "gamemode">
-						<legend>游戏模式</legend>
-						<form>
-							<input type="radio" name="gamemoderadio" value="dongfengmode" />
-							东风
-							<br />
-							<input type="radio" name="gamemoderadio" value="banzhuangmode" checked="checked" />
-							半庄
-							<br />
-							<input type="radio" name="gamemoderadio" value="quanzhuangmode" />
-							全庄
-							<br />
-							<input type="radio" name="gamemoderadio" value="endlessmode" />
-							无尽
-						</form>
-					</fieldset>
-					<fieldset id = "zeropointsetting">
-						<legend>0分出现</legend>
-						<form>
-							<input type="radio" name="zeropointraadio" value="continuegame" />
-							继续游戏
-							<br />
-							<input type="radio" name="zeropointraadio" value="endgame" checked="checked" />
-							游戏结束
-						</form>
-					</fieldset>
-					<input type="button" value="OK" id = "updatesetting" ></fieldset>
+<div class="nTab">
+    <div class="TabTitle">
+        <ul id="myTab0">
+            <li class="active" onclick="nTabs(this,0);">设置</li>
+            <li class="normal" onclick="nTabs(this,1);">辅助</li>
+            <li class="normal" onclick="nTabs(this,2);">统计</li>
+            <li class="normal" onclick="nTabs(this,3);">帮助</li>
+            <li class="normal" onclick="nTabs(this,4);">关于</li>
+        </ul>
+    </div>
+    <div class="TabContent">
+        <div id="myTab0_Content0">
+            <fieldset>
+                <legend>游戏设置</legend>
+                <fieldset id="playerName">
+                    <legend>姓名</legend>
+                    <form>
+                        东家:
+                        <input type="text" name="Player1Name" value="" />
+                        <br /> 南家:
+                        <input type="text" name="Player2Name" value="" />
+                        <br /> 西家:
+                        <input type="text" name="Player3Name" value="" />
+                        <br /> 北家:
+                        <input type="text" name="Player4Name" value="" />
+                    </form>
+                </fieldset>
+                <fieldset id="gamemode">
+                    <legend>游戏模式</legend>
+                    <form>
+                        <input type="radio" name="gamemoderadio" value="dongfengmode" /> 东风
+                        <br />
+                        <input type="radio" name="gamemoderadio" value="banzhuangmode" checked="checked" /> 半庄
+                        <br />
+                        <input type="radio" name="gamemoderadio" value="quanzhuangmode" /> 全庄
+                        <br />
+                        <input type="radio" name="gamemoderadio" value="endlessmode" /> 无尽
+                    </form>
+                </fieldset>
+                <fieldset id="zeropointsetting">
+                    <legend>0分出现</legend>
+                    <form>
+                        <input type="radio" name="zeropointraadio" value="continuegame" /> 继续游戏
+                        <br />
+                        <input type="radio" name="zeropointraadio" value="endgame" checked="checked" /> 游戏结束
+                    </form>
+                </fieldset>
+                <input type="button" value="OK" id="updatesetting">
+            </fieldset>
 
-			</div>
-			<div id="myTab0_Content1" class="none">
-				<fieldset id="randpos">
-					<legend>随机选座</legend>
-					<form>
-						<input type="text" name="Player1Name_pos" value="" class="nameedit" disabled="disabled" />
-						<span id="player1_random_pos" >东</span>
-						<br />
-						<input type="text" name="Player2Name_pos" value="" class="nameedit" disabled="disabled" />
-						<span id="player2_random_pos">南</span>
-						<br />
-						<input type="text" name="Player3Name_pos" value="" class="nameedit" disabled="disabled" />
-						<span id="player3_random_pos">西</span>
-						<br />
-						<input type="text" name="Player4Name_pos" value="" class="nameedit" disabled="disabled" />
-						<span id="player4_random_pos">北</span>
-						<br />
-					</form>
-					<input type="button" value="随机分配座位" id = "randomposbutton" onclick="make_random_position()" >
-        </fieldset>
-			</div>
-			<div id="myTab0_Content2" class="none">成绩统计，开发中</div>
-			<div id="myTab0_Content3" class="none">使用说明，待补充</div>
-			<div id="myTab0_Content4" class="none">
-				Version： 1.0
-				<br />
-				版权归
-				<a href="http://www.kylen314.com">Vespa</a>
-				所有
-				<br />
-				项目主页：
-				<a href="https://github.com/Mahosyojyo">https://github.com/Mahosyojyo</a>
-				<br />
-			</div>
+        </div>
+        <div id="myTab0_Content1" class="none">
+            <fieldset id="randpos">
+                <legend>随机选座</legend>
+                <form>
+                    <input type="text" name="Player1Name_pos" value="" class="nameedit" disabled="disabled" />
+                    <span id="player1_random_pos">东</span>
+                    <br />
+                    <input type="text" name="Player2Name_pos" value="" class="nameedit" disabled="disabled" />
+                    <span id="player2_random_pos">南</span>
+                    <br />
+                    <input type="text" name="Player3Name_pos" value="" class="nameedit" disabled="disabled" />
+                    <span id="player3_random_pos">西</span>
+                    <br />
+                    <input type="text" name="Player4Name_pos" value="" class="nameedit" disabled="disabled" />
+                    <span id="player4_random_pos">北</span>
+                    <br />
+                </form>
+                <input type="button" value="随机分配座位" id="randomposbutton" onclick="make_random_position()">
+            </fieldset>
+        </div>
+        <div id="myTab0_Content2" class="none">成绩统计，开发中</div>
+        <div id="myTab0_Content3" class="none">使用说明，待补充</div>
+        <div id="myTab0_Content4" class="none">
+            Version： 1.0
+            <br /> 版权归
+            <a href="http://www.kylen314.com">Vespa</a> 所有
+            <br /> 项目主页：
+            <a href="https://github.com/Mahosyojyo">https://github.com/Mahosyojyo</a>
+            <br />
+        </div>
 
-		</div>
-		<!-- Tab End-->
-	</div>
-	<div class="clear">  </div>
-	<div id="gamearea">
-			<div class="playerinfoarea" id="player1">
-				<div class="playerpos">东</div>
-				<div class="playername"></div>
-				<div class="clear">  </div>
-				<div class="playerscore">25000</div>
-				<div class="playerscorediff">-------------------------------------</div>
-				<div class="weici">1位</div>
-			</div>
-			<div class="playerinfoarea" id="player2">
-				<div class="playerpos">南</div>
-				<div class="playername"></div>
-				<div class="clear">  </div>
-				<div class="playerscore">25000</div>
-				<div class="playerscorediff">-------------------------------------</div>
-				<div class="weici">2位</div>
-			</div>
-			<div class="playerinfoarea" id="player3">
-				<div class="playerpos">西</div>
-				<div class="playername"></div>
-				<div class="clear">  </div>
-				<div class="playerscore">25000</div>
-				<div class="playerscorediff">-------------------------------------</div>
-				<div class="weici">3位</div>
-			</div>
-			<div class="playerinfoarea" id="player4">
-				<div class="playerpos">北</div>
-				<div class="playername"></div>
-				<div class="clear">  </div>
-				<div class="playerscore">25000</div>
-				<div class="playerscorediff">-------------------------------------</div>
-				<div class="weici">4位</div>
-			</div>
+    </div>
+    <!-- Tab End-->
+</div>
+<div class="clear"> </div>
+<div id="gamearea">
+    <div class="onoffswitch">
+        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+        <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+    </div>
+    <div class="playerinfoarea" id="player1">
+        <div class="playerpos">东</div>
+        <div class="playername"></div>
+        <div class="clear"> </div>
+        <div class="playerscore"></div>
+        <div class="playerscorediff">-------------------------------------</div>
+        <div class="weici">1位</div>
+    </div>
+    <div class="playerinfoarea" id="player2">
+        <div class="playerpos">南</div>
+        <div class="playername"></div>
+        <div class="clear"> </div>
+        <div class="playerscore"></div>
+        <div class="playerscorediff">-------------------------------------</div>
+        <div class="weici">2位</div>
+    </div>
+    <div class="playerinfoarea" id="player3">
+        <div class="playerpos">西</div>
+        <div class="playername"></div>
+        <div class="clear"> </div>
+        <div class="playerscore"></div>
+        <div class="playerscorediff">-------------------------------------</div>
+        <div class="weici">3位</div>
+    </div>
+    <div class="playerinfoarea" id="player4">
+        <div class="playerpos">北</div>
+        <div class="playername"></div>
+        <div class="clear"> </div>
+        <div class="playerscore"></div>
+        <div class="playerscorediff">-------------------------------------</div>
+        <div class="weici">4位</div>
+    </div>
 
-		</div>
-		<!-- Game Area End-->
+</div>
+<!-- Game Area End-->
+
 </html>

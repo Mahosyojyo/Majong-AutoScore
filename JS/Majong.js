@@ -1,28 +1,44 @@
-var playerName = ['Aさん','Bさん','Cさん','Dさん'];
-
+var playerName = ['Aさん', 'Bさん', 'Cさん', 'Dさん'];
+var PointLeft = [25000, 25000, 25000, 25000];
 $(document).ready(
-    function(){
-        $('input').bind('change',EditPlayerName)
+    function () {
+        $('input').bind('change', EditPlayerName);
         UpdateUserName();
+
+        $('#myonoffswitch').change(ChangePointShowMode);
+        ShowPoint(false);
     }
 );
 
-function EditPlayerName()
-{
-    for(var i = 0;i < 4;i++)
-    {
-        playerName[i] = $('input',$('form',$("#playerName")))[i].value;
+function ShowPoint(DiffMode) {
+    for (var i = 0; i < 4; i++) {
+        if (DiffMode) {
+            $('.playerscore', $('.playerinfoarea', $('#gamearea'))[i]).text(PointLeft[i] - PointLeft[0] * (i != 0));
+        } else {
+            $('.playerscore', $('.playerinfoarea', $('#gamearea'))[i]).text(PointLeft[i]);
+        }
+
+    }
+
+}
+
+
+function ChangePointShowMode() {
+    ShowPoint(!$(this).is(':checked'))
+}
+
+function EditPlayerName() {
+    for (var i = 0; i < 4; i++) {
+        playerName[i] = $('input', $('form', $("#playerName")))[i].value;
     }
     UpdateUserName();
 }
 
-function UpdateUserName()
-{
-    for(var i = 1;i <= 4;i++)
-    {
-        $('input',$('form',$("#playerName")))[i-1].value = playerName[i-1];
-        $('.playername',$('.playerinfoarea',$('#gamearea'))[i-1]).text(playerName[i-1]);
-        $('input',$('form',$('#randpos')))[i-1].value = playerName[i-1];
+function UpdateUserName() {
+    for (var i = 1; i <= 4; i++) {
+        $('input', $('form', $("#playerName")))[i - 1].value = playerName[i - 1];
+        $('.playername', $('.playerinfoarea', $('#gamearea'))[i - 1]).text(playerName[i - 1]);
+        $('input', $('form', $('#randpos')))[i - 1].value = playerName[i - 1];
     }
 }
 
