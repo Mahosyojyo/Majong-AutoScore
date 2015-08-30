@@ -13,15 +13,12 @@ $(document).ready(
 function ShowPoint(DiffMode) {
     for (var i = 0; i < 4; i++) {
         if (DiffMode) {
-            $('.playerscore', $('.playerinfoarea', $('#gamearea'))[i]).text(PointLeft[i] - PointLeft[0] * (i != 0));
+            $('.playerscore', $('.playerinfoarea')[i]).text(PointLeft[i] - PointLeft[0] * (i != 0));
         } else {
-            $('.playerscore', $('.playerinfoarea', $('#gamearea'))[i]).text(PointLeft[i]);
+            $('.playerscore', $('.playerinfoarea')[i]).text(PointLeft[i]);
         }
-
     }
-
 }
-
 
 function ChangePointShowMode() {
     ShowPoint(!$(this).is(':checked'))
@@ -29,16 +26,16 @@ function ChangePointShowMode() {
 
 function EditPlayerName() {
     for (var i = 0; i < 4; i++) {
-        playerName[i] = $('input', $('form', $("#playerName")))[i].value;
+        playerName[i] = $('#playerName input')[i].value;
     }
     UpdateUserName();
 }
 
 function UpdateUserName() {
-    for (var i = 1; i <= 4; i++) {
-        $('input', $('form', $("#playerName")))[i - 1].value = playerName[i - 1];
-        $('.playername', $('.playerinfoarea', $('#gamearea'))[i - 1]).text(playerName[i - 1]);
-        $('input', $('form', $('#randpos')))[i - 1].value = playerName[i - 1];
+    for (var i = 0; i < 4; i++) {
+        $("#playerName  input")[i].value = playerName[i];
+        $('.playername', $('.playerinfoarea')[i]).text(playerName[i]);
+        $('#randpos input')[i].value = playerName[i];
     }
 }
 
@@ -50,19 +47,14 @@ function randomOrder(targetArray) {
     for (var i = 0; i < arrayLength; i++) {
         tempArray1[i] = i
     }
-
     var tempArray2 = new Array();
-
     for (var i = 0; i < arrayLength; i++) {
         tempArray2[i] = tempArray1.splice(Math.floor(Math.random() * tempArray1.length), 1)
     }
-    //
     var tempArray3 = new Array();
-
     for (var i = 0; i < arrayLength; i++) {
         tempArray3[i] = targetArray[tempArray2[i]]
     }
-
     return tempArray3
 }
 
