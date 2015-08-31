@@ -1,5 +1,9 @@
 var playerName = ['Aさん', 'Bさん', 'Cさん', 'Dさん'];
 var PointLeft = [25000, 25000, 25000, 25000];
+var jushu = 1;//局数
+var changfeng = '东';//场风
+var benchang = 0;//本场数
+
 $(document).ready(
     function () {
         $('input').bind('change', EditPlayerName);

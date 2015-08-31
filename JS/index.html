@@ -58,6 +58,11 @@
                         <input type="radio" name="zeropointraadio" value="endgame" checked="checked" /> 游戏结束
                     </form>
                 </fieldset>
+                <fieldset id="xiru_field">
+                    <legend>西入选项</legend>
+                    需要西入：
+                    <input type="checkbox" id="xiru" value="OK" checked>
+                </fieldset>
                 <input type="button" value="OK" id="updatesetting">
             </fieldset>
 
@@ -104,6 +109,12 @@
             <span class="onoffswitch-inner"></span>
             <span class="onoffswitch-switch"></span>
         </label>
+    </div>
+    <div id="game_process">
+        场况：
+        <p class="inline_text" id="changkuang">东一局</p>
+        <br /> 本场数：
+        <p class="inline_text" id="benchangshu">0本场</p>
     </div>
     <div class="playerinfoarea" id="player1">
         <div class="playerpos">东</div>

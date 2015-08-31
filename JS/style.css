@@ -1,100 +1,116 @@
-
-
 body {
-	font-family: arial;
-	font-size: 12px;
-	text-align: center;
-	margin: 0;
+    font-family: arial;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
 }
 
-.clear{
-	clear: both;
+.clear {
+    clear: both;
 }
 
-fieldset#playerName{
-	width: 40px;
-	float: left;
+fieldset#playerName {
+    width: 40px;
+    float: left;
 }
 
-fieldset#gamemode{
-	width: 80px;
-	float: left;
+fieldset#gamemode {
+    width: 80px;
+    float: left;
 }
 
-fieldset#zeropointsetting{
-	width: 80px;
-	float: left;
+fieldset#zeropointsetting {
+    width: 80px;
+    float: left;
 }
 
-fieldset#randpos{
-	width: 100px;
+fieldset#randpos {
+    width: 100px;
 }
 
-.nameedit{
-	width:80px;
+.nameedit {
+    width: 80px;
 }
 
-#gamearea{
-	/*background:待添加*/
-	width: 500px;
-	height: 500px;
-	border: 3px solid #0F0;
-	border-radius: 10px;
-	position: relative;
+#gamearea {
+    /*background:待添加*/
+    width: 600px;
+    height: 600px;
+    border: 3px solid #0F0;
+    border-radius: 10px;
+    position: relative;
 }
 
-.playerinfoarea{
-	width: 150px;
-	height: 150px;
-	border: 3px solid #F00;
-	border-radius: 3px;
-	position: absolute;
-	text-align: left;
+.playerinfoarea {
+    width: 150px;
+    height: 150px;
+    border: 3px dashed #F00;
+    border-radius: 3px;
+    position: absolute;
+    text-align: left;
 }
 
-#player1{
-	left: 35%;
-	top: 69%;
+#player1 {
+    left: 35%;
+    top: 69%;
 }
 
-#player2{
-	left: 69%;
-	top: 35%;
+#player2 {
+    left: 69%;
+    top: 35%;
 }
 
-#player3{
-	left: 35%;
+#player3 {
+    left: 35%;
 }
 
-#player4{
-	top: 35%;
+#player4 {
+    top: 35%;
 }
 
-.playerpos{
-	font-family: 'Tangerine', serif;
+.playerpos {
+    font-family: 'Tangerine', serif;
     font-size: 48px;
     text-shadow: 4px 4px 4px #aaa;
     text-align: right;
-	float: left;
+    float: left;
 }
 
-.playername{
-	font-family: 'Droid Serif', serif;
-	font-size: 30px;
-	float: right;
+.playername {
+    font-family: 'Droid Serif', serif;
+    font-size: 30px;
+    float: right;
+    width: 100px
 }
 
-.playerscore{
-	font-family: "Comic Sans MS";
-	font-size: 30px;
+.playerscore {
+    font-family: "Comic Sans MS";
+    font-size: 30px;
 }
 
-/*根据正负再继续添加删除class*/
-.playerscorediff{
-
+.playerscorediff {
+    color: blue;
+    font-weight: 700;
 }
 
-.weici{
-    font-size: 25px;    
+.weici {
+    font-size: 25px;
 }
 
+#xiru_field {
+    float: left;
+}
+#game_process {
+    width: 220px;
+    height: 80px;
+    float: right;
+    font-size: 26px;
+    text-align: left;
+    border: 2px solid #80abde;
+    border-radius: 0 0 0 20px;
+}
+
+.inline_text {
+    display: inline;
+    color:forestgreen
+}
