@@ -11,6 +11,8 @@ $(document).ready(
 
         $('#myonoffswitch').change(ChangePointShowMode);
         ShowPoint(false);
+        
+        UpdateGameProcess();
     }
 );
 
@@ -43,6 +45,12 @@ function UpdateUserName() {
     }
 }
 
+function UpdateGameProcess()
+{
+    var chn = ['一','二','三','四'];
+    $("#changkuang").text(changfeng+chn[jushu-1]+'局');
+    $("#benchangshu").text(benchang+'本场');
+}
 
 //随机换座位
 function randomOrder(targetArray) {

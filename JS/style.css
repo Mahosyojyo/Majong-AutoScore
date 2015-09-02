@@ -42,8 +42,8 @@ fieldset#randpos {
 }
 
 .playerinfoarea {
-    width: 150px;
-    height: 150px;
+    width: 30%;
+    height: 30%;
     border: 3px dashed #F00;
     border-radius: 3px;
     position: absolute;
@@ -89,19 +89,21 @@ fieldset#randpos {
 }
 
 .playerscorediff {
-    color: blue;
-    font-weight: 700;
+    border: 1px solid blue;
+    width: auto
+    
 }
 
 .weici {
     font-size: 25px;
+    text-align: center
 }
 
 #xiru_field {
     float: left;
 }
 #game_process {
-    width: 220px;
+    width: 33%;
     height: 80px;
     float: right;
     font-size: 26px;
@@ -113,4 +115,22 @@ fieldset#randpos {
 .inline_text {
     display: inline;
     color:forestgreen
+}
+
+.rong_btn {
+    width: 45%;
+    font-size: 28px;
+    height:40px;
+    border:2px #9999FF dashed;
+    float:left;
+    background-color:red;
+}
+
+.dianpao_btn {
+    width: 45%;
+    font-size: 28px;
+    height:40px;
+    background-color:pink;
+    border:2px #9999FF dashed;
+    float:right;
 }
