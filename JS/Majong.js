@@ -7,6 +7,8 @@ var benchang = 0;//本场数
 var rong_flag = [false,false,false,false];
 var dianpao_flag = [false,false,false,false];
 
+var mainView = 0;
+
 $(document).ready(
     function () {
         $('input').bind('change', EditPlayerName);
@@ -22,7 +24,7 @@ $(document).ready(
 function ShowPoint(DiffMode) {
     for (var i = 0; i < 4; i++) {
         if (DiffMode) {
-            $('.playerscore', $('.playerinfoarea')[i]).text(PointLeft[i] - PointLeft[0] * (i != 0));
+            $('.playerscore', $('.playerinfoarea')[i]).text(PointLeft[i] - PointLeft[mainView] * (i != mainView));
         } else {
             $('.playerscore', $('.playerinfoarea')[i]).text(PointLeft[i]);
         }
@@ -30,7 +32,7 @@ function ShowPoint(DiffMode) {
 }
 
 function ChangePointShowMode() {
-    ShowPoint(!$(this).is(':checked'))
+    ShowPoint(!$("#myonoffswitch").is(':checked'));
 }
 
 function EditPlayerName() {
@@ -117,4 +119,10 @@ function dianpao_click(idx)
             rong_flag[idx] = false;
         }
     }
+}
+
+function changeView(idx)
+{
+    mainView = idx;
+    ChangePointShowMode();
 }
