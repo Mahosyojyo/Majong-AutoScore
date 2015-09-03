@@ -4,6 +4,9 @@ var jushu = 1;//局数
 var changfeng = '东';//场风
 var benchang = 0;//本场数
 
+var rong_flag = [false,false,false,false];
+var dianpao_flag = [false,false,false,false];
+
 $(document).ready(
     function () {
         $('input').bind('change', EditPlayerName);
@@ -74,4 +77,44 @@ function randomOrder(targetArray) {
 function make_random_position() {
     playerName = randomOrder(playerName)
     UpdateUserName();
+}
+
+function rong_click(idx)
+{
+    rong_flag[idx] = !rong_flag[idx];
+    if(rong_flag[idx] == false)
+    {
+        $("#player"+idx+"_rong")[0].value = "胡牌";
+        $("#player"+idx+"_rong").removeClass('t_btn_click');
+    }
+    else{
+        $("#player"+idx+"_rong")[0].value = "取消";
+        $("#player"+idx+"_rong").addClass('t_btn_click');
+        if(dianpao_flag[idx] == true)
+        {
+            $("#player"+idx+"_dianpao")[0].value = "点炮";
+            $("#player"+idx+"_dianpao").removeClass('t_btn_click');
+            dianpao_flag[idx] = false;
+        }
+    }
+}
+
+function dianpao_click(idx)
+{
+    dianpao_flag[idx] = !dianpao_flag[idx];
+    if(dianpao_flag[idx] == false)
+    {
+        $("#player"+idx+"_dianpao")[0].value = "点炮";
+        $("#player"+idx+"_dianpao").removeClass('t_btn_click');
+    }
+    else{
+        $("#player"+idx+"_dianpao")[0].value = "取消";
+        $("#player"+idx+"_dianpao").addClass('t_btn_click');
+        if(rong_flag[idx] == true)
+        {
+            $("#player"+idx+"_rong")[0].value = "胡牌";
+            $("#player"+idx+"_rong").removeClass('t_btn_click');
+            rong_flag[idx] = false;
+        }
+    }
 }

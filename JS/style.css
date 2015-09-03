@@ -134,3 +134,12 @@ fieldset#randpos {
     border:2px #9999FF dashed;
     float:right;
 }
+
+.t_btn_click {
+    color: aliceblue;
+    background-color: black;
+    border: 5px solid #F0e;
+    border-radius: 10px;
+    font-size: 30px;
+    height:50px;
+}
