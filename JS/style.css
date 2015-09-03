@@ -91,7 +91,6 @@ fieldset#randpos {
 .playerscorediff {
     border: 1px solid blue;
     width: auto
-    
 }
 
 .weici {
@@ -102,6 +101,7 @@ fieldset#randpos {
 #xiru_field {
     float: left;
 }
+
 #game_process {
     width: 33%;
     height: 80px;
@@ -114,25 +114,25 @@ fieldset#randpos {
 
 .inline_text {
     display: inline;
-    color:forestgreen
+    color: forestgreen
 }
 
 .rong_btn {
     width: 45%;
     font-size: 28px;
-    height:40px;
-    border:2px #9999FF dashed;
-    float:left;
-    background-color:red;
+    height: 40px;
+    border: 2px #9999FF dashed;
+    float: left;
+    background-color: red;
 }
 
 .dianpao_btn {
     width: 45%;
     font-size: 28px;
-    height:40px;
-    background-color:pink;
-    border:2px #9999FF dashed;
-    float:right;
+    height: 40px;
+    background-color: pink;
+    border: 2px #9999FF dashed;
+    float: right;
 }
 
 .t_btn_click {
@@ -141,5 +141,9 @@ fieldset#randpos {
     border: 5px solid #F0e;
     border-radius: 10px;
     font-size: 30px;
-    height:50px;
+    height: 50px;
+}
+
+.mainviewcl {
+    color: dodgerblue;
 }
