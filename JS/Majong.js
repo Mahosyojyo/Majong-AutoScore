@@ -9,6 +9,10 @@ var dianpao_flag = [false, false, false, false];
 
 var mainView = 0; //点差模式下主视角
 
+function $q(pattern, idx) { //jQuery辅助函数
+    return $(pattern + ":eq(" + idx + ')');
+}
+
 $(document).ready(
     function () {
         $('input').bind('change', EditPlayerName);
@@ -28,12 +32,19 @@ function UpdateAllView() {
     UpdateRank(); //更新顺位
 }
 
-function $q(pattern, idx) { //jQuery辅助函数
-    return $(pattern + ":eq(" + idx + ')');
+function sortRank(a,b)
+{
+    /*同分逻辑需要重写，高位同分首庄开始算起(已完成)，地位同分离高位近的开始算起！！*/
+    return PointLeft[a] < PointLeft[b] || b<a;
 }
 
 function UpdateRank() {
-
+    var ori = [0,1,2,3];
+    ori = ori.sort(sortRank);
+    for(var i = 0;i < 4;i++)
+    {
+        $q('.weici',ori[i]).text(i+1+'位');
+    }
 }
 
 function ShowPoint(DiffMode) {
