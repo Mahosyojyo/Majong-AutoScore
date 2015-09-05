@@ -6,7 +6,7 @@ var benchang = 0; //本场数
 
 var rong_flag = [false, false, false, false];
 var dianpao_flag = [false, false, false, false];
-
+var lichi_flag = [false, false, false, false];
 var mainView = 0; //点差模式下主视角
 
 function $q(pattern, idx) { //jQuery辅助函数
@@ -149,6 +149,12 @@ function dianpao_click(idx) {
             rong_flag[idx] = false;
         }
     }
+}
+
+function lichi_click(idx)
+{
+    lichi_flag[idx] = !lichi_flag[idx];
+    lichi_flag[idx] ? $q('.playerinfoarea',idx).addClass("lichi") : $q('.playerinfoarea',idx).removeClass("lichi");
 }
 
 function changeView(idx) {

@@ -44,7 +44,7 @@ fieldset#randpos {
 .playerinfoarea {
     width: 30%;
     height: 30%;
-    border: 3px dashed #F00;
+    border: 3px solid black;
     border-radius: 3px;
     position: absolute;
     text-align: left;
@@ -89,8 +89,12 @@ fieldset#randpos {
 }
 
 .playerscorediff {
-    border: 1px solid blue;
-    width: auto
+    width: auto;
+    height: 21px;
+    font-size: 15px;
+    text-align: center;
+    background: url(img/lichi.gif) no-repeat;
+    background-size: 100% 100%;
 }
 
 .weici {
@@ -146,4 +150,31 @@ fieldset#randpos {
 
 .mainviewcl {
     color: dodgerblue;
+}
+.corner_btn {
+    float: right;
+    position:absolute;
+    width: 100px;
+    height: 40px;
+    border: 2px dashed green;
+    font-size: 20px;
+    right: 5px;
+    
+}
+
+.corner_btn_4win {
+    bottom:50px;
+}
+
+.end99 {
+    bottom:5px;
+}
+
+.end4win {
+    bottom:50px;
+}
+
+.lichi {
+    border: 5px dashed #F00;
+    border-radius: 15px;
 }
