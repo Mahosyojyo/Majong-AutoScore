@@ -162,7 +162,73 @@
         <input type="button" value="四风连打" id="4winds" class="corner_btn end4win">
     </div>
     <!-- Game Area End-->
-
+    <div id="cal_area">
+        <fieldset id="fanshu_field">
+            <legend style="font-size:28px">番数</legend>
+            <input type="button" value="1番" id="1fan" class="fanfu_btn" onclick="fanshu_click(0)">
+            <input type="button" value="2番" id="2fan" class="fanfu_btn" onclick="fanshu_click(1)">
+            <input type="button" value="3番" id="3fan" class="fanfu_btn" onclick="fanshu_click(2)">
+            <input type="button" value="4番" id="4fan" class="fanfu_btn" onclick="fanshu_click(3)">
+            <input type="button" value="5番" id="5fan" class="fanfu_btn" onclick="fanshu_click(4)">
+            <input type="button" value="6-7番" id="67fan" class="fanfu_btn" onclick="fanshu_click(5)">
+            <input type="button" value="8-10番" id="8910fan" class="fanfu_btn" onclick="fanshu_click(6)">
+            <input type="button" value="11-12番" id="1112fan" class="fanfu_btn" onclick="fanshu_click(7)">
+            <input type="button" value="1倍役满" id="13fan" class="fanfu_btn" onclick="fanshu_click(8)">
+        </fieldset>
+        <fieldset id="fushu_field">
+            <legend style="font-size:28px">符数</legend>
+            <input type="button" value="20" id="20fu" class="fanfu_btn" onclick="fushu_click(0)">
+            <input type="button" value="七对子" id="25fu" class="fanfu_btn" onclick="fushu_click(1)">
+            <input type="button" value="30" id="30fu" class="fanfu_btn" onclick="fushu_click(2)">
+            <input type="button" value="40" id="40fu" class="fanfu_btn" onclick="fushu_click(3)">
+            <input type="button" value="50" id="50fu" class="fanfu_btn" onclick="fushu_click(4)">
+            <input type="button" value="60" id="60fu" class="fanfu_btn" onclick="fushu_click(5)">
+            <input type="button" value="70" id="70fu" class="fanfu_btn" onclick="fushu_click(6)">
+            <input type="button" value="80" id="80fu" class="fanfu_btn" onclick="fushu_click(7)">
+            <input type="button" value="90" id="90fu" class="fanfu_btn" onclick="fushu_click(8)">
+            <input type="button" value="100" id="100fu" class="fanfu_btn" onclick="fushu_click(9)">
+            <input type="button" value="110" id="110fu" class="fanfu_btn" onclick="fushu_click(10)">
+        </fieldset>
+        <fieldset id="fushuhelp_field">
+            <legend style="font-size:28px">符数计算工具</legend>
+            <input type="button" value="嵌张/边张/单调听牌" id="fushuhelp1" class="fanfu_help_btn">
+            <input type="button" value="门清自摸" id="fushuhelp2" class="fanfu_help_btn">
+            <input type="button" value="雀头为自风/场风/三元牌" id="fushuhelp3" class="fanfu_help_btn">
+            <div style="border:1px dashed #000;width:100%;margin:5px"></div>
+            <table border="1" style="width:100%;height:150px;font-size:20px">
+                <caption style="font-size:30px;color:#000;">面子计算</caption>
+                <tr>
+                    <th></th>
+                    <th>中章</th>
+                    <th>幺九</th>
+                </tr>
+                <tr>
+                    <th>明刻</th>
+                    <td><input type="button" value="0" id="" class="fu_btn"></td>
+                    <td><input type="button" value="0" id="" class="fu_btn"></td>
+                </tr>
+                <tr>
+                    <th style="background:#888">暗刻</th>
+                    <td><input type="button" value="0" id="" class="fu_btn"></td>
+                    <td><input type="button" value="0" id="" class="fu_btn"></td>
+                </tr>
+                <tr>
+                    <th>明杠</th>
+                    <td><input type="button" value="0" id="" class="fu_btn"></td>
+                    <td><input type="button" value="0" id="" class="fu_btn"></td>
+                </tr>
+                <tr>
+                    <th style="background:#888">暗杠</th>
+                    <td><input type="button" value="0" id="" class="fu_btn"></td>
+                    <td><input type="button" value="0" id="" class="fu_btn"></td>
+                </tr>
+            </table>
+        </fieldset>
+        <div class="clear"> </div>
+        <div style="border:1px dashed #F00;width:100%;margin:5px"></div>
+        <input type="button" value="Clear" id="fushu_ok" class="fanfu_help_btn">
+        <input type="button" value="确定" id="fushu_ok" class="fanfu_help_btn">
+    </div>
 </body>
 
 </html>

@@ -32,18 +32,16 @@ function UpdateAllView() {
     UpdateRank(); //更新顺位
 }
 
-function sortRank(a,b)
-{
+function sortRank(a, b) {
     /*同分逻辑需要重写，高位同分首庄开始算起(已完成)，地位同分离高位近的开始算起！！*/
-    return PointLeft[a] < PointLeft[b] || b<a;
+    return PointLeft[a] < PointLeft[b] || b < a;
 }
 
 function UpdateRank() {
-    var ori = [0,1,2,3];
+    var ori = [0, 1, 2, 3];
     ori = ori.sort(sortRank);
-    for(var i = 0;i < 4;i++)
-    {
-        $q('.weici',ori[i]).text(i+1+'位');
+    for (var i = 0; i < 4; i++) {
+        $q('.weici', ori[i]).text(i + 1 + '位');
     }
 }
 
@@ -151,13 +149,54 @@ function dianpao_click(idx) {
     }
 }
 
-function lichi_click(idx)
-{
+function lichi_click(idx) {
     lichi_flag[idx] = !lichi_flag[idx];
-    lichi_flag[idx] ? $q('.playerinfoarea',idx).addClass("lichi") : $q('.playerinfoarea',idx).removeClass("lichi");
+    lichi_flag[idx] ? $q('.playerinfoarea', idx).addClass("lichi") : $q('.playerinfoarea', idx).removeClass("lichi");
 }
 
 function changeView(idx) {
     mainView = idx;
     ChangePointShowMode();
+}
+
+function fanshu_click(idx) {
+    if ($q('#fanshu_field .fanfu_btn', idx).hasClass('fanshu_clk')) {
+        if (idx == 8) {
+            var cur_yiman = parseInt($q('#fanshu_field .fanfu_btn', idx)[0].value[0]);
+            if (cur_yiman < 6) {
+                $q('#fanshu_field .fanfu_btn', idx)[0].value = (cur_yiman + 1) + "倍役满";
+            } else {
+                $q('#fanshu_field .fanfu_btn', idx)[0].value = "1倍役满";
+                $q('#fanshu_field .fanfu_btn', idx).removeClass('fanshu_clk');
+                $('#fushu_field .fanfu_btn').attr('disabled', false);
+            }
+        } else {
+            $q('#fanshu_field .fanfu_btn', idx).removeClass('fanshu_clk');
+            $('#fushu_field .fanfu_btn').attr('disabled', false);
+        }
+    } else {
+        $q('#fanshu_field .fanfu_btn', idx).addClass('fanshu_clk');
+        $('#fanshu_field .fanfu_btn').not(function (id) {
+            return id == idx
+        }).removeClass('fanshu_clk');
+        if (idx >= 4) {
+            $('#fushu_field .fanfu_btn').attr('disabled', true);
+            $('#fushu_field .fanfu_btn').removeClass('fushu_clk');
+        } else {
+            $('#fushu_field .fanfu_btn').attr('disabled', false);
+        }
+
+    }
+}
+
+function fushu_click(idx) {
+    if ($q('#fushu_field .fanfu_btn', idx).hasClass('fushu_clk')) {
+
+        $q('#fushu_field .fanfu_btn', idx).removeClass('fushu_clk');
+    } else {
+        $q('#fushu_field .fanfu_btn', idx).addClass('fushu_clk');
+        $('#fushu_field .fanfu_btn').not(function (id) {
+            return id == idx
+        }).removeClass('fushu_clk');
+    }
 }
