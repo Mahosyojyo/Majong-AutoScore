@@ -1,8 +1,17 @@
-var playerName = ['Aさん', 'Bさん', 'Cさん', 'Dさん'];
-var PointLeft = [25000, 25000, 25000, 25000];
-var jushu = 1; //局数
-var changfeng = '东'; //场风
-var benchang = 0; //本场数
+function Game(m_jushu, m_changfeng, m_benchang) {
+    this.jushu = m_jushu; //局数
+    this.changfeng = m_changfeng; //场风
+    this.benchang = m_benchang; //本场数
+}
+
+function Player(m_playerName, m_Point) {　　　　
+    this.playerName = m_playerName;　　　　
+    this.Point = m_Point;
+}
+
+var game = new Game(1, '东', 0);
+var InitScore = 25000;
+var player = [new Player('Aさん', InitScore), new Player('Bさん', InitScore), new Player('Cさん', InitScore), new Player('Dさん', InitScore)];
 
 var rong_flag = [false, false, false, false];
 var dianpao_flag = [false, false, false, false];
@@ -22,6 +31,7 @@ $(document).ready(
         ShowPoint(false);
 
         UpdateAllView();
+        $('#fanfu_ok').attr("disabled", true);
     }
 );
 
@@ -34,7 +44,7 @@ function UpdateAllView() {
 
 function sortRank(a, b) {
     /*同分逻辑需要重写，高位同分首庄开始算起(已完成)，地位同分离高位近的开始算起！！*/
-    return PointLeft[a] < PointLeft[b] || b < a;
+    return player[a].Point < player[b].Point || b < a;
 }
 
 function UpdateRank() {
@@ -48,19 +58,19 @@ function UpdateRank() {
 function ShowPoint(DiffMode) {
     for (var i = 0; i < 4; i++) {
         if (DiffMode) {
-            $('.playerscore', $('.playerinfoarea')[i]).text(PointLeft[i] - PointLeft[mainView] * (i != mainView));
+            $('.playerscore', $('.playerinfoarea')[i]).text(player[i].Point - player[mainView].Point * (i != mainView));
         } else {
-            $('.playerscore', $('.playerinfoarea')[i]).text(PointLeft[i]);
+            $('.playerscore', $('.playerinfoarea')[i]).text(player[i].Point);
         }
     }
 }
 
 function UpdateFengwei() //更新风位
 {
-    $q('.playerpos', (jushu + 3) % 4).text('东');
-    $q('.playerpos', (jushu + 4) % 4).text('南');
-    $q('.playerpos', (jushu + 5) % 4).text('西');
-    $q('.playerpos', (jushu + 6) % 4).text('北');
+    $q('.playerpos', (game.jushu + 3) % 4).text('东');
+    $q('.playerpos', (game.jushu + 4) % 4).text('南');
+    $q('.playerpos', (game.jushu + 5) % 4).text('西');
+    $q('.playerpos', (game.jushu + 6) % 4).text('北');
 
 }
 
@@ -74,23 +84,23 @@ function ChangePointShowMode() {
 
 function EditPlayerName() {
     for (var i = 0; i < 4; i++) {
-        playerName[i] = $('#playerName input')[i].value;
+        player[i].playerName = $('#playerName input')[i].value;
     }
     UpdateUserName();
 }
 
 function UpdateUserName() {
     for (var i = 0; i < 4; i++) {
-        $("#playerName  input")[i].value = playerName[i];
-        $('.playername', $('.playerinfoarea')[i]).text(playerName[i]);
-        $('#randpos input')[i].value = playerName[i];
+        $("#playerName  input")[i].value = player[i].playerName;
+        $('.playername', $('.playerinfoarea')[i]).text(player[i].playerName);
+        $('#randpos input')[i].value = player[i].playerName;
     }
 }
 
 function UpdateGameProcess() {
     var chn = ['一', '二', '三', '四'];
-    $("#changkuang").text(changfeng + chn[jushu - 1] + '局');
-    $("#benchangshu").text(benchang + '本场');
+    $("#changkuang").text(game.changfeng + chn[game.jushu - 1] + '局');
+    $("#benchangshu").text(game.benchang + '本场');
 }
 
 //随机换座位
@@ -113,14 +123,17 @@ function randomOrder(targetArray) {
 
 
 function make_random_position() {
-    playerName = randomOrder(playerName)
+    var name_tmp = [player[0].playerName, player[1].playerName, player[2].playerName, player[3].playerName]
+    name_tmp = randomOrder(name_tmp)
+    for (var i = 0; i < 4; i++)
+        player[i].playerName = name_tmp[i];
     UpdateUserName();
 }
 
 function rong_click(idx) {
     rong_flag[idx] = !rong_flag[idx];
     if (rong_flag[idx] == false) {
-        $("#player" + idx + "_rong")[0].value = "胡牌";
+        $("#player" + idx + "_rong")[0].value = "自摸";
         $("#player" + idx + "_rong").removeClass('t_btn_click');
     } else {
         $("#player" + idx + "_rong")[0].value = "取消";
@@ -131,6 +144,7 @@ function rong_click(idx) {
             dianpao_flag[idx] = false;
         }
     }
+    Set_OKbtn_Text();
 }
 
 function dianpao_click(idx) {
@@ -142,11 +156,19 @@ function dianpao_click(idx) {
         $("#player" + idx + "_dianpao")[0].value = "取消";
         $("#player" + idx + "_dianpao").addClass('t_btn_click');
         if (rong_flag[idx] == true) {
-            $("#player" + idx + "_rong")[0].value = "胡牌";
+            $("#player" + idx + "_rong")[0].value = "自摸";
             $("#player" + idx + "_rong").removeClass('t_btn_click');
             rong_flag[idx] = false;
         }
     }
+
+    var has_dianpao = dianpao_flag[0] || dianpao_flag[1] || dianpao_flag[2] || dianpao_flag[3];
+    for (var i = 0; i < 4; i++) {
+        if (rong_flag[idx] == false) {
+            $("#player" + i + "_rong")[0].value = has_dianpao ? "胡牌" : "自摸";
+        }
+    }
+
 }
 
 function lichi_click(idx) {
@@ -159,44 +181,69 @@ function changeView(idx) {
     ChangePointShowMode();
 }
 
-function fanshu_click(idx) {
-    if ($q('#fanshu_field .fanfu_btn', idx).hasClass('fanshu_clk')) {
-        if (idx == 8) {
-            var cur_yiman = parseInt($q('#fanshu_field .fanfu_btn', idx)[0].value[0]);
-            if (cur_yiman < 6) {
-                $q('#fanshu_field .fanfu_btn', idx)[0].value = (cur_yiman + 1) + "倍役满";
-            } else {
-                $q('#fanshu_field .fanfu_btn', idx)[0].value = "1倍役满";
-                $q('#fanshu_field .fanfu_btn', idx).removeClass('fanshu_clk');
-                $('#fushu_field .fanfu_btn').attr('disabled', false);
-            }
-        } else {
-            $q('#fanshu_field .fanfu_btn', idx).removeClass('fanshu_clk');
-            $('#fushu_field .fanfu_btn').attr('disabled', false);
-        }
-    } else {
-        $q('#fanshu_field .fanfu_btn', idx).addClass('fanshu_clk');
-        $('#fanshu_field .fanfu_btn').not(function (id) {
-            return id == idx
-        }).removeClass('fanshu_clk');
-        if (idx >= 4) {
-            $('#fushu_field .fanfu_btn').attr('disabled', true);
-            $('#fushu_field .fanfu_btn').removeClass('fushu_clk');
-        } else {
-            $('#fushu_field .fanfu_btn').attr('disabled', false);
-        }
 
+function Set_OKbtn_Text() {
+    var text = "确定";
+    $('#fanfu_ok').attr("disabled", true);
+    for (var i = 0; i < 4; i++) {
+        if (rong_flag[i]) {
+            text += "(" + player[i].playerName + ")";
+            $('#fanfu_ok').attr("disabled", false);
+            break;
+        }
+    }
+    $('#fanfu_ok')[0].value = text;
+}
+
+function Cal_BaseScore() { //基本点计算
+    var fanshu_idx = -1;
+    var fushu_idx = -1;
+    $('#fanshu_field .fanfu_btn').each(function (idx) {
+        if ($q('#fanshu_field .fanfu_btn', idx).hasClass('fanshu_clk'))
+            fanshu_idx = idx;
+    })
+    if (fanshu_idx == -1) {
+        return -1;
+    }
+
+    if (fanshu_idx < 4) { //  ≤4番
+        $('#fushu_field .fanfu_btn').each(function (idx) {
+            if ($q('#fushu_field .fanfu_btn', idx).hasClass('fushu_clk'))
+                fushu_idx = idx;
+        })
+        if (fushu_idx == -1) {
+            return -2;
+        }
+        var t = parseInt($q('#fushu_field .fanfu_btn', fushu_idx)[0].value) * Math.pow(2, fanshu_idx + 1 + 2);
+        return t < 2000 ? t : 2000;
+
+    } else {
+        var score_idx = [2000, 3000, 4000, 6000]; //满贯，跳满，倍满，三倍满
+        if (fanshu_idx != 8)
+            return score_idx[fanshu_idx - 4];
+        else
+            return 8000 * parseInt($q('#fanshu_field .fanfu_btn', 8)[0].value[0]); //役满数目
     }
 }
 
-function fushu_click(idx) {
-    if ($q('#fushu_field .fanfu_btn', idx).hasClass('fushu_clk')) {
-
-        $q('#fushu_field .fanfu_btn', idx).removeClass('fushu_clk');
-    } else {
-        $q('#fushu_field .fanfu_btn', idx).addClass('fushu_clk');
-        $('#fushu_field .fanfu_btn').not(function (id) {
-            return id == idx
-        }).removeClass('fushu_clk');
+function CalScore_OK() {
+    var base_score = Cal_BaseScore();
+    if (base_score == -1) {
+        $('#fanfu_ok')[0].value = '番数未设置';
+        var t1 = setTimeout("Set_OKbtn_Text()", 1000);
+        return;
     }
+    if (base_score == -2) {
+        $('#fanfu_ok')[0].value = '符数未设置';
+        var t1 = setTimeout("Set_OKbtn_Text()", 1000);
+        return;
+    }
+    var is_zimo = !dianpao_flag[0] && !dianpao_flag[1] && !dianpao_flag[2] && !dianpao_flag[3];
+    if (is_zimo & rong_flag[0] + rong_flag[1] + rong_flag[2] + rong_flag[3] > 1) {
+        $('#fanfu_ok')[0].value = '自摸人数太多了！！！';
+        var t1 = setTimeout("Set_OKbtn_Text()", 1000);
+        return;
+    }
+
+    if (is_zimo) {}
 }

@@ -223,8 +223,7 @@ fieldset#randpos {
     border: 1px solid #;
     background: white;
     font-size: 30px;
-    border-radius: 8px;
-    
+    border-radius: 8px; 
 }
 
 .fanshu_clk {
@@ -237,4 +236,35 @@ fieldset#randpos {
     border: 2px dashed #F00;
     width: 90px;
     font-size: 20px;
+}
+
+.fanfu_help_clk {
+    border: 2px dashed #F00;
+    width: 90%;
+    font-size: 32px;
+}
+
+.mz_cal_clk {
+    border: 2px dashed #F00;
+    width: 60%;
+}
+
+.set_fu {
+    width: 40%;
+    height: 40px;
+    margin: 3px;
+    border: 1px solid #;
+    background: white;
+    font-size: 30px;
+    border-radius: 8px; 
+}
+
+.fanshu_ok_btn {
+    width: 80%;
+    height: 40px;
+    margin: 3px;
+    border: 1px solid #;
+    background: white;
+    font-size: 30px;
+    border-radius: 8px; 
 }
