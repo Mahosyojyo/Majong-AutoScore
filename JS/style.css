@@ -34,7 +34,7 @@ fieldset#randpos {
 
 #gamearea {
     /*background:待添加*/
-    width: 600px;
+    width: 40%;
     height: 600px;
     border: 3px solid #0F0;
     border-radius: 10px;
@@ -186,7 +186,7 @@ fieldset#randpos {
     border-radius: 20px;
     float: left;
     padding: 15px;
-    width: 40%;
+    width: 55%;
 }
 
 #fanshu_field {
@@ -267,4 +267,19 @@ fieldset#randpos {
     background: white;
     font-size: 30px;
     border-radius: 8px; 
+}
+
+#liuju {
+    bottom: 0px;
+    position: absolute;
+}
+
+#liuju_btn {
+    width: 80px;
+    height: 80px;
+    margin: 5px;
+    border: 1px solid #;
+    background: green;
+    border-radius: 20px;
+    font-size: 48px;
 }

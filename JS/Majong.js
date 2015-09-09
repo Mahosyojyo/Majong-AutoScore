@@ -247,3 +247,5 @@ function CalScore_OK() {
 
     if (is_zimo) {}
 }
+
+function liuju(){}
