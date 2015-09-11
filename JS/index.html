@@ -10,7 +10,7 @@
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
     <script type="text/javascript" src="Majong.js"></script>
     <script type="text/javascript" src="tab.js"></script>
-    <script type="text/javascript" src="fanfuCal.js"></script>    
+    <script type="text/javascript" src="fanfuCal.js"></script>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class="TabContent">
-            <div id="myTab0_Content0">
+            <div id="myTab0_Content0" class="tab_cls">
                 <fieldset>
                     <legend>游戏设置</legend>
                     <fieldset id="playerName">
@@ -70,29 +70,12 @@
                 </fieldset>
 
             </div>
-            <div id="myTab0_Content1" class="none">
-                <fieldset id="randpos">
-                    <legend>随机选座</legend>
-                    <form>
-                        <input type="text" name="Player1Name_pos" value="" class="nameedit" disabled="disabled" />
-                        <span id="player1_random_pos">东</span>
-                        <br />
-                        <input type="text" name="Player2Name_pos" value="" class="nameedit" disabled="disabled" />
-                        <span id="player2_random_pos">南</span>
-                        <br />
-                        <input type="text" name="Player3Name_pos" value="" class="nameedit" disabled="disabled" />
-                        <span id="player3_random_pos">西</span>
-                        <br />
-                        <input type="text" name="Player4Name_pos" value="" class="nameedit" disabled="disabled" />
-                        <span id="player4_random_pos">北</span>
-                        <br />
-                    </form>
-                    <input type="button" value="随机分配座位" id="randomposbutton" onclick="make_random_position()">
-                </fieldset>
+            <div id="myTab0_Content1" class="none tab_cls">
+                <input type="button" value="随机分配座位" id="randomposbutton" onclick="make_random_position()">
             </div>
-            <div id="myTab0_Content2" class="none">成绩统计，开发中</div>
-            <div id="myTab0_Content3" class="none">使用说明，待补充</div>
-            <div id="myTab0_Content4" class="none">
+            <div id="myTab0_Content2" class="none tab_cls">成绩统计，开发中</div>
+            <div id="myTab0_Content3" class="none tab_cls">使用说明，待补充</div>
+            <div id="myTab0_Content4" class="none tab_cls">
                 Version： 1.0
                 <br /> 版权归
                 <a href="http://www.kylen314.com">Vespa</a> 所有
@@ -119,7 +102,9 @@
             <br /> 本场数：
             <p class="inline_text" id="benchangshu"></p>
         </div>
-        <div id="liuju"><input type="button" value="流" id="liuju_btn"  onclick="liuju()"></div>
+        <div id="liuju">
+            <input type="button" value="流" id="liuju_btn" onclick="liuju()">
+        </div>
         <div class="playerinfoarea" id="player1">
             <div class="playerpos" onclick="changeView(0)"></div>
             <div class="playername"></div>
@@ -207,23 +192,39 @@
                 </tr>
                 <tr class='mianzi_tr'>
                     <th>明刻</th>
-                    <td><input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(0,0)"></td>
-                    <td><input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(0,1)"></td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(0,0)">
+                    </td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(0,1)">
+                    </td>
                 </tr>
                 <tr class='mianzi_tr'>
                     <th style="background:#888">暗刻</th>
-                    <td><input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(1,0)"></td>
-                    <td><input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(1,1)"></td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(1,0)">
+                    </td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(1,1)">
+                    </td>
                 </tr>
                 <tr class='mianzi_tr'>
                     <th>明杠</th>
-                    <td><input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(2,0)"></td>
-                    <td><input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(2,1)"></td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(2,0)">
+                    </td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(2,1)">
+                    </td>
                 </tr>
                 <tr class='mianzi_tr'>
                     <th style="background:#888">暗杠</th>
-                    <td><input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(3,0)"></td>
-                    <td><input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(3,1)"></td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(3,0)">
+                    </td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(3,1)">
+                    </td>
                 </tr>
             </table>
         </fieldset>

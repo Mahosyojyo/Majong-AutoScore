@@ -93,7 +93,6 @@ function UpdateUserName() {
     for (var i = 0; i < 4; i++) {
         $("#playerName  input")[i].value = player[i].playerName;
         $('.playername', $('.playerinfoarea')[i]).text(player[i].playerName);
-        $('#randpos input')[i].value = player[i].playerName;
     }
 }
 
@@ -248,4 +247,4 @@ function CalScore_OK() {
     if (is_zimo) {}
 }
 
-function liuju(){}
+function liuju() {}
