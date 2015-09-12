@@ -2,7 +2,8 @@ body {
     font-family: arial;
     font-size: 12px;
     text-align: center;
-    margin: 0;
+    margin: 0;;
+    width:100%;
 }
 
 .clear {
@@ -26,7 +27,7 @@ fieldset#zeropointsetting {
 
 #gamearea {
     /*background:待添加*/
-    width: 40%;
+    width: 600px;
     height: 600px;
     border: 3px solid #0F0;
     border-radius: 10px;
@@ -176,9 +177,9 @@ fieldset#zeropointsetting {
     margin-left: 30px;
     border: 2px solid #000;
     border-radius: 20px;
-    float: left;
+    margin-left: 620px;
+    margin-left: 20px;
     padding: 15px;
-    width: 55%;
 }
 
 #fanshu_field {
