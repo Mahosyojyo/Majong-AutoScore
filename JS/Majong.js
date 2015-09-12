@@ -247,4 +247,27 @@ function CalScore_OK() {
     if (is_zimo) {}
 }
 
-function liuju() {}
+function liuju() {
+    if($('#liuju_btn')[0].value=='流')
+    {
+        $(".liuju_icon").css("visibility","visible");
+        $('#liuju_btn')[0].value='定';
+    }
+    else{
+        $('#liuju_btn')[0].value='流';
+        $('.liuju_icon').removeClass('liuju_ting');
+        $('.liuju_icon').addClass('liuju_noting');
+        //流局逻辑
+    }
+}
+
+function liuju_clk(idx){
+    if($q('.liuju_icon',idx).hasClass('liuju_noting')){
+        $q('.liuju_icon',idx).removeClass('liuju_noting');
+        $q('.liuju_icon',idx).addClass('liuju_ting');
+    }
+    else{
+        $q('.liuju_icon',idx).removeClass('liuju_ting');
+        $q('.liuju_icon',idx).addClass('liuju_noting');
+    }
+}
