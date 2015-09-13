@@ -1,3 +1,8 @@
+function Game_State(m_game,m_player){
+    this.game = m_game;
+    this.player = m_player;
+}
+
 function Game(m_jushu, m_changfeng, m_benchang) {
     this.jushu = m_jushu; //局数
     this.changfeng = m_changfeng; //场风
@@ -15,14 +20,15 @@ var game = new Game(1, '东', 0);
 var InitScore = 25000;
 var player = [new Player('Aさん', InitScore), new Player('Bさん', InitScore), new Player('Cさん', InitScore), new Player('Dさん', InitScore)];
 
-var rong_flag = [false, false, false, false];
-var dianpao_flag = [false, false, false, false];
-var lichi_flag = [false, false, false, false];
+var rong_flag = [false, false, false, false];//胡牌
+var dianpao_flag = [false, false, false, false];//点炮
+var lichi_flag = [false, false, false, false];//立直
+
 var mainView = 0; //点差模式下主视角
-
 var rong_list = [-1]; //[点炮者,[胡牌者1,点数],[胡牌者2,点数]]
-
 var game_area_lock = false;
+
+var game_state = new Array();
 
 function $q(pattern, idx) { //jQuery辅助函数
     return $(pattern + ":eq(" + idx + ')');
@@ -40,10 +46,31 @@ function next_Game(Is_oya_win) {
             for (var i = 0; i < 4; i++) {
                 if (cf[i] == game.changfeng) {
                     game.changfeng = cf[(i + 1) % 4];
+                    break;
                 }
             }
         }
     }
+}
+
+function clone(myObj){//deep copy of object
+    if(typeof(myObj) != 'object' || myObj == null) return myObj;  
+    var newObj = new Object();  
+    for(var i in myObj){  
+      newObj[i] = clone(myObj[i]); 
+    }  
+    return newObj;  
+}  
+
+function RecordCurGameState(){
+    game_state.push(new Game_State(clone(game),clone(player)));
+}
+
+function RecoverGameState(){
+    game_state.pop();
+    game = game_state[game_state.length-1].game;
+    player = game_state[game_state.length-1].player;
+    UpdateAllView();
 }
 
 $(document).ready(
@@ -56,6 +83,8 @@ $(document).ready(
 
         UpdateAllView();
         $('#fanfu_ok').attr("disabled", true);
+        
+        RecordCurGameState();
     }
 );
 
@@ -332,19 +361,20 @@ function CalScore_OK() {
             for (var i = 0; i < 4; i++) {
                 if (i == zimo_idx) continue;
                 score_give(i, zimo_idx, ScoreUpper(base_score * 2) + 100 * game.benchang);
-                next_Game(true);
             }
+            next_Game(true);
         } else { //闲家自摸
             for (var i = 0; i < 4; i++) {
                 if (i == zimo_idx) continue;
                 score_give(i, zimo_idx, ScoreUpper(base_score * (1 + (i == game.jushu - 1))) + 100 * game.benchang);
-                next_Game(false);
             }
+            next_Game(false);
         }
         //处理立直棒
         collect_lichi(zimo_idx);
-        UpdateAllView();
         Reset_Game_panel();
+        UpdateAllView();
+        RecordCurGameState();
     } //自摸-END
     else { //点炮
         var dianpao_player_idx = dianpao_flag[0] ? 0 : (dianpao_flag[1] ? 1 : (dianpao_flag[2] ? 2 : 3));
@@ -400,6 +430,7 @@ function deal_dianpao() {
     next_Game(oya_win);
     UpdateAllView();
     Reset_Game_panel();
+    RecordCurGameState();
     rong_list = [-1];
 }
 
@@ -439,15 +470,15 @@ function liuju() {
     }
 }
 
-
-
 function Reset_Game_panel() {
     rong_flag = [false, false, false, false];
     dianpao_flag = [false, false, false, false];
     lichi_flag = [false, false, false, false];
-    $('.rong_btn').value = '自摸';
+    for(var i = 0;i < 4;i++){
+        $q('.rong_btn',i)[0].value = '自摸';
+        $q('.dianpao_btn',i)[0].value = '点炮';
+    }
     $('.rong_btn').removeClass('t_btn_click');
-    $('.dianpao_btn').value = '点炮';
     $('.dianpao_btn').removeClass('t_btn_click');
     $('.playerinfoarea').removeClass("lichi");
 }
@@ -460,4 +491,5 @@ function liuju_cal(score_list, oya_lose) {
     next_Game(!oya_lose);
     UpdateAllView();
     Reset_Game_panel();
+    RecordCurGameState();
 }
