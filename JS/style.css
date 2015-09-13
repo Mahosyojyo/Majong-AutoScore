@@ -102,7 +102,7 @@ fieldset#zeropointsetting {
 
 #game_process {
     width: 33%;
-    height: 80px;
+    height: 100px;
     float: right;
     font-size: 26px;
     text-align: left;
@@ -112,7 +112,7 @@ fieldset#zeropointsetting {
 
 .inline_text {
     display: inline;
-    color: forestgreen
+    color: forestgreen;
 }
 
 .rong_btn {

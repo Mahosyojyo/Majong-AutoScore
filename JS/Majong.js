@@ -2,11 +2,13 @@ function Game(m_jushu, m_changfeng, m_benchang) {
     this.jushu = m_jushu; //局数
     this.changfeng = m_changfeng; //场风
     this.benchang = m_benchang; //本场数
+    this.lichi_num = 0;
 }
 
 function Player(m_playerName, m_Point) {　　　　
     this.playerName = m_playerName;　　　　
     this.Point = m_Point;
+    this.PointHistory = new Array();
 }
 
 var game = new Game(1, '东', 0);
@@ -18,8 +20,30 @@ var dianpao_flag = [false, false, false, false];
 var lichi_flag = [false, false, false, false];
 var mainView = 0; //点差模式下主视角
 
+var rong_list = [-1]; //[点炮者,[胡牌者1,点数],[胡牌者2,点数]]
+
+var game_area_lock = false;
+
 function $q(pattern, idx) { //jQuery辅助函数
     return $(pattern + ":eq(" + idx + ')');
+}
+
+function next_Game(Is_oya_win) {
+    if (Is_oya_win) {
+        game.benchang += 1;
+    } else {
+        game.benchang = 0;
+        game.jushu += 1;
+        if (game.jushu > 4) {
+            game.jushu = 1;
+            var cf = ['东', '南', '西', '北'];
+            for (var i = 0; i < 4; i++) {
+                if (cf[i] == game.changfeng) {
+                    game.changfeng = cf[(i + 1) % 4];
+                }
+            }
+        }
+    }
 }
 
 $(document).ready(
@@ -40,6 +64,7 @@ function UpdateAllView() {
     UpdateGameProcess(); //更新右上角进度
     UpdateFengwei(); //更新风位
     UpdateRank(); //更新顺位
+    $("#lichi_num").text(game.lichi_num);
 }
 
 function sortRank(a, b) {
@@ -130,6 +155,7 @@ function make_random_position() {
 }
 
 function rong_click(idx) {
+    if (game_area_lock) return;
     rong_flag[idx] = !rong_flag[idx];
     if (rong_flag[idx] == false) {
         $("#player" + idx + "_rong")[0].value = "自摸";
@@ -147,6 +173,7 @@ function rong_click(idx) {
 }
 
 function dianpao_click(idx) {
+    if (game_area_lock) return;
     dianpao_flag[idx] = !dianpao_flag[idx];
     if (dianpao_flag[idx] == false) {
         $("#player" + idx + "_dianpao")[0].value = "点炮";
@@ -154,10 +181,16 @@ function dianpao_click(idx) {
     } else {
         $("#player" + idx + "_dianpao")[0].value = "取消";
         $("#player" + idx + "_dianpao").addClass('t_btn_click');
-        if (rong_flag[idx] == true) {
+        if (rong_flag[idx] == true) { //不可能同时胡牌和点炮
             $("#player" + idx + "_rong")[0].value = "自摸";
             $("#player" + idx + "_rong").removeClass('t_btn_click');
             rong_flag[idx] = false;
+        }
+        for (var i = 0; i < 4; i++) //逻辑保证只能有一个点炮的
+        {
+            if (i == idx) continue;
+            dianpao_flag[i] = false;
+            $("#player" + i + "_dianpao").removeClass('t_btn_click');
         }
     }
 
@@ -171,8 +204,18 @@ function dianpao_click(idx) {
 }
 
 function lichi_click(idx) {
+    if (game_area_lock) return;
     lichi_flag[idx] = !lichi_flag[idx];
-    lichi_flag[idx] ? $q('.playerinfoarea', idx).addClass("lichi") : $q('.playerinfoarea', idx).removeClass("lichi");
+    if (lichi_flag[idx]) {
+        $q('.playerinfoarea', idx).addClass("lichi")
+        player[idx].Point -= 1000;
+        game.lichi_num += 1;
+    } else {
+        $q('.playerinfoarea', idx).removeClass("lichi")
+        player[idx].Point += 1000;
+        game.lichi_num -= 1
+    }
+    UpdateAllView();
 }
 
 function changeView(idx) {
@@ -210,6 +253,14 @@ function Cal_BaseScore() { //基本点计算
             if ($q('#fushu_field .fanfu_btn', idx).hasClass('fushu_clk'))
                 fushu_idx = idx;
         })
+        if (fushu_idx == 0 && fanshu_idx == 0) //1番20符的特例要变1番30符
+        {
+            fushu_idx = 2;
+        }
+        if (fushu_idx == 1 && fanshu_idx == 0) //1番25符的情况不存在
+        {
+            return -3;
+        }
         if (fushu_idx == -1) {
             return -2;
         }
@@ -225,49 +276,188 @@ function Cal_BaseScore() { //基本点计算
     }
 }
 
-function CalScore_OK() {
-    var base_score = Cal_BaseScore();
-    if (base_score == -1) {
+function ScoreUpper(score) {
+    return parseInt(score / 100) * 100 + (score % 100 == 0 ? 0 : 100);
+}
+
+function ShowErrorStr(base_score) {
+    if (base_score == -1)
         $('#fanfu_ok')[0].value = '番数未设置';
-        var t1 = setTimeout("Set_OKbtn_Text()", 1000);
-        return;
-    }
-    if (base_score == -2) {
+    if (base_score == -2)
         $('#fanfu_ok')[0].value = '符数未设置';
-        var t1 = setTimeout("Set_OKbtn_Text()", 1000);
+    if (base_score == -3)
+        $('#fanfu_ok')[0].value = '一番25符是不可能的！！';
+    if (base_score == -4)
+        $('#fanfu_ok')[0].value = '自摸人数太多了！！';
+    if (base_score == -5)
+        $('#fanfu_ok')[0].value = '一炮三响是流局！！';
+    if (base_score == -6)
+        $('#fanfu_ok')[0].value = '四人点炮你逗我？！！';
+    setTimeout("Set_OKbtn_Text()", 1000);
+}
+
+function score_give(from, to, score) {
+    player[from].Point -= score;
+    player[to].Point += score;
+}
+
+function CalScore_OK() {
+    var rong_num = rong_flag[0] + rong_flag[1] + rong_flag[2] + rong_flag[3];
+    var is_zimo = !dianpao_flag[0] && !dianpao_flag[1] && !dianpao_flag[2] && !dianpao_flag[3];
+
+    if (!is_zimo && rong_num == 3) { //一炮三响
+        ShowErrorStr(-5);
+        liuju_cal([0, 0, 0, 0], !rong_flag[game.jushu - 1]);
         return;
     }
-    var is_zimo = !dianpao_flag[0] && !dianpao_flag[1] && !dianpao_flag[2] && !dianpao_flag[3];
-    if (is_zimo & rong_flag[0] + rong_flag[1] + rong_flag[2] + rong_flag[3] > 1) {
-        $('#fanfu_ok')[0].value = '自摸人数太多了！！！';
-        var t1 = setTimeout("Set_OKbtn_Text()", 1000);
+    if (!is_zimo && rong_num == 4) {//胡牌人数四个人，你特么在逗我？！
+        ShowErrorStr(-6);
         return;
     }
 
-    if (is_zimo) {}
+    if (is_zimo & rong_num > 1) { //超过1人自摸
+        ShowErrorStr(-4);
+        return;
+    }
+    
+    var base_score = Cal_BaseScore();
+    if (base_score < 0) {
+        ShowErrorStr(base_score);
+        return;
+    }
+
+    var zimo_idx = rong_flag[0] ? 0 : (rong_flag[1] ? 1 : (rong_flag[2] ? 2 : 3));
+    if (is_zimo) { //自摸    
+        if (zimo_idx == game.jushu - 1) { //庄家自摸
+            for (var i = 0; i < 4; i++) {
+                if (i == zimo_idx) continue;
+                score_give(i, zimo_idx, ScoreUpper(base_score * 2) + 100 * game.benchang);
+                next_Game(true);
+            }
+        } else { //闲家自摸
+            for (var i = 0; i < 4; i++) {
+                if (i == zimo_idx) continue;
+                score_give(i, zimo_idx, ScoreUpper(base_score * (1 + (i == game.jushu - 1))) + 100 * game.benchang);
+                next_Game(false);
+            }
+        }
+        //处理立直棒
+        collect_lichi(zimo_idx);
+        UpdateAllView();
+        Reset_Game_panel();
+    } //自摸-END
+    else { //点炮
+        var dianpao_player_idx = dianpao_flag[0] ? 0 : (dianpao_flag[1] ? 1 : (dianpao_flag[2] ? 2 : 3));
+        rong_list[0] = dianpao_player_idx;
+        for (var i = 0; i < 4; i++) {
+            if (rong_flag[i]) {
+                rong_flag[i] = false;
+                $("#player" + i + "_rong")[0].value = "胡牌";
+                $("#player" + i + "_rong").removeClass('t_btn_click');
+                rong_list.push([i, base_score]);
+                break;
+            }
+        }
+        Set_OKbtn_Text();
+        if (rong_flag[0] + rong_flag[1] + rong_flag[2] + rong_flag[3] == 0) { //处理完全部胡牌了
+            deal_dianpao();
+        } else {
+            game_area_lock = true; //一炮双响,锁定面板，不允许操作
+        }
+    }
+
+}
+
+function collect_lichi(idx) { //第idx玩家获得剩下所有立直棒
+    player[idx].Point += 1000 * game.lichi_num;
+    game.lichi_num = 0;
+}
+
+function deal_dianpao() {
+    var oya_win = false;
+
+    var dianpao_player = rong_list[0];
+    var nearest_dis = 999999;
+    var nearest_idx = -1;
+    for (var i = 1; i < rong_list.length; i++) {
+        var rong_player = rong_list[i][0];
+        var score = rong_list[i][1];
+        score_give(dianpao_player, rong_player, ScoreUpper(score * (4 + 2 * (rong_player == game.jushu - 1))) + 300 * game.benchang);
+        //寻找最近的作为立直棒所有者
+        var dis = rong_player > dianpao_player ? rong_player - dianpao_player : rong_player - dianpao_player + 4;
+        if (nearest_dis > dis) {
+            nearest_dis = dis;
+            nearest_idx = rong_player;
+        }
+
+        if (rong_player == game.jushu - 1) {
+            oya_win = true;
+        }
+    }
+
+    collect_lichi(nearest_idx);
+    game_area_lock = false;
+    next_Game(oya_win);
+    UpdateAllView();
+    Reset_Game_panel();
+    rong_list = [-1];
 }
 
 function liuju() {
-    if($('#liuju_btn')[0].value=='流')
-    {
-        $(".liuju_icon").css("visibility","visible");
-        $('#liuju_btn')[0].value='定';
-    }
-    else{
-        $('#liuju_btn')[0].value='流';
+    if (game_area_lock) return;
+    if ($('#liuju_btn')[0].value == '流') {
+        $(".liuju_icon").css("visibility", "visible");
+        $('#liuju_btn')[0].value = '定';
+    } else {
+        //流局逻辑
+        var tingpai = [0, 0, 0, 0];
+        var tingpai_user_ct = 0;
+        for (var i = 0; i < 4; i++) {
+            if ($q('.liuju_icon', i).hasClass('liuju_ting')) {
+                tingpai[i] = 1;
+                tingpai_user_ct += 1;
+            }
+        }
+        if (tingpai_user_ct == 0 || tingpai_user_ct == 4) {
+            liuju_cal(0, 0, 0, 0, tingpai_user_ct > 0);
+        } else {
+            for (var i = 0; i < 4; i++) {
+                if (tingpai_user_ct == 1)
+                    tingpai[i] = tingpai[i] ? 3000 : -1000;
+                else if (tingpai_user_ct == 2)
+                    tingpai[i] = tingpai[i] ? 1500 : -1500;
+                else
+                    tingpai[i] = tingpai[i] ? 1000 : -3000;
+            }
+            liuju_cal(tingpai, tingpai[game.jushu - 1] > 0 ? false : true);
+        }
+
+        $('#liuju_btn')[0].value = '流';
         $('.liuju_icon').removeClass('liuju_ting');
         $('.liuju_icon').addClass('liuju_noting');
-        //流局逻辑
+        $(".liuju_icon").css("visibility", "hidden");
     }
 }
 
-function liuju_clk(idx){
-    if($q('.liuju_icon',idx).hasClass('liuju_noting')){
-        $q('.liuju_icon',idx).removeClass('liuju_noting');
-        $q('.liuju_icon',idx).addClass('liuju_ting');
+
+
+function Reset_Game_panel() {
+    rong_flag = [false, false, false, false];
+    dianpao_flag = [false, false, false, false];
+    lichi_flag = [false, false, false, false];
+    $('.rong_btn').value = '自摸';
+    $('.rong_btn').removeClass('t_btn_click');
+    $('.dianpao_btn').value = '点炮';
+    $('.dianpao_btn').removeClass('t_btn_click');
+    $('.playerinfoarea').removeClass("lichi");
+}
+
+function liuju_cal(score_list, oya_lose) {
+    if (game_area_lock) return;
+    for (var i = 0; i < 4; i++) {
+        player[i].Point += score_list[i];
     }
-    else{
-        $q('.liuju_icon',idx).removeClass('liuju_ting');
-        $q('.liuju_icon',idx).addClass('liuju_noting');
-    }
+    next_Game(!oya_lose);
+    UpdateAllView();
+    Reset_Game_panel();
 }

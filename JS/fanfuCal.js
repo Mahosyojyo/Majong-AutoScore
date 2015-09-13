@@ -24,7 +24,6 @@ function fanshu_click(idx) {
         } else {
             ClearFushuSetting(false);
         }
-
     }
 }
 
@@ -112,4 +111,14 @@ function SetFushu() {
     $('#fushu_field .fanfu_btn').each(function (idx) {
         $q('#fushu_field .fanfu_btn', idx)[0].value == result_f ? $q('#fushu_field .fanfu_btn', idx).addClass('fushu_clk') : $q('#fushu_field .fanfu_btn', idx).removeClass('fushu_clk');
     });
+}
+
+function liuju_clk(idx) {
+    if ($q('.liuju_icon', idx).hasClass('liuju_noting')) {
+        $q('.liuju_icon', idx).removeClass('liuju_noting');
+        $q('.liuju_icon', idx).addClass('liuju_ting');
+    } else {
+        $q('.liuju_icon', idx).removeClass('liuju_ting');
+        $q('.liuju_icon', idx).addClass('liuju_noting');
+    }
 }
