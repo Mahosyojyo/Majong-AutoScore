@@ -1,4 +1,4 @@
-function Game_State(m_game,m_player){
+function Game_State(m_game, m_player) {
     this.game = m_game;
     this.player = m_player;
 }
@@ -20,9 +20,9 @@ var game = new Game(1, '东', 0);
 var InitScore = 25000;
 var player = [new Player('Aさん', InitScore), new Player('Bさん', InitScore), new Player('Cさん', InitScore), new Player('Dさん', InitScore)];
 
-var rong_flag = [false, false, false, false];//胡牌
-var dianpao_flag = [false, false, false, false];//点炮
-var lichi_flag = [false, false, false, false];//立直
+var rong_flag = [false, false, false, false]; //胡牌
+var dianpao_flag = [false, false, false, false]; //点炮
+var lichi_flag = [false, false, false, false]; //立直
 
 var mainView = 0; //点差模式下主视角
 var rong_list = [-1]; //[点炮者,[胡牌者1,点数],[胡牌者2,点数]]
@@ -53,28 +53,103 @@ function next_Game(Is_oya_win) {
     }
 }
 
-function clone(myObj){//deep copy of object
-    if(typeof(myObj) != 'object' || myObj == null) return myObj;  
-    var newObj = new Object();  
-    for(var i in myObj){  
-      newObj[i] = clone(myObj[i]); 
-    }  
-    return newObj;  
-}  
-
-function RecordCurGameState(){
-    game_state.push(new Game_State(clone(game),clone(player)));
+function DrawLine() {
+    var data = {
+        labels: [],
+        datasets: [
+            {
+                fillColor: "rgba(255,255,255,0)",
+                strokeColor: "rgb(220,0,220)", //线
+                pointColor: "rgb(203, 22, 29)", //点
+                pointStrokeColor: "#f00", //圈
+                data: []
+		},
+            {
+                fillColor: "rgba(255,255,255,0)",
+                strokeColor: "rgb(18, 235, 60)",
+                pointColor: "rgb(0, 250, 135)",
+                pointStrokeColor: "#21fa7d",
+                data: []
+		}
+        ,
+            {
+                fillColor: "rgba(255,255,255,0)",
+                strokeColor: "rgb(25, 41, 234)",
+                pointColor: "rgb(14, 148, 198)",
+                pointStrokeColor: "#4e60c1",
+                data: []
+		}
+        ,
+            {
+                fillColor: "rgba(255,255,255,0)",
+                strokeColor: "rgb(237, 128, 109)",
+                pointColor: "rgb(226, 93, 34)",
+                pointStrokeColor: "#c9861c",
+                data: []
+		}
+	]
+    };
+    for (var i = 0; i < game_state.length; i++) {
+        data['labels'].push(game_state[i].game.changfeng + game_state[i].game.jushu + '局');
+        for (var player_idx = 0; player_idx < 4; player_idx++) {
+            data['datasets'][player_idx]['data'].push(game_state[i].player[player_idx].Point);
+        }
+    }
+    var ctx = document.getElementById("myChart").getContext("2d");
+    window.myLine = new Chart(ctx).Line(data, {
+        scaleOverlay: true,
+        showScale: true,
+        scaleLineColor: "rgba(0,0,0,1)",
+        scaleLineWidth: 1,
+        scaleShowLabels: true,
+        scaleLabel: "<%=value%>",
+        scaleFontFamily: "'Arial'",
+        scaleFontSize: 20,
+        scaleFontStyle: "normal",
+        scaleFontColor: "#666",
+        scaleShowGridLines: true,
+        scaleGridLineColor: "rgba(0,0,0,.1)",
+        scaleGridLineWidth: 3,
+        bezierCurve: true,
+        pointDot: true,
+        pointDotRadius: 5,
+        pointDotStrokeWidth: 1,
+        datasetStrokeWidth: 2,
+        datasetFill: false,
+    });
 }
 
-function RecoverGameState(){
+function clone(myObj) { //deep copy of object
+    if (typeof (myObj) != 'object' || myObj == null) return myObj;
+    var newObj = new Object();
+    for (var i in myObj) {
+        newObj[i] = clone(myObj[i]);
+    }
+    return newObj;
+}
+
+function RecordCurGameState() {
+    game_state.push(new Game_State(clone(game), clone(player)));
+    DrawLine();
+}
+
+function RecoverGameState() {
     game_state.pop();
-    game = game_state[game_state.length-1].game;
-    player = game_state[game_state.length-1].player;
+    game = game_state[game_state.length - 1].game;
+    player = game_state[game_state.length - 1].player;
     UpdateAllView();
 }
 
+function resizeCanvas() {
+    $("#myChart").width(document.documentElement.clientWidth - $(".nTab").width() - 120 + 'px');
+};
+
+resizeCanvas();
+
 $(document).ready(
     function () {
+        $(window).resize(resizeCanvas);
+
         $('input').bind('change', EditPlayerName);
         UpdateUserName();
 
@@ -83,8 +158,9 @@ $(document).ready(
 
         UpdateAllView();
         $('#fanfu_ok').attr("disabled", true);
-        
+
         RecordCurGameState();
+        set_tooltip();
     }
 );
 
@@ -339,7 +415,7 @@ function CalScore_OK() {
         liuju_cal([0, 0, 0, 0], !rong_flag[game.jushu - 1]);
         return;
     }
-    if (!is_zimo && rong_num == 4) {//胡牌人数四个人，你特么在逗我？！
+    if (!is_zimo && rong_num == 4) { //胡牌人数四个人，你特么在逗我？！
         ShowErrorStr(-6);
         return;
     }
@@ -348,7 +424,7 @@ function CalScore_OK() {
         ShowErrorStr(-4);
         return;
     }
-    
+
     var base_score = Cal_BaseScore();
     if (base_score < 0) {
         ShowErrorStr(base_score);
@@ -474,9 +550,9 @@ function Reset_Game_panel() {
     rong_flag = [false, false, false, false];
     dianpao_flag = [false, false, false, false];
     lichi_flag = [false, false, false, false];
-    for(var i = 0;i < 4;i++){
-        $q('.rong_btn',i)[0].value = '自摸';
-        $q('.dianpao_btn',i)[0].value = '点炮';
+    for (var i = 0; i < 4; i++) {
+        $q('.rong_btn', i)[0].value = '自摸';
+        $q('.dianpao_btn', i)[0].value = '点炮';
     }
     $('.rong_btn').removeClass('t_btn_click');
     $('.dianpao_btn').removeClass('t_btn_click');

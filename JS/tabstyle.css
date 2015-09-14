@@ -1,5 +1,6 @@
 .nTab {
 	float: left;
+    position: relative
 	margin: 0 auto;
 	border-bottom: 1px #C7C7CD solid;
 	/*background: #d5d5d5;*/

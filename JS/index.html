@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="./style.css" type="text/css" />
     <link rel="stylesheet" href="./tabstyle.css" type="text/css" />
     <link rel="stylesheet" href="./switch.css" type="text/css" />
+    <link rel="stylesheet" href="./chart/chartline.css" type="text/css" />
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
     <script type="text/javascript" src="Majong.js"></script>
     <script type="text/javascript" src="tab.js"></script>
     <script type="text/javascript" src="fanfuCal.js"></script>
+    <script type="text/javascript" src="./chart/Chart.js"></script>
+    <script type="text/javascript" src="./chart/charttips.js"></script>
 </head>
 
 <body>
@@ -84,10 +87,11 @@
                 <a href="https://github.com/Mahosyojyo">https://github.com/Mahosyojyo</a>
                 <br />
             </div>
-
         </div>
-        <!-- Tab End-->
+
     </div>
+    <canvas id="myChart" height="250px" width="1200px"></canvas>
+    <div id="chartjs-tooltip"></div>
     <div class="clear"> </div>
     <div id="gamearea">
         <div class="onoffswitch">
@@ -248,6 +252,7 @@
         <input type="button" value="确定" id="fanfu_ok" class="fanshu_ok_btn" onclick="CalScore_OK()">
     </div>
     <div class="clear"> </div>
+
 </body>
 
 </html>
