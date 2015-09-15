@@ -2,8 +2,9 @@ body {
     font-family: arial;
     font-size: 12px;
     text-align: center;
-    margin: 0;;
-    width:100%;
+    margin: 0;
+    ;
+    width: 100%;
 }
 
 .clear {
@@ -11,24 +12,24 @@ body {
 }
 
 fieldset#playerName {
-    width: 40px;
+    width: 80px;
     float: left;
 }
 
 fieldset#gamemode {
-    width: 80px;
+    width: 60px;
     float: left;
 }
 
 fieldset#zeropointsetting {
-    width: 80px;
+    width: 60px;
     float: left;
 }
 
 #gamearea {
     /*background:待添加*/
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     border: 3px solid #0F0;
     border-radius: 10px;
     position: relative;
@@ -64,7 +65,7 @@ fieldset#zeropointsetting {
 
 .playerpos {
     font-family: 'Tangerine', serif;
-    font-size: 48px;
+    font-size: 30px;
     text-shadow: 4px 4px 4px #aaa;
     text-align: right;
     float: left;
@@ -79,7 +80,7 @@ fieldset#zeropointsetting {
 
 .playerscore {
     font-family: "Comic Sans MS";
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .playerscorediff {
@@ -92,19 +93,20 @@ fieldset#zeropointsetting {
 }
 
 .weici {
-    font-size: 25px;
+    font-size: 24px;
     text-align: center;
 }
 
 #xiru_field {
     float: left;
+    width: 60px;
 }
 
 #game_process {
     width: 33%;
     height: 100px;
     float: right;
-    font-size: 26px;
+    font-size: 24px;
     text-align: left;
     border: 2px solid #80abde;
     border-radius: 0 0 0 20px;
@@ -122,6 +124,7 @@ fieldset#zeropointsetting {
     border: 2px #9999FF dashed;
     float: left;
     background-color: red;
+    -webkit-appearance: none;
 }
 
 .dianpao_btn {
@@ -131,6 +134,7 @@ fieldset#zeropointsetting {
     background-color: pink;
     border: 2px #9999FF dashed;
     float: right;
+    -webkit-appearance: none;
 }
 
 .t_btn_click {
@@ -138,7 +142,7 @@ fieldset#zeropointsetting {
     background-color: black;
     border: 5px solid #F0e;
     border-radius: 10px;
-    font-size: 30px;
+    //font-size: 30px;
     height: 50px;
 }
 
@@ -154,6 +158,7 @@ fieldset#zeropointsetting {
     border: 2px dashed green;
     font-size: 20px;
     right: 5px;
+    -webkit-appearance: none;
 }
 
 .corner_btn_4win {
@@ -166,6 +171,7 @@ fieldset#zeropointsetting {
 
 .end4win {
     bottom: 50px;
+    -webkit-appearance: none;
 }
 
 .lichi {
@@ -177,64 +183,67 @@ fieldset#zeropointsetting {
     margin-left: 30px;
     border: 2px solid #000;
     border-radius: 20px;
-    margin-left: 620px;
-    margin-right: 20px;
-    padding: 15px;
+    margin-left: 510px;
+    margin-right: 2px;
+    padding: 5px;
+    //max-width: 500px;
 }
 
 #fanshu_field {
     float: left;
-    width: 100px;
+    width: 70px;
 }
 
 #fushu_field {
     float: left;
-    width: 100px;
+    width: 70px;
 }
 
 .fanfu_btn {
-    width: 80px;
-    height: 30px;
-    margin: 5px;
+    width: 70px;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border: 1px solid #;
     background: white;
     border-radius: 8px;
 }
 
 .fu_btn {
-    width: 50%;
-    margin: 5px;
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border: 1px solid #;
     background: white;
     border-radius: 8px;
 }
 
 .fanfu_help_btn {
-    width: 80%;
+    width: 90%;
     height: 40px;
     margin: 3px;
     border: 1px solid #;
     background: white;
-    font-size: 30px;
+    font-size: 18px;
     border-radius: 8px;
 }
 
 .fanshu_clk {
     border: 2px dashed #F00;
-    width: 90px;
-    font-size: 20px;
+    //width: 90px;
+    //font-size: 20px;
 }
 
 .fushu_clk {
     border: 2px dashed #F00;
-    width: 90px;
-    font-size: 20px;
+    //width: 90px;
+    //font-size: 20px;
 }
 
 .fanfu_help_clk {
     border: 2px dashed #F00;
     width: 90%;
-    font-size: 32px;
+    font-size: 18px;
 }
 
 .mz_cal_clk {
@@ -243,12 +252,12 @@ fieldset#zeropointsetting {
 }
 
 .set_fu {
-    width: 40%;
-    height: 40px;
+    width: 150px;
+    height: 30px;
     margin: 3px;
     border: 1px solid #;
     background: white;
-    font-size: 30px;
+    font-size: 18px;
     border-radius: 8px;
 }
 
@@ -268,39 +277,42 @@ fieldset#zeropointsetting {
 }
 
 #liuju_btn {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin: 5px;
     border: 1px solid #;
     background: green;
     border-radius: 20px;
-    font-size: 48px;
+    font-size: 36px;
+    -webkit-appearance: none;
 }
 
 #randomposbutton {
-    float: left;
-    width: 150px;
-    height: 60px;
+    //float: left;
+    display: block;
+    width: 100px;
+    height: 40px;
     border: 2px solid #;
     background: white;
     margin: 5px;
-    font-size: 20px;
     border-radius: 20px;
+    display: inline
 }
 
 .tab_cls {
     height: 200px;
 }
+
 .liuju_icon {
     border: 4px solid grey;
     border-radius: 40px;
     position: absolute;
     font-size: 80px;
     color: grey;
-    right:-40px;
-    top:-40px;
+    right: -40px;
+    top: -40px;
     z-index: 100;
-    font-family:cursive;
+    font-family: cursive;
     line-height: 100%;
     margin: 20px;
     -webkit-transform: rotate(-30deg);
@@ -308,14 +320,14 @@ fieldset#zeropointsetting {
     -o-transform: rotate(-30deg);
     -ms-transform: rotate(-30deg);
     transform: rotate(-30deg);
-    opacity:0.4;
-    filter:alpha(opacity=40);
-    visibility:hidden;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    visibility: hidden;
 }
 
 .liuju_icon_inner {
     position: relative;
-    left:-9px;
+    left: -9px;
 }
 
 .liuju_noting {
@@ -326,6 +338,75 @@ fieldset#zeropointsetting {
 .liuju_ting {
     border: 4px solid crimson;
     color: crimson;
-    opacity:0.9;
-    filter:alpha(opacity=90);
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+
+#recovery_btn {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border: 1px solid #;
+    border-radius: 20px;
+    font-size: 36px;
+    -webkit-appearance: none;
+}
+
+.player_name_edit {
+    width: 70px;
+}
+
+#END_GAME {
+    //float: left;
+    display: block;
+    width: 100px;
+    height: 40px;
+    border: 2px solid #;
+    background: white;
+    margin: 5px;
+    border-radius: 20px;
+    display: inline
+}
+
+button {
+    font-size: 0;
+    padding: 0;
+    -webkit-appearance: none;
+}
+
+button span {
+    font-size: 36px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+button.rong_btn span {
+    font-size: 28px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+button.dianpao_btn span {
+    font-size: 28px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+button.corner_btn span {
+    font-size: 20px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+
+button#randomposbutton span {
+    font-size: 20px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+button#END_GAME span {
+    font-size: 20px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
 }

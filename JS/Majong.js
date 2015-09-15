@@ -90,7 +90,7 @@ function DrawLine() {
 	]
     };
     for (var i = 0; i < game_state.length; i++) {
-        data['labels'].push(game_state[i].game.changfeng + game_state[i].game.jushu + '局');
+        data['labels'].push(game_state[i].game.changfeng + game_state[i].game.jushu + '-' + game_state[i].game.benchang);
         for (var player_idx = 0; player_idx < 4; player_idx++) {
             data['datasets'][player_idx]['data'].push(game_state[i].player[player_idx].Point);
         }
@@ -137,11 +137,14 @@ function RecoverGameState() {
     game_state.pop();
     game = game_state[game_state.length - 1].game;
     player = game_state[game_state.length - 1].player;
+    DrawLine();
     UpdateAllView();
 }
 
 function resizeCanvas() {
-    $("#myChart").width(document.documentElement.clientWidth - $(".nTab").width() - 120 + 'px');
+    $("#myChart").width(document.documentElement.clientWidth - $(".nTab").width() - 80 + 'px');
+    $("#myChart").height(250 + 'px');
+    //$("#myChart").width(50%);
 };
 
 resizeCanvas();
@@ -149,7 +152,7 @@ resizeCanvas();
 $(document).ready(
     function () {
         $(window).resize(resizeCanvas);
-
+        resizeCanvas();
         $('input').bind('change', EditPlayerName);
         UpdateUserName();
 
@@ -263,13 +266,13 @@ function rong_click(idx) {
     if (game_area_lock) return;
     rong_flag[idx] = !rong_flag[idx];
     if (rong_flag[idx] == false) {
-        $("#player" + idx + "_rong")[0].value = "自摸";
+        $("#player" + idx + "_rong").text("自摸");
         $("#player" + idx + "_rong").removeClass('t_btn_click');
     } else {
-        $("#player" + idx + "_rong")[0].value = "取消";
+        $("#player" + idx + "_rong").text("取消");
         $("#player" + idx + "_rong").addClass('t_btn_click');
         if (dianpao_flag[idx] == true) {
-            $("#player" + idx + "_dianpao")[0].value = "点炮";
+            $("#player" + idx + "_dianpao").text("点炮");
             $("#player" + idx + "_dianpao").removeClass('t_btn_click');
             dianpao_flag[idx] = false;
         }
@@ -281,13 +284,13 @@ function dianpao_click(idx) {
     if (game_area_lock) return;
     dianpao_flag[idx] = !dianpao_flag[idx];
     if (dianpao_flag[idx] == false) {
-        $("#player" + idx + "_dianpao")[0].value = "点炮";
+        $("#player" + idx + "_dianpao").text("点炮");
         $("#player" + idx + "_dianpao").removeClass('t_btn_click');
     } else {
-        $("#player" + idx + "_dianpao")[0].value = "取消";
+        $("#player" + idx + "_dianpao").text("取消");
         $("#player" + idx + "_dianpao").addClass('t_btn_click');
         if (rong_flag[idx] == true) { //不可能同时胡牌和点炮
-            $("#player" + idx + "_rong")[0].value = "自摸";
+            $("#player" + idx + "_rong").text("自摸");
             $("#player" + idx + "_rong").removeClass('t_btn_click');
             rong_flag[idx] = false;
         }
@@ -302,7 +305,7 @@ function dianpao_click(idx) {
     var has_dianpao = dianpao_flag[0] || dianpao_flag[1] || dianpao_flag[2] || dianpao_flag[3];
     for (var i = 0; i < 4; i++) {
         if (rong_flag[idx] == false) {
-            $("#player" + i + "_rong")[0].value = has_dianpao ? "胡牌" : "自摸";
+            $("#player" + i + "_rong").text(has_dianpao ? "胡牌" : "自摸");
         }
     }
 
@@ -312,11 +315,11 @@ function lichi_click(idx) {
     if (game_area_lock) return;
     lichi_flag[idx] = !lichi_flag[idx];
     if (lichi_flag[idx]) {
-        $q('.playerinfoarea', idx).addClass("lichi")
+        $q('.playerinfoarea', idx).addClass("lichi");
         player[idx].Point -= 1000;
         game.lichi_num += 1;
     } else {
-        $q('.playerinfoarea', idx).removeClass("lichi")
+        $q('.playerinfoarea', idx).removeClass("lichi");
         player[idx].Point += 1000;
         game.lichi_num -= 1
     }
@@ -458,7 +461,7 @@ function CalScore_OK() {
         for (var i = 0; i < 4; i++) {
             if (rong_flag[i]) {
                 rong_flag[i] = false;
-                $("#player" + i + "_rong")[0].value = "胡牌";
+                $("#player" + i + "_rong").text("胡牌");
                 $("#player" + i + "_rong").removeClass('t_btn_click');
                 rong_list.push([i, base_score]);
                 break;
@@ -512,9 +515,15 @@ function deal_dianpao() {
 
 function liuju() {
     if (game_area_lock) return;
-    if ($('#liuju_btn')[0].value == '流') {
+    if ($('#liuju_btn').text() == '流') {
         $(".liuju_icon").css("visibility", "visible");
-        $('#liuju_btn')[0].value = '定';
+        $('#liuju_btn').text('定');
+        for (var i = 0; i < 4; i++) { //立直流局必然听牌。。。。。。吧。。。。反正可以撤销
+            if ($q('.playerinfoarea', i).hasClass("lichi")) {
+                $q('.liuju_icon', i).removeClass('liuju_noting');
+                $q('.liuju_icon', i).addClass('liuju_ting');
+            }
+        }
     } else {
         //流局逻辑
         var tingpai = [0, 0, 0, 0];
@@ -539,7 +548,7 @@ function liuju() {
             liuju_cal(tingpai, tingpai[game.jushu - 1] > 0 ? false : true);
         }
 
-        $('#liuju_btn')[0].value = '流';
+        $('#liuju_btn').text('流');
         $('.liuju_icon').removeClass('liuju_ting');
         $('.liuju_icon').addClass('liuju_noting');
         $(".liuju_icon").css("visibility", "hidden");
@@ -551,8 +560,8 @@ function Reset_Game_panel() {
     dianpao_flag = [false, false, false, false];
     lichi_flag = [false, false, false, false];
     for (var i = 0; i < 4; i++) {
-        $q('.rong_btn', i)[0].value = '自摸';
-        $q('.dianpao_btn', i)[0].value = '点炮';
+        $q('.rong_btn', i).text('自摸');
+        $q('.dianpao_btn', i).text('点炮');
     }
     $('.rong_btn').removeClass('t_btn_click');
     $('.dianpao_btn').removeClass('t_btn_click');
