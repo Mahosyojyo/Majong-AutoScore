@@ -287,17 +287,7 @@ fieldset#zeropointsetting {
     -webkit-appearance: none;
 }
 
-#randomposbutton {
-    //float: left;
-    display: block;
-    width: 100px;
-    height: 40px;
-    border: 2px solid #;
-    background: white;
-    margin: 5px;
-    border-radius: 20px;
-    display: inline
-}
+
 
 .tab_cls {
     height: 200px;
@@ -356,17 +346,7 @@ fieldset#zeropointsetting {
     width: 70px;
 }
 
-#END_GAME {
-    //float: left;
-    display: block;
-    width: 100px;
-    height: 40px;
-    border: 2px solid #;
-    background: white;
-    margin: 5px;
-    border-radius: 20px;
-    display: inline
-}
+
 
 button {
     font-size: 0;
@@ -398,15 +378,45 @@ button.corner_btn span {
     padding: 0.4em 0.8em;
 }
 
+.setting_btn {
+    float: left;
+    display: block;
+    width: 100px;
+    height: 40px;
+    border: 2px solid #;
+    background: white;
+    margin: 5px;
+    border-radius: 20px;
+}
 
-button#randomposbutton span {
+button.setting_btn span {
     font-size: 20px;
     margin: 0 -1em;
     padding: 0.4em 0.8em;
 }
 
-button#END_GAME span {
-    font-size: 20px;
-    margin: 0 -1em;
-    padding: 0.4em 0.8em;
+.playerscore_animate {
+    position: absolute;
+    font-size: 40px;
+    color: firebrick;
+    top: 40px;
+    left: 30px;
+    //display: none;
+}
+.dice {
+    float: left;
+    width:45px;
+    height: 45px;
+    background: url("img/dice.png");
+    background-size:320px,320px;
+    background-repeat:no-repeat;
+    background-position:-0px;
+    margin-left: 0px;
+    margin-left: 40px;
+}
+
+#dice_area {
+    position: relative;
+    float: left;
+    width: 200px;
 }

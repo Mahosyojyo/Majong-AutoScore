@@ -30,6 +30,8 @@ var game_area_lock = false;
 
 var game_state = new Array();
 
+var Draw_Line_Curl = true;
+
 function $q(pattern, idx) { //jQuery辅助函数
     return $(pattern + ":eq(" + idx + ')');
 }
@@ -50,6 +52,21 @@ function next_Game(Is_oya_win) {
                 }
             }
         }
+    }
+}
+
+function chang_line_mode() {
+    Draw_Line_Curl = !Draw_Line_Curl;
+    $('#change_line_mode span').text(Draw_Line_Curl ? "绘制直线" : "绘制曲线");
+    DrawLine();
+}
+
+function random_dice() {
+    var bias = [0, -50, -106, -163, -219, -275];
+    for(var i = 0;i < 2;i++)
+    {
+        var dice_value = parseInt(Math.random() * 6);
+        $q('.dice',i).css("background-position",bias[dice_value]+'px')
     }
 }
 
@@ -110,7 +127,7 @@ function DrawLine() {
         scaleShowGridLines: true,
         scaleGridLineColor: "rgba(0,0,0,.1)",
         scaleGridLineWidth: 3,
-        bezierCurve: true,
+        bezierCurve: Draw_Line_Curl,
         pointDot: true,
         pointDotRadius: 5,
         pointDotStrokeWidth: 1,
@@ -144,7 +161,6 @@ function RecoverGameState() {
 function resizeCanvas() {
     $("#myChart").width(document.documentElement.clientWidth - $(".nTab").width() - 80 + 'px');
     $("#myChart").height(250 + 'px');
-    //$("#myChart").width(50%);
 };
 
 resizeCanvas();
@@ -167,12 +183,32 @@ $(document).ready(
     }
 );
 
+function ScoreAnimate() {
+    for (var i = 0; i < 4; i++) {
+        var score_dif = player[i].Point - parseInt($q('.playerscore', i).text());
+        if (score_dif == 0)
+            continue;
+        if (score_dif > 0) score_dif = "+" + score_dif;
+        $q(".playerscore_animate", i).text(score_dif);
+        $q(".playerscore_animate", i).css("top", "40px");
+        $q(".playerscore_animate", i).css("opacity", "1.0");
+        $q(".playerscore_animate", i).animate({
+            top: "-=100px",
+            opacity: '0.6',
+        }, 1000).animate({
+            opacity: '0.0',
+        }, 3000);
+    }
+}
+
 function UpdateAllView() {
+    ScoreAnimate();
     ChangePointShowMode(); //更新点差显示模式
     UpdateGameProcess(); //更新右上角进度
     UpdateFengwei(); //更新风位
     UpdateRank(); //更新顺位
     $("#lichi_num").text(game.lichi_num);
+    random_dice();
 }
 
 function sortRank(a, b) {
