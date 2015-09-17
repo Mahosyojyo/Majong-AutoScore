@@ -411,12 +411,34 @@ button.setting_btn span {
     background-size:320px,320px;
     background-repeat:no-repeat;
     background-position:-0px;
-    margin-left: 0px;
-    margin-left: 40px;
+    margin-left: 18px;
 }
 
 #dice_area {
     position: relative;
     float: left;
-    width: 200px;
+    height: 50px;
+    width: 127px;
+}
+
+#myTab0_Content2 {
+    text-align: left;
+    font-size: 15px;
+}
+
+.fan_num_desc {
+    display: inline;
+    float: left;
+    margin: 0px;
+    color:blue
+}
+
+.fan_desc {
+    float:left;
+    width:303px;
+}
+
+.red_star {
+    color:red;
+    display: inline;
 }

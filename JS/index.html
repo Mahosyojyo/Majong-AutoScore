@@ -49,13 +49,34 @@
                     <button id="change_line_mode" class="setting_btn" onclick="chang_line_mode()"><span>绘制直线</span></button>
                     <button id="make_dice" class="setting_btn" onclick="random_dice()"><span>模拟筛子</span></button>
                     <div id="dice_area">
-                    <div class="dice"></div>
-                    <div class="dice"></div></div>
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                    </div>
                 </fieldset>
 
             </div>
             <div id="myTab0_Content1" class="none tab_cls">成绩统计，开发中</div>
-            <div id="myTab0_Content2" class="none tab_cls">使用说明，待补充</div>
+            <div id="myTab0_Content2" class="none tab_cls">
+                <p class="fan_num_desc">一番：</p>
+                <div class="fan_desc">立直，一发，门清自摸，断幺，平和，一杯口，役牌，宝牌，领上，抢杠，海底，河底</div>
+                <div class="clear"> </div>
+                <p class="fan_num_desc">两番：</p>
+                <div class="fan_desc"><p class="red_star">三色*</p>，<p class="red_star">一气*</p>，对对，三暗刻，七对，<p class="red_star">混全*</p>，混老头，三色同刻，三杠子，小三元，W立
+                </div>
+                <div class="clear"> </div>
+                <p class="fan_num_desc">三番：</p>
+                <div class="fan_desc"><p class="red_star">混一色*</p>，<p class="red_star">纯全带幺*</p>，二杯口</div>
+                <div class="clear"> </div>
+                <p class="fan_num_desc">满贯以上：</p>
+                <div class="fan_desc">流满(满贯)，<p class="red_star">清一色*</p>(六番)</div>
+                <div class="clear"> </div>
+                <p class="fan_num_desc">役满：</p>
+                <div class="fan_desc">大三元，<p class="red_star">四暗刻*</p>，<p class="red_star">国士*</p>，字一色，<p class="red_star">小四喜*</p>，绿一色，天地人胡，<p class="red_star">九莲*</p>，四杠子，累计，大竹轮，大数临，大车轮，大七星</div>
+                <div class="clear"> </div>
+                <div style="border:1px dashed #F00;width:100%;margin:0px;float:left"></div>
+                <p class="fan_num_desc">MORE：</p><a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%87%E7%9A%84%E5%92%8C%E7%89%8C%E7%89%8C%E5%9E%8B%E5%88%97%E8%A1%A8" target="_blank">日麻役详细</a>,
+                <a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%86%E8%A7%84%E5%88%99" target="_blank">日麻规则</a>，<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%87%E8%A8%88%E5%88%86%E6%96%B9%E6%B3%95#.E5.BE.97.E5.88.86.E9.80.9F.E6.9F.A5.E8.A1.A8" target="_blank">算分表</a>
+            </div>
             <div id="myTab0_Content3" class="none tab_cls">
                 Version： 1.0
                 <br /> 版权归
@@ -87,8 +108,8 @@
             <p style="display: inline;color: black;" id="lichi_num">0</p>
         </div>
         <div id="liuju">
-       <button id="liuju_btn" onclick="liuju()"><span>流</span></button>
-        <button id="recovery_btn" onclick="RecoverGameState()"><span>撤</span></button>
+            <button id="liuju_btn" onclick="liuju()"><span>流</span></button>
+            <button id="recovery_btn" onclick="RecoverGameState()"><span>撤</span></button>
         </div>
         <div class="playerinfoarea" id="player1">
             <div class="playerpos" onclick="changeView(0)"></div>
