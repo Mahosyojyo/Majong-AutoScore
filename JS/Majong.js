@@ -186,6 +186,7 @@ $(document).ready(
 function ScoreAnimate() {
     for (var i = 0; i < 4; i++) {
         var score_dif = player[i].Point - parseInt($q('.playerscore', i).text());
+        
         if (score_dif == 0)
             continue;
         if (score_dif > 0) score_dif = "+" + score_dif;
@@ -571,7 +572,7 @@ function liuju() {
             }
         }
         if (tingpai_user_ct == 0 || tingpai_user_ct == 4) {
-            liuju_cal(0, 0, 0, 0, tingpai_user_ct > 0);
+            liuju_cal([0, 0, 0, 0], tingpai_user_ct == 0);
         } else {
             for (var i = 0; i < 4; i++) {
                 if (tingpai_user_ct == 1)
