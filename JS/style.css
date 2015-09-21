@@ -290,7 +290,7 @@ fieldset#zeropointsetting {
 
 
 .tab_cls {
-    height: 200px;
+    height: 210px;
 }
 
 .liuju_icon {
@@ -442,3 +442,5 @@ button.setting_btn span {
     color:red;
     display: inline;
 }
+
+
