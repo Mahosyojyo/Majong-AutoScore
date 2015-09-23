@@ -19,6 +19,7 @@ function Player(m_playerName, m_Point) {　　　　
 var game = new Game(1, '东', 0);
 var InitScore = 25000;
 var player = [new Player('Aさん', InitScore), new Player('Bさん', InitScore), new Player('Cさん', InitScore), new Player('Dさん', InitScore)];
+var game_state = new Array();
 
 var rong_flag = [false, false, false, false]; //胡牌
 var dianpao_flag = [false, false, false, false]; //点炮
@@ -28,15 +29,18 @@ var mainView = 0; //点差模式下主视角
 var rong_list = [-1]; //[点炮者,[胡牌者1,点数],[胡牌者2,点数]]
 var game_area_lock = false;
 
-var game_state = new Array();
+
 
 var Draw_Line_Curl = true;
+
+var game_isStart = false;
 
 function $q(pattern, idx) { //jQuery辅助函数
     return $(pattern + ":eq(" + idx + ')');
 }
 
 function next_Game(Is_oya_win) {
+    game_isStart = true;
     if (Is_oya_win) {
         game.benchang += 1;
     } else {
@@ -63,10 +67,9 @@ function chang_line_mode() {
 
 function random_dice() {
     var bias = [0, -50, -106, -163, -219, -275];
-    for(var i = 0;i < 2;i++)
-    {
+    for (var i = 0; i < 2; i++) {
         var dice_value = parseInt(Math.random() * 6);
-        $q('.dice',i).css("background-position",bias[dice_value]+'px')
+        $q('.dice', i).css("background-position", bias[dice_value] + 'px')
     }
 }
 
@@ -186,7 +189,7 @@ $(document).ready(
 function ScoreAnimate() {
     for (var i = 0; i < 4; i++) {
         var score_dif = player[i].Point - parseInt($q('.playerscore', i).text());
-        
+
         if (score_dif == 0)
             continue;
         if (score_dif > 0) score_dif = "+" + score_dif;
@@ -203,7 +206,8 @@ function ScoreAnimate() {
 }
 
 function UpdateAllView() {
-    ScoreAnimate();
+    if (arguments.length == 0)
+        ScoreAnimate();
     ChangePointShowMode(); //更新点差显示模式
     UpdateGameProcess(); //更新右上角进度
     UpdateFengwei(); //更新风位
@@ -292,6 +296,10 @@ function randomOrder(targetArray) {
 
 
 function make_random_position() {
+    if (game_isStart) {
+        ShowErrorStr(-7);
+        return;
+    }
     var name_tmp = [player[0].playerName, player[1].playerName, player[2].playerName, player[3].playerName]
     name_tmp = randomOrder(name_tmp)
     for (var i = 0; i < 4; i++)
@@ -355,6 +363,23 @@ function lichi_click(idx) {
         $q('.playerinfoarea', idx).addClass("lichi");
         player[idx].Point -= 1000;
         game.lichi_num += 1;
+        $('#player' + parseInt(idx + 1)).animate({
+            left: "+=2%"
+        }, 100).animate({
+            left: "-=2%"
+        }, 100).animate({
+            left: "+=2%"
+        }, 100).animate({
+            left: "-=2%"
+        }, 100).animate({
+            left: "+=2%"
+        }, 100).animate({
+            left: "-=2%"
+        }, 100).animate({
+            left: "+=2%"
+        }, 100).animate({
+            left: "-=2%"
+        }, 100)
     } else {
         $q('.playerinfoarea', idx).removeClass("lichi");
         player[idx].Point += 1000;
@@ -438,6 +463,8 @@ function ShowErrorStr(base_score) {
         $('#fanfu_ok')[0].value = '一炮三响是流局！！';
     if (base_score == -6)
         $('#fanfu_ok')[0].value = '四人点炮你逗我？！！';
+    if (base_score == -7)
+        $('#fanfu_ok')[0].value = '游戏已经开始了';
     setTimeout("Set_OKbtn_Text()", 1000);
 }
 
@@ -614,4 +641,13 @@ function liuju_cal(score_list, oya_lose) {
     UpdateAllView();
     Reset_Game_panel();
     RecordCurGameState();
+}
+
+function end_game() {
+    game_isStart = false;
+    game = new Game(1, '东', 0);
+    player = [new Player(player[0].playerName, InitScore), new Player(player[1].playerName, InitScore), new Player(player[2].playerName, InitScore), new Player(player[3].playerName, InitScore)];
+    game_state = new Array();
+    RecordCurGameState();
+    UpdateAllView(false);
 }
