@@ -28,13 +28,13 @@
 	list-style-type: none;
 }
 .nTab .TabTitle .active {
-	background: url(./img/tab_bg1.gif) left -25px no-repeat;
+	background: url(http://7xlx96.com1.z0.glb.clouddn.com/tab_bg1.gif) left -25px no-repeat;
 	border-left: 1px  #C7C7CD solid;
 	border-top: 1px  #C7C7CD solid;
 	border-bottom: 1px #fff solid;
 }
 .nTab .TabTitle .normal {
-	background: url(./img/tab_bg1.gif);
+	background: url(http://7xlx96.com1.z0.glb.clouddn.com/tab_bg1.gif);
 	border-top: 1px #C7C7CD solid;
 	border-bottom: 1px #C7C7CD solid;
 }
