@@ -154,11 +154,18 @@ function RecordCurGameState() {
 }
 
 function RecoverGameState() {
-    game_state.pop();
-    game = game_state[game_state.length - 1].game;
-    player = game_state[game_state.length - 1].player;
-    DrawLine();
-    UpdateAllView();
+    if ($('#liuju_btn').text() != '流') {
+        $('#liuju_btn').text('流');
+        $('.liuju_icon').removeClass('liuju_ting');
+        $('.liuju_icon').addClass('liuju_noting');
+        $(".liuju_icon").css("visibility", "hidden");
+    } else {
+        game_state.pop();
+        game = game_state[game_state.length - 1].game;
+        player = game_state[game_state.length - 1].player;
+        DrawLine();
+        UpdateAllView();
+    }
 }
 
 function resizeCanvas() {

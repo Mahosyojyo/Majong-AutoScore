@@ -3,12 +3,13 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <title>日麻算分器 Version 1.0</title>
     <link rel="stylesheet" href="./style.css" type="text/css" />
     <link rel="stylesheet" href="./tabstyle.css" type="text/css" />
     <link rel="stylesheet" href="./switch.css" type="text/css" />
     <link rel="stylesheet" href="./chart/chartline.css" type="text/css" />
-    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="Majong.js"></script>
     <script type="text/javascript" src="tab.js"></script>
     <script type="text/javascript" src="fanfuCal.js"></script>
@@ -47,7 +48,7 @@
                     <button id="END_GAME" class="setting_btn" onclick="end_game()"><span>结束对局</span></button>
                     <br />
                     <button id="change_line_mode" class="setting_btn" onclick="chang_line_mode()"><span>绘制直线</span></button>
-                    <button id="make_dice" class="setting_btn" onclick="random_dice()"><span>模拟筛子</span></button>
+                    <button id="make_dice" class="setting_btn" onclick="random_dice()"><span>模拟色子</span></button>
                     <div id="dice_area">
                         <div class="dice"></div>
                         <div class="dice"></div>
@@ -268,7 +269,6 @@
                 </tr>
             </table>
         </fieldset>
-        <input type="button" value="设置符数" id="fushu_ok" class="set_fu" onclick="SetFushu()">
         <div style="border:1px dashed #F00;width:100%;margin:5px;float:left"></div>
         <input type="button" value="确定" id="fanfu_ok" class="fanshu_ok_btn" onclick="CalScore_OK()">
     </div>

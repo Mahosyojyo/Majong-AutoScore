@@ -63,6 +63,7 @@ function toolhelp_clk(idx) {
     } else {
         cur_btn.addClass('fanfu_help_clk');
     }
+    SetFushu();
 }
 
 
@@ -81,6 +82,8 @@ function mianzi_cal(idx1, idx2) {
         cur_btn.addClass('mz_cal_clk');
     else
         cur_btn.removeClass('mz_cal_clk');
+
+    SetFushu();
 }
 
 function CalFu() { //计算符数
