@@ -160,11 +160,13 @@ function RecoverGameState() {
         $('.liuju_icon').addClass('liuju_noting');
         $(".liuju_icon").css("visibility", "hidden");
     } else {
-        game_state.pop();
-        game = game_state[game_state.length - 1].game;
-        player = game_state[game_state.length - 1].player;
-        DrawLine();
-        UpdateAllView();
+        if (game_state.length > 1) {
+            game_state.pop();
+            game = clone(game_state[game_state.length - 1].game);
+            player = clone(game_state[game_state.length - 1].player);
+            DrawLine();
+            UpdateAllView();
+        }
     }
 }
 
