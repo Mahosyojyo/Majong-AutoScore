@@ -139,6 +139,8 @@ function DrawLine() {
     });
 }
 
+
+
 function clone(myObj) { //deep copy of object
     if (typeof (myObj) != 'object' || myObj == null) return myObj;
     var newObj = new Object();
@@ -151,6 +153,7 @@ function clone(myObj) { //deep copy of object
 function RecordCurGameState() {
     game_state.push(new Game_State(clone(game), clone(player)));
     DrawLine();
+    DrawPieChart();
 }
 
 function RecoverGameState() {
@@ -277,6 +280,7 @@ function UpdateUserName() {
         $("#playerName  input")[i].value = player[i].playerName;
         $('.playername', $('.playerinfoarea')[i]).text(player[i].playerName);
     }
+    DrawPieChart();
 }
 
 function UpdateGameProcess() {

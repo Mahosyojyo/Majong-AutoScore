@@ -444,3 +444,12 @@ button.setting_btn span {
 }
 
 
+
+#chartContainer {
+    position: absolute;
+    width: 37%;
+    height: 37%;
+    left: 32%;
+    top: 32%;
+   // border:1px solid #f00;
+}
