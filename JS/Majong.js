@@ -531,6 +531,7 @@ function CalScore_OK() {
         Reset_Game_panel();
         UpdateAllView();
         RecordCurGameState();
+        Set_OKbtn_Text();
     } //自摸-END
     else { //点炮
         var dianpao_player_idx = dianpao_flag[0] ? 0 : (dianpao_flag[1] ? 1 : (dianpao_flag[2] ? 2 : 3));
