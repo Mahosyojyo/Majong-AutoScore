@@ -29,7 +29,7 @@ var mainView = 0; //点差模式下主视角
 var rong_list = [-1]; //[点炮者,[胡牌者1,点数],[胡牌者2,点数]]
 var game_area_lock = false;
 
-
+var IsClosePanel = false;
 
 var Draw_Line_Curl = true;
 
@@ -73,74 +73,6 @@ function random_dice() {
     }
 }
 
-function DrawLine() {
-    var data = {
-        labels: [],
-        datasets: [
-            {
-                fillColor: "rgba(255,255,255,0)",
-                strokeColor: "rgb(220,0,220)", //线
-                pointColor: "rgb(203, 22, 29)", //点
-                pointStrokeColor: "#f00", //圈
-                data: []
-		},
-            {
-                fillColor: "rgba(255,255,255,0)",
-                strokeColor: "rgb(18, 235, 60)",
-                pointColor: "rgb(0, 250, 135)",
-                pointStrokeColor: "#21fa7d",
-                data: []
-		}
-        ,
-            {
-                fillColor: "rgba(255,255,255,0)",
-                strokeColor: "rgb(25, 41, 234)",
-                pointColor: "rgb(14, 148, 198)",
-                pointStrokeColor: "#4e60c1",
-                data: []
-		}
-        ,
-            {
-                fillColor: "rgba(255,255,255,0)",
-                strokeColor: "rgb(237, 128, 109)",
-                pointColor: "rgb(226, 93, 34)",
-                pointStrokeColor: "#c9861c",
-                data: []
-		}
-	]
-    };
-    for (var i = 0; i < game_state.length; i++) {
-        data['labels'].push(game_state[i].game.changfeng + game_state[i].game.jushu + '-' + game_state[i].game.benchang);
-        for (var player_idx = 0; player_idx < 4; player_idx++) {
-            data['datasets'][player_idx]['data'].push(game_state[i].player[player_idx].Point);
-        }
-    }
-    var ctx = document.getElementById("myChart").getContext("2d");
-    window.myLine = new Chart(ctx).Line(data, {
-        scaleOverlay: true,
-        showScale: true,
-        scaleLineColor: "rgba(0,0,0,1)",
-        scaleLineWidth: 1,
-        scaleShowLabels: true,
-        scaleLabel: "<%=value%>",
-        scaleFontFamily: "'Arial'",
-        scaleFontSize: 20,
-        scaleFontStyle: "normal",
-        scaleFontColor: "#666",
-        scaleShowGridLines: true,
-        scaleGridLineColor: "rgba(0,0,0,.1)",
-        scaleGridLineWidth: 3,
-        bezierCurve: Draw_Line_Curl,
-        pointDot: true,
-        pointDotRadius: 5,
-        pointDotStrokeWidth: 1,
-        datasetStrokeWidth: 2,
-        datasetFill: false,
-    });
-}
-
-
-
 function clone(myObj) { //deep copy of object
     if (typeof (myObj) != 'object' || myObj == null) return myObj;
     var newObj = new Object();
@@ -168,14 +100,15 @@ function RecoverGameState() {
             game = clone(game_state[game_state.length - 1].game);
             player = clone(game_state[game_state.length - 1].player);
             DrawLine();
+            DrawPieChart();
             UpdateAllView();
         }
     }
 }
 
 function resizeCanvas() {
-    $("#myChart").width(document.documentElement.clientWidth - $(".nTab").width() - 80 + 'px');
-    $("#myChart").height(250 + 'px');
+    $("#linechartContainer").width(document.documentElement.clientWidth -450+(IsClosePanel?1:0)*400 + 'px');
+    $("#linechartContainer").height(450 + 'px');
 };
 
 resizeCanvas();
@@ -194,7 +127,7 @@ $(document).ready(
         $('#fanfu_ok').attr("disabled", true);
 
         RecordCurGameState();
-        set_tooltip();
+        //set_tooltip();
     }
 );
 
@@ -281,6 +214,7 @@ function UpdateUserName() {
         $('.playername', $('.playerinfoarea')[i]).text(player[i].playerName);
     }
     DrawPieChart();
+    DrawLine();
 }
 
 function UpdateGameProcess() {
@@ -664,4 +598,25 @@ function end_game() {
     game_state = new Array();
     RecordCurGameState();
     UpdateAllView(false);
+}
+
+function change_game_mode(){
+    alert("现在你点击并没有什么卵用~~");
+}
+
+function close_setting_panel(){
+    $(".nTab").css("position","absolute");
+    $(".nTab").css("left","-1000px");
+    IsClosePanel = true;
+    resizeCanvas();
+    DrawLine();
+}
+
+function expand_panel()
+{
+    $(".nTab").css("position","relative");
+    $(".nTab").css("left","-0px");
+    IsClosePanel = false;
+    resizeCanvas();
+    DrawLine();
 }

@@ -11,9 +11,14 @@ body {
     clear: both;
 }
 
+fieldset{
+    height: 90%;
+}
+
 fieldset#playerName {
     width: 80px;
     float: left;
+    height: 180px;
 }
 
 fieldset#gamemode {
@@ -290,7 +295,7 @@ fieldset#zeropointsetting {
 
 
 .tab_cls {
-    height: 210px;
+    height: 390px;
 }
 
 .liuju_icon {
@@ -404,6 +409,7 @@ button.setting_btn span {
     //display: none;
 }
 .dice {
+    position: relative;
     float: left;
     width:45px;
     height: 45px;
@@ -411,14 +417,15 @@ button.setting_btn span {
     background-size:320px,320px;
     background-repeat:no-repeat;
     background-position:-0px;
-    margin-left: 18px;
+    margin-left: 80px;
+    margin-top:20px;
 }
 
 #dice_area {
     position: relative;
     float: left;
     height: 50px;
-    width: 127px;
+    width: 250px;
 }
 
 #myTab0_Content2 {
@@ -433,7 +440,7 @@ button.setting_btn span {
     color:blue
 }
 
-.fan_desc {
+.fan_desc  {
     float:left;
     width:303px;
 }
@@ -452,4 +459,25 @@ button.setting_btn span {
     left: 32%;
     top: 32%;
    // border:1px solid #f00;
+}
+
+#linechartContainer {
+    float: left;
+    margin-left: 30px;
+}
+
+#expand_panel_btn {
+    margin-top: 10px;
+    float: left;
+    width: 30px;
+    height: 400px;
+    background: white;
+    border: 1px solod #;
+    border-radius: 10px;
+    position: absolute;
+    left:0px;
+}
+
+#myTab0_Content3 {
+    font-size:15px;
 }

@@ -1,12 +1,13 @@
 .nTab {
 	float: left;
-    position: relative
+    position: relative;
 	margin: 0 auto;
 	border-bottom: 1px #C7C7CD solid;
 	/*background: #d5d5d5;*/
 	background-position: left;
 	background-repeat: repeat-y;
 	margin-bottom: 2px;
+    left:-0px;
 }
 .nTab .TabTitle {
 	clear: both;

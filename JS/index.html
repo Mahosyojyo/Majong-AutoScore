@@ -3,8 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.6, user-scalable=no"/>
-    <title>日麻算分器 Version 1.0</title>
+    <title>日麻算分器 Version 2.0</title>
     <link rel="stylesheet" href="./style.css" type="text/css" />
     <link rel="stylesheet" href="./tabstyle.css" type="text/css" />
     <link rel="stylesheet" href="./switch.css" type="text/css" />
@@ -17,9 +16,11 @@
     <script type="text/javascript" src="./chart/charttips.js"></script>
     <script type="text/javascript" src="./canvasjs-1.7.0/canvasjs.min.js"></script>
     <script type="text/javascript" src="./piechartDraw.js"></script>
+    <script type="text/javascript" src="./linechartDraw.js"></script>
 </head>
 
 <body>
+    <button id="expand_panel_btn" onclick="expand_panel()"><span style="font-size: 12px;">>>></span></button>
     <div class="nTab">
         <div class="TabTitle">
             <ul id="myTab0">
@@ -50,8 +51,12 @@
                     <button id="END_GAME" class="setting_btn" onclick="end_game()"><span>结束对局</span></button>
                     <br />
                     <button id="change_line_mode" class="setting_btn" onclick="chang_line_mode()"><span>绘制直线</span></button>
+                    <button id="change_game_mode" class="setting_btn" onclick="change_game_mode()"><span>半庄模式</span></button>
+                    <br />
+                    <button id="close_setting_panel" class="setting_btn" onclick="close_setting_panel()"><span>收起面板</span></button>
                     <button id="make_dice" class="setting_btn" onclick="random_dice()"><span>模拟色子</span></button>
-                    <div id="dice_area">
+                    <br />
+                       <div id="dice_area">
                         <div class="dice"></div>
                         <div class="dice"></div>
                     </div>
@@ -59,7 +64,7 @@
 
             </div>
             <div id="myTab0_Content1" class="none tab_cls">
-               <div style="background:black"> <div style="font-size:20px;width:350px;margin:auto;color:white;">还没想好这里要怎么弄啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
+               <div style="background:black"> <div style="font-size:20px;width:350px;margin:auto;color:white;">还没想好这里要怎么弄啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
                 <br />
                 <img src="img/saki.jpg" style="width:180px;">
                 </div>
@@ -96,21 +101,22 @@
                 <a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%86%E8%A7%84%E5%88%99" target="_blank">日麻规则</a>，<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%87%E8%A8%88%E5%88%86%E6%96%B9%E6%B3%95#.E5.BE.97.E5.88.86.E9.80.9F.E6.9F.A5.E8.A1.A8" target="_blank">算分表</a>
             </div>
             <div id="myTab0_Content3" class="none tab_cls">
-                Version： 1.0
+                Version： 2.0
                 <br /> 版权归
                 <a href="http://www.kylen314.com">Vespa</a> 所有
                 <br /> 项目主页：
                 <a href="https://github.com/Mahosyojyo">https://github.com/Mahosyojyo</a>
                 <br />反馈：
-                <a href="https://github.com/Mahosyojyo/Majong-AutoScore/issues/new">https://github.com/Mahosyojyo/Majong-AutoScore/issues/new</a>
+                <a href="https://github.com/Mahosyojyo/Majong-AutoScore/issues/new">点击提BUG</a>
                 <br />
-                <img src="img/rcode.png" style="width:150px;">
+                <img src="img/rcode.png" style="width:300px;">
             </div>
         </div>
 
     </div>
-    <canvas id="myChart" height="250px" width="450px"></canvas>
-    <div id="chartjs-tooltip"></div>
+<!--    <canvas id="myChart" height="250px" width="450px"></canvas>-->
+<!--    <div id="chartjs-tooltip"></div>-->
+    <div id="linechartContainer" ></div>
     <div class="clear"> </div>
     <div id="gamearea">
         <div class="onoffswitch">
