@@ -107,7 +107,7 @@ function RecoverGameState() {
 }
 
 function resizeCanvas() {
-    $("#linechartContainer").width(document.documentElement.clientWidth -450+(IsClosePanel?1:0)*400 + 'px');
+    $("#linechartContainer").width(document.documentElement.clientWidth - 450 + (IsClosePanel ? 1 : 0) * 400 + 'px');
     $("#linechartContainer").height(450 + 'px');
 };
 
@@ -163,7 +163,10 @@ function UpdateAllView() {
 
 function sortRank(a, b) {
     /*同分逻辑需要重写，高位同分首庄开始算起(已完成)，地位同分离高位近的开始算起！！*/
-    return player[a].Point < player[b].Point || b < a;
+    if (player[a].Point != player[b].Point)
+        return player[b].Point - player[a].Point;
+    else
+        return a - b;
 }
 
 function UpdateRank() {
@@ -600,22 +603,21 @@ function end_game() {
     UpdateAllView(false);
 }
 
-function change_game_mode(){
+function change_game_mode() {
     alert("现在你点击并没有什么卵用~~");
 }
 
-function close_setting_panel(){
-    $(".nTab").css("position","absolute");
-    $(".nTab").css("left","-1000px");
+function close_setting_panel() {
+    $(".nTab").css("position", "absolute");
+    $(".nTab").css("left", "-1000px");
     IsClosePanel = true;
     resizeCanvas();
     DrawLine();
 }
 
-function expand_panel()
-{
-    $(".nTab").css("position","relative");
-    $(".nTab").css("left","-0px");
+function expand_panel() {
+    $(".nTab").css("position", "relative");
+    $(".nTab").css("left", "-0px");
     IsClosePanel = false;
     resizeCanvas();
     DrawLine();
