@@ -125,3 +125,7 @@ function liuju_clk(idx) {
         $q('.liuju_icon', idx).addClass('liuju_noting');
     }
 }
+
+function ScoreUpper(score) {
+    return parseInt(score / 100) * 100 + (score % 100 == 0 ? 0 : 100);
+}

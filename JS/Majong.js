@@ -35,10 +35,6 @@ var Draw_Line_Curl = true;
 
 var game_isStart = false;
 
-function $q(pattern, idx) { //jQuery辅助函数
-    return $(pattern + ":eq(" + idx + ')');
-}
-
 function next_Game(Is_oya_win) {
     game_isStart = true;
     if (Is_oya_win) {
@@ -73,15 +69,6 @@ function random_dice() {
     }
 }
 
-function clone(myObj) { //deep copy of object
-    if (typeof (myObj) != 'object' || myObj == null) return myObj;
-    var newObj = new Object();
-    for (var i in myObj) {
-        newObj[i] = clone(myObj[i]);
-    }
-    return newObj;
-}
-
 function RecordCurGameState() {
     game_state.push(new Game_State(clone(game), clone(player)));
     DrawLine();
@@ -110,8 +97,6 @@ function resizeCanvas() {
     $("#linechartContainer").width(document.documentElement.clientWidth - 450 + (IsClosePanel ? 1 : 0) * 400 + 'px');
     $("#linechartContainer").height(450 + 'px');
 };
-
-resizeCanvas();
 
 $(document).ready(
     function () {
@@ -227,24 +212,6 @@ function UpdateGameProcess() {
 }
 
 //随机换座位
-function randomOrder(targetArray) {
-    var arrayLength = targetArray.length
-    var tempArray1 = new Array();
-    for (var i = 0; i < arrayLength; i++) {
-        tempArray1[i] = i
-    }
-    var tempArray2 = new Array();
-    for (var i = 0; i < arrayLength; i++) {
-        tempArray2[i] = tempArray1.splice(Math.floor(Math.random() * tempArray1.length), 1)
-    }
-    var tempArray3 = new Array();
-    for (var i = 0; i < arrayLength; i++) {
-        tempArray3[i] = targetArray[tempArray2[i]]
-    }
-    return tempArray3
-}
-
-
 function make_random_position() {
     if (game_isStart) {
         ShowErrorStr(-7);
@@ -303,7 +270,6 @@ function dianpao_click(idx) {
             $("#player" + i + "_rong").text(has_dianpao ? "胡牌" : "自摸");
         }
     }
-
 }
 
 function lichi_click(idx) {
@@ -342,7 +308,6 @@ function changeView(idx) {
     mainView = idx;
     ChangePointShowMode();
 }
-
 
 function Set_OKbtn_Text() {
     var text = "确定";
@@ -394,10 +359,6 @@ function Cal_BaseScore() { //基本点计算
         else
             return 8000 * parseInt($q('#fanshu_field .fanfu_btn', 8)[0].value[0]); //役满数目
     }
-}
-
-function ScoreUpper(score) {
-    return parseInt(score / 100) * 100 + (score % 100 == 0 ? 0 : 100);
 }
 
 function ShowErrorStr(base_score) {
