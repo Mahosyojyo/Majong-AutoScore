@@ -35,6 +35,8 @@ var Draw_Line_Curl = true;
 
 var game_isStart = false;
 
+var game_mode = 1;//1 半庄 2 速东 3 三麻 4 团战
+
 function next_Game(Is_oya_win) {
     game_isStart = true;
     if (Is_oya_win) {
@@ -565,7 +567,24 @@ function end_game() {
 }
 
 function change_game_mode() {
-    alert("现在你点击并没有什么卵用~~");
+    if (game_isStart) {
+        alert("请先结束战斗！！");
+        return;
+    }
+    if(game_mode == 1)
+    {
+        $('#change_game_mode span').html('速东模式');
+        game_mode = 2;
+        InitScore = 20000;
+        end_game();
+    }
+    else
+    {
+        $('#change_game_mode span').html('半庄模式');
+        game_mode = 1;
+        InitScore = 25000;
+        end_game();
+    }
 }
 
 function close_setting_panel() {

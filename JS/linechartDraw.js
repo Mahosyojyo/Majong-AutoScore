@@ -144,7 +144,7 @@ function DrawLine() {
 
     });
 
-    var last_score = [25000, 25000, 25000, 25000];
+    var last_score = [InitScore, InitScore, InitScore, InitScore];
     var min_score = 100000;
     for (var i = 0; i < game_state.length; i++) {
         for (var player_idx = 0; player_idx < 4; player_idx++) {
