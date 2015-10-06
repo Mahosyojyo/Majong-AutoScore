@@ -11,7 +11,7 @@ body {
     clear: both;
 }
 
-fieldset{
+fieldset {
     height: 90%;
 }
 
@@ -42,8 +42,8 @@ fieldset#zeropointsetting {
 }
 
 .playerinfoarea {
-    width: 30%;
-    height: 30%;
+    width: 31%;
+    height: 31%;
     border: 3px solid black;
     border-radius: 3px;
     position: absolute;
@@ -90,7 +90,7 @@ fieldset#zeropointsetting {
 
 .playerscorediff {
     width: auto;
-    height: 21px;
+    height: 18px;
     font-size: 15px;
     text-align: center;
     background: url(img/lichi.gif) no-repeat;
@@ -127,9 +127,11 @@ fieldset#zeropointsetting {
     font-size: 28px;
     height: 40px;
     border: 2px #9999FF dashed;
-    float: left;
     background-color: red;
     -webkit-appearance: none;
+    bottom: 0px;
+    position: absolute;
+    left: 0px;
 }
 
 .dianpao_btn {
@@ -138,8 +140,10 @@ fieldset#zeropointsetting {
     height: 40px;
     background-color: pink;
     border: 2px #9999FF dashed;
-    float: right;
     -webkit-appearance: none;
+    bottom: 0px;
+    position: absolute;
+    right: 0px;
 }
 
 .t_btn_click {
@@ -209,7 +213,10 @@ fieldset#zeropointsetting {
     height: 25px;
     margin-top: 5px;
     margin-bottom: 5px;
-    border: 1px solid #;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
     background: white;
     border-radius: 8px;
 }
@@ -218,7 +225,10 @@ fieldset#zeropointsetting {
     width: 80%;
     margin-top: 5px;
     margin-bottom: 5px;
-    border: 1px solid #;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
     background: white;
     border-radius: 8px;
 }
@@ -227,7 +237,10 @@ fieldset#zeropointsetting {
     width: 90%;
     height: 40px;
     margin: 3px;
-    border: 1px solid #;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
     background: white;
     font-size: 18px;
     border-radius: 8px;
@@ -235,14 +248,10 @@ fieldset#zeropointsetting {
 
 .fanshu_clk {
     border: 2px dashed #F00;
-    //width: 90px;
-    //font-size: 20px;
 }
 
 .fushu_clk {
     border: 2px dashed #F00;
-    //width: 90px;
-    //font-size: 20px;
 }
 
 .fanfu_help_clk {
@@ -260,7 +269,10 @@ fieldset#zeropointsetting {
     width: 150px;
     height: 30px;
     margin: 3px;
-    border: 1px solid #;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
     background: white;
     font-size: 18px;
     border-radius: 8px;
@@ -270,7 +282,10 @@ fieldset#zeropointsetting {
     width: 80%;
     height: 40px;
     margin: 3px;
-    border: 1px solid #;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
     background: white;
     font-size: 30px;
     border-radius: 8px;
@@ -285,14 +300,15 @@ fieldset#zeropointsetting {
     width: 60px;
     height: 60px;
     margin: 5px;
-    border: 1px solid #;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
     background: green;
     border-radius: 20px;
     font-size: 36px;
     -webkit-appearance: none;
 }
-
-
 
 .tab_cls {
     height: 390px;
@@ -341,7 +357,10 @@ fieldset#zeropointsetting {
     width: 60px;
     height: 60px;
     margin: 5px;
-    border: 1px solid #;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
     border-radius: 20px;
     font-size: 36px;
     -webkit-appearance: none;
@@ -350,8 +369,6 @@ fieldset#zeropointsetting {
 .player_name_edit {
     width: 70px;
 }
-
-
 
 button {
     font-size: 0;
@@ -388,7 +405,10 @@ button.corner_btn span {
     display: block;
     width: 100px;
     height: 40px;
-    border: 2px solid #;
+    border-left: 2px solid #C0C0C0;
+    border-right: 2px solid #6C6C6C;
+    border-top: 2px solid #C0C0C0;
+    border-bottom: 2px solid #6C6C6C;
     background: white;
     margin: 5px;
     border-radius: 20px;
@@ -406,19 +426,19 @@ button.setting_btn span {
     color: firebrick;
     top: 40px;
     left: 30px;
-    //display: none;
 }
+
 .dice {
     position: relative;
     float: left;
-    width:45px;
+    width: 45px;
     height: 45px;
     background: url("img/dice.png");
-    background-size:320px,320px;
-    background-repeat:no-repeat;
-    background-position:-0px;
+    background-size: 320px, 320px;
+    background-repeat: no-repeat;
+    background-position: -0px;
     margin-left: 80px;
-    margin-top:20px;
+    margin-top: 20px;
 }
 
 #dice_area {
@@ -437,20 +457,18 @@ button.setting_btn span {
     display: inline;
     float: left;
     margin: 0px;
-    color:blue
+    color: blue
 }
 
-.fan_desc  {
-    float:left;
-    width:303px;
+.fan_desc {
+    float: left;
+    width: 303px;
 }
 
 .red_star {
-    color:red;
+    color: red;
     display: inline;
 }
-
-
 
 #chartContainer {
     position: absolute;
@@ -458,7 +476,7 @@ button.setting_btn span {
     height: 37%;
     left: 32%;
     top: 32%;
-   // border:1px solid #f00;
+    // border:1px solid #f00;
 }
 
 #linechartContainer {
@@ -472,12 +490,15 @@ button.setting_btn span {
     width: 30px;
     height: 400px;
     background: white;
-    border: 1px solod #;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
     border-radius: 10px;
     position: absolute;
-    left:0px;
+    left: 0px;
 }
 
 #myTab0_Content3 {
-    font-size:15px;
+    font-size: 15px;
 }
