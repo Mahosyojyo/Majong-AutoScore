@@ -37,12 +37,15 @@ var game_isStart = false;
 
 var game_mode = 1;//1 半庄 2 速东 3 三麻 4 团战
 
-function next_Game(Is_oya_win) {
+function next_Game(Is_oya_win,bencheng_keep_flag) {
     game_isStart = true;
     if (Is_oya_win) {
         game.benchang += 1;
     } else {
-        game.benchang = 0;
+        if(bencheng_keep_flag)
+            game.benchang += 1;
+        else
+            game.benchang = 0;
         game.jushu += 1;
         if (game.jushu > 4) {
             game.jushu = 1;
@@ -418,13 +421,13 @@ function CalScore_OK() {
                 if (i == zimo_idx) continue;
                 score_give(i, zimo_idx, ScoreUpper(base_score * 2) + 100 * game.benchang);
             }
-            next_Game(true);
+            next_Game(true, true);
         } else { //闲家自摸
             for (var i = 0; i < 4; i++) {
                 if (i == zimo_idx) continue;
                 score_give(i, zimo_idx, ScoreUpper(base_score * (1 + (i == game.jushu - 1))) + 100 * game.benchang);
             }
-            next_Game(false);
+            next_Game(false,false);
         }
         //处理立直棒
         collect_lichi(zimo_idx);
@@ -484,7 +487,7 @@ function deal_dianpao() {
 
     collect_lichi(nearest_idx);
     game_area_lock = false;
-    next_Game(oya_win);
+    next_Game(oya_win,oya_win);
     UpdateAllView();
     Reset_Game_panel();
     RecordCurGameState();
@@ -551,7 +554,7 @@ function liuju_cal(score_list, oya_lose) {
     for (var i = 0; i < 4; i++) {
         player[i].Point += score_list[i];
     }
-    next_Game(!oya_lose);
+    next_Game(!oya_lose,true);
     UpdateAllView();
     Reset_Game_panel();
     RecordCurGameState();
