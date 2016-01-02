@@ -10,7 +10,8 @@ Majong-AutoScore
 主要是两个版本
 
 * JS版本，由Vespa完成
-* Android版本，由Fredfx完成
+* iOS版本，由Fredfx完成
+* Android版本，再说吧，呵呵
 
 人员：
 *  Vespa
@@ -19,6 +20,9 @@ Majong-AutoScore
 
 ================
 ###文件说明:
+>./iOS/:
+>iOS版
+
 >./Andriod/:
 >安卓版
 
