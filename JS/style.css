@@ -1,0 +1,504 @@
+body {
+    font-family: arial;
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+    ;
+    width: 100%;
+}
+
+.clear {
+    clear: both;
+}
+
+fieldset {
+    height: 90%;
+}
+
+fieldset#playerName {
+    width: 80px;
+    float: left;
+    height: 180px;
+}
+
+fieldset#gamemode {
+    width: 60px;
+    float: left;
+}
+
+fieldset#zeropointsetting {
+    width: 60px;
+    float: left;
+}
+
+#gamearea {
+    /*background:待添加*/
+    width: 500px;
+    height: 500px;
+    border: 3px solid #0F0;
+    border-radius: 10px;
+    position: relative;
+    float: left;
+}
+
+.playerinfoarea {
+    width: 31%;
+    height: 31%;
+    border: 3px solid black;
+    border-radius: 3px;
+    position: absolute;
+    text-align: left;
+}
+
+#player1 {
+    left: 35%;
+    top: 69%;
+}
+
+#player2 {
+    left: 69%;
+    top: 35%;
+}
+
+#player3 {
+    left: 35%;
+}
+
+#player4 {
+    top: 35%;
+}
+
+.playerpos {
+    font-family: 'Tangerine', serif;
+    font-size: 30px;
+    text-shadow: 4px 4px 4px #aaa;
+    text-align: right;
+    float: left;
+}
+
+.playername {
+    font-family: 'Droid Serif', serif;
+    font-size: 30px;
+    float: right;
+    width: 100px
+}
+
+.playerscore {
+    font-family: "Comic Sans MS";
+    font-size: 24px;
+}
+
+.playerscorediff {
+    width: auto;
+    height: 18px;
+    font-size: 15px;
+    text-align: center;
+    background: url(img/lichi.gif) no-repeat;
+    background-size: 100% 100%;
+}
+
+.weici {
+    font-size: 24px;
+    text-align: center;
+}
+
+#xiru_field {
+    float: left;
+    width: 60px;
+}
+
+#game_process {
+    width: 33%;
+    height: 100px;
+    float: right;
+    font-size: 24px;
+    text-align: left;
+    border: 2px solid #80abde;
+    border-radius: 0 0 0 20px;
+}
+
+.inline_text {
+    display: inline;
+    color: forestgreen;
+}
+
+.rong_btn {
+    width: 45%;
+    font-size: 28px;
+    height: 40px;
+    border: 2px #9999FF dashed;
+    background-color: red;
+    -webkit-appearance: none;
+    bottom: 0px;
+    position: absolute;
+    left: 0px;
+}
+
+.dianpao_btn {
+    width: 45%;
+    font-size: 28px;
+    height: 40px;
+    background-color: pink;
+    border: 2px #9999FF dashed;
+    -webkit-appearance: none;
+    bottom: 0px;
+    position: absolute;
+    right: 0px;
+}
+
+.t_btn_click {
+    color: aliceblue;
+    background-color: black;
+    border: 5px solid #F0e;
+    border-radius: 10px;
+    //font-size: 30px;
+    height: 50px;
+}
+
+.mainviewcl {
+    color: dodgerblue;
+}
+
+.corner_btn {
+    float: right;
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    border: 2px dashed green;
+    font-size: 20px;
+    right: 5px;
+    -webkit-appearance: none;
+}
+
+.corner_btn_4win {
+    bottom: 50px;
+}
+
+.end99 {
+    bottom: 5px;
+}
+
+.end4win {
+    bottom: 50px;
+    -webkit-appearance: none;
+}
+
+.lichi {
+    border: 5px dashed #F00;
+    border-radius: 15px;
+}
+
+#cal_area {
+    margin-left: 30px;
+    border: 2px solid #000;
+    border-radius: 20px;
+    margin-left: 510px;
+    margin-right: 2px;
+    padding: 5px;
+    //max-width: 500px;
+}
+
+#fanshu_field {
+    float: left;
+    width: 70px;
+}
+
+#fushu_field {
+    float: left;
+    width: 70px;
+}
+
+.fanfu_btn {
+    width: 70px;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
+    background: white;
+    border-radius: 8px;
+}
+
+.fu_btn {
+    width: 80%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
+    background: white;
+    border-radius: 8px;
+}
+
+.fanfu_help_btn {
+    width: 90%;
+    height: 40px;
+    margin: 3px;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
+    background: white;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.fanshu_clk {
+    border: 2px dashed #F00;
+}
+
+.fushu_clk {
+    border: 2px dashed #F00;
+}
+
+.fanfu_help_clk {
+    border: 2px dashed #F00;
+    width: 90%;
+    font-size: 18px;
+}
+
+.mz_cal_clk {
+    border: 2px dashed #F00;
+    width: 60%;
+}
+
+.set_fu {
+    width: 150px;
+    height: 30px;
+    margin: 3px;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
+    background: white;
+    font-size: 18px;
+    border-radius: 8px;
+}
+
+.fanshu_ok_btn {
+    width: 80%;
+    height: 40px;
+    margin: 3px;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
+    background: white;
+    font-size: 30px;
+    border-radius: 8px;
+}
+
+#liuju {
+    bottom: 0px;
+    position: absolute;
+}
+
+#liuju_btn {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
+    background: green;
+    border-radius: 20px;
+    font-size: 36px;
+    -webkit-appearance: none;
+}
+
+.tab_cls {
+    height: 390px;
+}
+
+.liuju_icon {
+    border: 4px solid grey;
+    border-radius: 40px;
+    position: absolute;
+    font-size: 80px;
+    color: grey;
+    right: -40px;
+    top: -40px;
+    z-index: 100;
+    font-family: cursive;
+    line-height: 100%;
+    margin: 20px;
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -o-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
+    transform: rotate(-30deg);
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+    visibility: hidden;
+}
+
+.liuju_icon_inner {
+    position: relative;
+    left: -9px;
+}
+
+.liuju_noting {
+    border: 4px solid grey;
+    color: grey;
+}
+
+.liuju_ting {
+    border: 4px solid crimson;
+    color: crimson;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+
+#recovery_btn {
+    width: 60px;
+    height: 60px;
+    margin: 5px;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
+    border-radius: 20px;
+    font-size: 36px;
+    -webkit-appearance: none;
+}
+
+.player_name_edit {
+    width: 70px;
+}
+
+button {
+    font-size: 0;
+    padding: 0;
+    -webkit-appearance: none;
+}
+
+button span {
+    font-size: 36px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+button.rong_btn span {
+    font-size: 28px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+button.dianpao_btn span {
+    font-size: 28px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+button.corner_btn span {
+    font-size: 20px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+.setting_btn {
+    float: left;
+    display: block;
+    width: 100px;
+    height: 40px;
+    border-left: 2px solid #C0C0C0;
+    border-right: 2px solid #6C6C6C;
+    border-top: 2px solid #C0C0C0;
+    border-bottom: 2px solid #6C6C6C;
+    background: white;
+    margin: 5px;
+    border-radius: 20px;
+}
+
+button.setting_btn span {
+    font-size: 20px;
+    margin: 0 -1em;
+    padding: 0.4em 0.8em;
+}
+
+.playerscore_animate {
+    position: absolute;
+    font-size: 40px;
+    color: firebrick;
+    top: 40px;
+    left: 30px;
+}
+
+.dice {
+    position: relative;
+    float: left;
+    width: 45px;
+    height: 45px;
+    background: url("img/dice.png");
+    background-size: 320px, 320px;
+    background-repeat: no-repeat;
+    background-position: -0px;
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+#dice_area {
+    position: relative;
+    float: left;
+    height: 50px;
+    width: 250px;
+}
+
+#myTab0_Content2 {
+    text-align: left;
+    font-size: 15px;
+}
+
+.fan_num_desc {
+    display: inline;
+    float: left;
+    margin: 0px;
+    color: blue
+}
+
+.fan_desc {
+    float: left;
+    width: 303px;
+}
+
+.red_star {
+    color: red;
+    display: inline;
+}
+
+#chartContainer {
+    position: absolute;
+    width: 37%;
+    height: 37%;
+    left: 32%;
+    top: 32%;
+    // border:1px solid #f00;
+}
+
+#linechartContainer {
+    float: left;
+    margin-left: 30px;
+}
+
+#expand_panel_btn {
+    margin-top: 10px;
+    float: left;
+    width: 30px;
+    height: 400px;
+    background: white;
+    border-left: 1px solid #C0C0C0;
+    border-right: 1px solid #6C6C6C;
+    border-top: 1px solid #C0C0C0;
+    border-bottom: 1px solid #6C6C6C;
+    border-radius: 10px;
+    position: absolute;
+    left: 0px;
+}
+
+#myTab0_Content3 {
+    font-size: 15px;
+}

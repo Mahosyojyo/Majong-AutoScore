@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>日麻算分器 Version 2.0</title>
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+    <link rel="stylesheet" href="./tabstyle.css" type="text/css" />
+    <link rel="stylesheet" href="./switch.css" type="text/css" />
+    <link rel="stylesheet" href="./chart/chartline.css" type="text/css" />
+    <script src="jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="Majong.js"></script>
+    <script type="text/javascript" src="tab.js"></script>
+    <script type="text/javascript" src="fanfuCal.js"></script>
+    <script type="text/javascript" src="./chart/Chart.js"></script>
+    <script type="text/javascript" src="./chart/charttips.js"></script>
+    <script type="text/javascript" src="./canvasjs-1.7.0/canvasjs.min.js"></script>
+    <script type="text/javascript" src="./piechartDraw.js"></script>
+    <script type="text/javascript" src="./linechartDraw.js"></script>
+    <script type="text/javascript" src="./support.js"></script>
+</head>
+
+<body>
+    <button id="expand_panel_btn" onclick="expand_panel()"><span style="font-size: 12px;">>>></span></button>
+    <div class="nTab">
+        <div class="TabTitle">
+            <ul id="myTab0">
+                <li class="active" onclick="nTabs(this,0);">设置</li>
+                <li class="normal" onclick="nTabs(this,1);">统计</li>
+                <li class="normal" onclick="nTabs(this,2);">帮助</li>
+                <li class="normal" onclick="nTabs(this,3);">关于</li>
+            </ul>
+        </div>
+        <div class="TabContent">
+            <div id="myTab0_Content0" class="tab_cls">
+                <fieldset>
+                    <legend style="font-size:24px">游戏设置</legend>
+                    <fieldset id="playerName">
+                        <legend>姓名</legend>
+                        <form>
+                            东家:
+                            <input type="text" name="Player1Name" value="" class="player_name_edit" />
+                            <br /> 南家:
+                            <input type="text" name="Player2Name" value="" class="player_name_edit" />
+                            <br /> 西家:
+                            <input type="text" name="Player3Name" value="" class="player_name_edit" />
+                            <br /> 北家:
+                            <input type="text" name="Player4Name" value="" class="player_name_edit" />
+                        </form>
+                    </fieldset>
+                    <button id="randomposbutton" class="setting_btn" onclick="make_random_position()"><span>随机座位</span></button>
+                    <button id="END_GAME" class="setting_btn" onclick="end_game()"><span>结束对局</span></button>
+                    <br />
+                    <button id="change_line_mode" class="setting_btn" onclick="chang_line_mode()"><span>绘制直线</span></button>
+                    <button id="change_game_mode" class="setting_btn" onclick="change_game_mode()"><span>半庄模式</span></button>
+                    <br />
+                    <button id="close_setting_panel" class="setting_btn" onclick="close_setting_panel()"><span>收起面板</span></button>
+                    <button id="make_dice" class="setting_btn" onclick="random_dice()"><span>模拟色子</span></button>
+                    <br />
+                       <div id="dice_area">
+                        <div class="dice"></div>
+                        <div class="dice"></div>
+                    </div>
+                </fieldset>
+
+            </div>
+            <div id="myTab0_Content1" class="none tab_cls">
+               <div style="background:black"> <div style="font-size:20px;width:350px;margin:auto;color:white;">还没想好这里要怎么弄啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
+                <br />
+                <img src="img/saki.jpg" style="width:180px;">
+                </div>
+            </div>
+            <div id="myTab0_Content2" class="none tab_cls">
+                <p class="fan_num_desc">一番：</p>
+                <div class="fan_desc">立直，一发，门清自摸，断幺，平和，一杯口，役牌，宝牌，领上，抢杠，海底，河底</div>
+                <div class="clear"> </div>
+                <p class="fan_num_desc">两番：</p>
+                <div class="fan_desc">
+                    <p class="red_star">三色*</p>，
+                    <p class="red_star">一气*</p>，对对，三暗刻，七对，
+                    <p class="red_star">混全*</p>，混老头，三色同刻，三杠子，小三元，W立
+                </div>
+                <div class="clear"> </div>
+                <p class="fan_num_desc">三番：</p>
+                <div class="fan_desc">
+                    <p class="red_star">混一色*</p>，
+                    <p class="red_star">纯全带幺*</p>，二杯口</div>
+                <div class="clear"> </div>
+                <p class="fan_num_desc">满贯以上：</p>
+                <div class="fan_desc">流满(满贯)，
+                    <p class="red_star">清一色*</p>(六番)</div>
+                <div class="clear"> </div>
+                <p class="fan_num_desc">役满：</p>
+                <div class="fan_desc">大三元，
+                    <p class="red_star">四暗刻*</p>，
+                    <p class="red_star">国士*</p>，字一色，
+                    <p class="red_star">小四喜*</p>，绿一色，天地人胡，
+                    <p class="red_star">九莲*</p>，四杠子，累计，大竹轮，大数临，大车轮，大七星</div>
+                <div class="clear"> </div>
+                <div style="border:1px dashed #F00;width:100%;margin:0px;float:left"></div>
+                <p class="fan_num_desc">MORE：</p><a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%87%E7%9A%84%E5%92%8C%E7%89%8C%E7%89%8C%E5%9E%8B%E5%88%97%E8%A1%A8" target="_blank">日麻役详细</a>,
+                <a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%86%E8%A7%84%E5%88%99" target="_blank">日麻规则</a>，<a href="https://zh.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E9%BA%BB%E5%B0%87%E8%A8%88%E5%88%86%E6%96%B9%E6%B3%95#.E5.BE.97.E5.88.86.E9.80.9F.E6.9F.A5.E8.A1.A8" target="_blank">算分表</a>
+            </div>
+            <div id="myTab0_Content3" class="none tab_cls">
+                Version： 2.0
+                <br /> 版权归
+                <a href="http://www.kylen314.com">Vespa</a> 所有
+                <br /> 项目主页：
+                <a href="https://github.com/Mahosyojyo">https://github.com/Mahosyojyo</a>
+                <br />反馈：
+                <a href="https://github.com/Mahosyojyo/Majong-AutoScore/issues/new">点击提BUG</a>
+                <br />
+                <img src="img/rcode.png" style="width:300px;">
+            </div>
+        </div>
+
+    </div>
+<!--    <canvas id="myChart" height="250px" width="450px"></canvas>-->
+<!--    <div id="chartjs-tooltip"></div>-->
+    <div id="linechartContainer" ></div>
+    <div class="clear"> </div>
+    <div id="gamearea">
+        <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+            <label class="onoffswitch-label" for="myonoffswitch">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+        <div id="game_process">
+            场况：
+            <p class="inline_text" id="changkuang"></p>
+            <br /> 本场数：
+            <p class="inline_text" id="benchangshu"></p>
+            <img src="img/lichi.gif" style="padding-left:4px;width:70%">×
+            <p style="display: inline;color: black;" id="lichi_num">0</p>
+        </div>
+        <div id="liuju">
+            <button id="liuju_btn" onclick="liuju()"><span>流</span></button>
+            <button id="recovery_btn" onclick="RecoverGameState()"><span>撤</span></button>
+        </div>
+        <div class="playerinfoarea" id="player1">
+            <div class="playerpos" onclick="changeView(0)"></div>
+            <div class="playername"></div>
+            <div class="clear"> </div>
+            <div class="playerscore">0</div>
+            <div class="playerscore_animate"></div>
+            <div class="playerscorediff" onclick="lichi_click(0)"></div>
+            <div class="weici">位</div>
+            <button id="player0_rong" class="rong_btn" onclick="rong_click(0)"><span>自摸</span></button>
+            <button id="player0_dianpao" class="dianpao_btn" onclick="dianpao_click(0)"><span>点炮</span></button>
+            <div class="liuju_icon liuju_noting" onclick="liuju_clk(0)">
+                <div class="liuju_icon_inner">听</div>
+            </div>
+        </div>
+        <div class="playerinfoarea" id="player2">
+            <div class="playerpos" onclick="changeView(1)"></div>
+            <div class="playername"></div>
+            <div class="clear"> </div>
+            <div class="playerscore">0</div>
+            <div class="playerscore_animate"></div>
+            <div class="playerscorediff" onclick="lichi_click(1)"></div>
+            <div class="weici">位</div>
+            <button id="player1_rong" class="rong_btn" onclick="rong_click(1)"><span>自摸</span></button>
+            <button id="player1_dianpao" class="dianpao_btn" onclick="dianpao_click(1)"><span>点炮</span></button>
+            <div class="liuju_icon liuju_noting" onclick="liuju_clk(1)">
+                <div class="liuju_icon_inner">听</div>
+            </div>
+        </div>
+        <div class="playerinfoarea" id="player3">
+            <div class="playerpos" onclick="changeView(2)"></div>
+            <div class="playername"></div>
+            <div class="clear"> </div>
+            <div class="playerscore">0</div>
+            <div class="playerscore_animate"></div>
+            <div class="playerscorediff" onclick="lichi_click(2)"></div>
+            <div class="weici">位</div>
+            <button id="player2_rong" class="rong_btn" onclick="rong_click(2)"><span>自摸</span></button>
+            <button id="player2_dianpao" class="dianpao_btn" onclick="dianpao_click(2)"><span>点炮</span></button>
+            <div class="liuju_icon liuju_noting" onclick="liuju_clk(2)">
+                <div class="liuju_icon_inner">听</div>
+            </div>
+        </div>
+        <div class="playerinfoarea" id="player4">
+            <div class="playerpos" onclick="changeView(3)"></div>
+            <div class="playername"></div>
+            <div class="clear"> </div>
+            <div class="playerscore">0</div>
+            <div class="playerscore_animate"></div>
+            <div class="playerscorediff" onclick="lichi_click(3)"></div>
+            <div class="weici">位</div>
+            <button id="player3_rong" class="rong_btn" onclick="rong_click(3)"><span>自摸</span></button>
+            <button id="player3_dianpao" class="dianpao_btn" onclick="dianpao_click(3)"><span>点炮</span></button>
+            <div class="liuju_icon liuju_noting" onclick="liuju_clk(3)">
+                <div class="liuju_icon_inner">听</div>
+            </div>
+        </div>
+        <button id="99pai" class="corner_btn end99" onclick="liuju_cal([0,0,0,0],false)"><span>九种九牌</span></button>
+        <button id="4winds" class="corner_btn end4win" onclick="liuju_cal([0,0,0,0],true)"><span>四风连打</span></button>
+        <div id="chartContainer"></div>
+    </div>
+    <!-- Game Area End-->
+    <div id="cal_area">
+        <fieldset id="fanshu_field">
+            <legend style="font-size:15px">番数</legend>
+            <input type="button" value="1番" id="1fan" class="fanfu_btn" onclick="fanshu_click(0)">
+            <input type="button" value="2番" id="2fan" class="fanfu_btn" onclick="fanshu_click(1)">
+            <input type="button" value="3番" id="3fan" class="fanfu_btn" onclick="fanshu_click(2)">
+            <input type="button" value="4番" id="4fan" class="fanfu_btn" onclick="fanshu_click(3)">
+            <input type="button" value="5番" id="5fan" class="fanfu_btn" onclick="fanshu_click(4)">
+            <input type="button" value="6-7番" id="67fan" class="fanfu_btn" onclick="fanshu_click(5)">
+            <input type="button" value="8-10番" id="8910fan" class="fanfu_btn" onclick="fanshu_click(6)">
+            <input type="button" value="11-12番" id="1112fan" class="fanfu_btn" onclick="fanshu_click(7)">
+            <input type="button" value="1倍役满" id="13fan" class="fanfu_btn" onclick="fanshu_click(8)">
+        </fieldset>
+        <fieldset id="fushu_field">
+            <legend style="font-size:15px">符数</legend>
+            <input type="button" value="20" id="20fu" class="fanfu_btn" onclick="fushu_click(0)">
+            <input type="button" value="25" id="25fu" class="fanfu_btn" onclick="fushu_click(1)">
+            <input type="button" value="30" id="30fu" class="fanfu_btn" onclick="fushu_click(2)">
+            <input type="button" value="40" id="40fu" class="fanfu_btn" onclick="fushu_click(3)">
+            <input type="button" value="50" id="50fu" class="fanfu_btn" onclick="fushu_click(4)">
+            <input type="button" value="60" id="60fu" class="fanfu_btn" onclick="fushu_click(5)">
+            <input type="button" value="70" id="70fu" class="fanfu_btn" onclick="fushu_click(6)">
+            <input type="button" value="80" id="80fu" class="fanfu_btn" onclick="fushu_click(7)">
+            <input type="button" value="90" id="90fu" class="fanfu_btn" onclick="fushu_click(8)">
+            <input type="button" value="100" id="100fu" class="fanfu_btn" onclick="fushu_click(9)">
+            <input type="button" value="110" id="110fu" class="fanfu_btn" onclick="fushu_click(10)">
+            <input type="button" value="120" id="120fu" class="fanfu_btn" onclick="fushu_click(11)">
+        </fieldset>
+        <fieldset id="fushuhelp_field">
+            <legend style="font-size:20px">符数计算工具</legend>
+            <input type="button" value="嵌张/边张/单调听牌" id="fushuhelp1" class="fanfu_help_btn" onclick="toolhelp_clk(0)">
+            <input type="button" value="门清自摸" id="fushuhelp2" class="fanfu_help_btn" onclick="toolhelp_clk(1)">
+            <input type="button" value="雀头为自风/场风/三元牌" id="fushuhelp3" class="fanfu_help_btn" onclick="toolhelp_clk(2)">
+            <div style="border:1px dashed #000;width:100%;margin:5px"></div>
+            <table border="1" style="width:100%;height:150px;font-size:20px">
+                <caption style="font-size:30px;color:#000;">面子计算</caption>
+                <tr>
+                    <th></th>
+                    <th>中章</th>
+                    <th>幺九</th>
+                </tr>
+                <tr class='mianzi_tr'>
+                    <th>明刻</th>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(0,0)">
+                    </td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(0,1)">
+                    </td>
+                </tr>
+                <tr class='mianzi_tr'>
+                    <th style="background:#888">暗刻</th>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(1,0)">
+                    </td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(1,1)">
+                    </td>
+                </tr>
+                <tr class='mianzi_tr'>
+                    <th>明杠</th>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(2,0)">
+                    </td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(2,1)">
+                    </td>
+                </tr>
+                <tr class='mianzi_tr'>
+                    <th style="background:#888">暗杠</th>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(3,0)">
+                    </td>
+                    <td>
+                        <input type="button" value="0" id="" class="fu_btn" onclick="mianzi_cal(3,1)">
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <div style="border:1px dashed #F00;width:100%;margin:5px;float:left"></div>
+        <input type="button" value="确定" id="fanfu_ok" class="fanshu_ok_btn" onclick="CalScore_OK()">
+    </div>
+    <div class="clear"> </div>
+
+</body>
+
+</html>
