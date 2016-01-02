@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C86CEA871C3817FC0071D676 /* MMSCGame.m in Sources */ = {isa = PBXBuildFile; fileRef = C86CEA861C3817FC0071D676 /* MMSCGame.m */; };
 		C8E212031C3817160007CAA7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212021C3817160007CAA7 /* main.m */; };
 		C8E212061C3817160007CAA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212051C3817160007CAA7 /* AppDelegate.m */; };
 		C8E212091C3817160007CAA7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212081C3817160007CAA7 /* ViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C86CEA851C3817FC0071D676 /* MMSCGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCGame.h; path = MahjongScoreCalculator/GameCore/MMSCGame.h; sourceTree = "<group>"; };
+		C86CEA861C3817FC0071D676 /* MMSCGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCGame.m; path = MahjongScoreCalculator/GameCore/MMSCGame.m; sourceTree = "<group>"; };
 		C8E211FE1C3817160007CAA7 /* MahjongScoreCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MahjongScoreCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E212021C3817160007CAA7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C8E212041C3817160007CAA7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,9 +63,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C86CEA831C3817CF0071D676 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		C86CEA841C3817D80071D676 /* GameCore */ = {
+			isa = PBXGroup;
+			children = (
+				C86CEA851C3817FC0071D676 /* MMSCGame.h */,
+				C86CEA861C3817FC0071D676 /* MMSCGame.m */,
+			);
+			name = GameCore;
+			sourceTree = "<group>";
+		};
 		C8E211F51C3817160007CAA7 = {
 			isa = PBXGroup;
 			children = (
+				C86CEA841C3817D80071D676 /* GameCore */,
+				C86CEA831C3817CF0071D676 /* View */,
 				C8E212001C3817160007CAA7 /* MahjongScoreCalculator */,
 				C8E2121A1C3817160007CAA7 /* MahjongScoreCalculatorTests */,
 				C8E211FF1C3817160007CAA7 /* Products */,
@@ -216,6 +237,7 @@
 				C8E212091C3817160007CAA7 /* ViewController.m in Sources */,
 				C8E212061C3817160007CAA7 /* AppDelegate.m in Sources */,
 				C8E212031C3817160007CAA7 /* main.m in Sources */,
+				C86CEA871C3817FC0071D676 /* MMSCGame.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +424,7 @@
 				C8E212221C3817160007CAA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C8E212231C3817160007CAA7 /* Build configuration list for PBXNativeTarget "MahjongScoreCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -410,6 +433,7 @@
 				C8E212251C3817160007CAA7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
