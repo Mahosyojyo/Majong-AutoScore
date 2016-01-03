@@ -53,4 +53,14 @@
     return result;
 }
 
+- (NSInteger)increaseToHundredForScore:(NSInteger)score {
+    NSInteger temp = score % 100;
+    
+    if (temp != 0) {
+        score = score - temp + 100;
+    }
+    
+    return score;
+}
+
 @end

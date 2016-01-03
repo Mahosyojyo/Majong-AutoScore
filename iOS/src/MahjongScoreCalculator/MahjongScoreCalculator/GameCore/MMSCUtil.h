@@ -15,9 +15,14 @@ typedef NS_ENUM(NSInteger, MMSCWind) {
     MMSCWindNorth
 };
 
+#define PLAYER_NUMBER 4
+
 @interface MMSCUtil : NSObject
 
 // 转换为中文
 + (NSString *)convertToCharacterWithNumber:(NSInteger)number;
+
+// 取到100
++ (NSInteger)increaseToHundredForScore:(NSInteger)score;
 
 @end
