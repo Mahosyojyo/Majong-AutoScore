@@ -31,6 +31,9 @@
 // 判断对局是否结束
 - (BOOL)isGameEnded;
 
+// 立直
+- (void)richiAtPlayerIndex:(NSUInteger)playerIndex;
+
 // 获取庄家
 - (MMSCPlayer *)getOYA;
 
