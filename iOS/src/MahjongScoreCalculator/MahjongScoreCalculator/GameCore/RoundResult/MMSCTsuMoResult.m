@@ -50,4 +50,8 @@
     }
 }
 
+- (BOOL)changeOYA:(NSUInteger)currentOYAIndex {
+    return currentOYAIndex != self.winnerIndex;
+}
+
 @end

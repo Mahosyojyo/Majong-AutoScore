@@ -35,4 +35,20 @@
     }];
 }
 
+- (BOOL)isDraw {
+    return YES;
+}
+
+- (BOOL)changeOYA:(NSUInteger)currentOYAIndex {
+    switch (self.type) {
+        case MMSCDrawType_FourWind:
+            return YES;
+        case MMSCDrawType_DrawMangan:
+        case MMSCDrawType_Normal:
+            return ![self.tenpaiPlayerIndexes containsIndex:currentOYAIndex];
+        default:
+            return NO;
+    }
+}
+
 @end

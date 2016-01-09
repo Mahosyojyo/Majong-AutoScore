@@ -7,8 +7,9 @@
 //
 
 #import "MMSCRoundResult.h"
+#import "MMSCDrawResult.h"
 
-@interface MMSCDrawManganResult : MMSCRoundResult
+@interface MMSCDrawManganResult : MMSCDrawResult
 
 @property(nonatomic, strong) NSArray *manganPlayerIndexes;
 

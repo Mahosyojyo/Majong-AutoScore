@@ -17,6 +17,7 @@ typedef NS_ENUM(NSInteger, MMSCDrawType) {
     MMSCDrawType_FourKan,           // 四杠流局
     MMSCDrawType_FourRichi,         // 四家立直
     MMSCDrawType_ThreeWin,          // 一炮三响
+    MMSCDrawType_DrawMangan,        // 流局满贯
 };
 
 @interface MMSCDrawResult : MMSCRoundResult

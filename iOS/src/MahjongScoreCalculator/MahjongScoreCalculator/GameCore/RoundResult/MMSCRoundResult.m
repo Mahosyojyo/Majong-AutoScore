@@ -10,6 +10,14 @@
 
 @implementation MMSCRoundResult
 
+- (BOOL)isDraw {
+    return NO;
+}
+
+- (BOOL)changeOYA:(NSUInteger)currentOYAIndex {
+    return YES;
+}
+
 - (void)assignScoreWithPlayers:(NSArray *)players bonban:(NSInteger)bonban richiScore:(NSInteger)richiScore {
     NSAssert(NO, @"父类方法不该被直接调用");
 }

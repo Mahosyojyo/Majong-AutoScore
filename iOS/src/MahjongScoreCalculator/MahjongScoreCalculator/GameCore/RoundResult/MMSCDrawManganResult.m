@@ -12,6 +12,14 @@
 
 @implementation MMSCDrawManganResult
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.type = MMSCDrawType_DrawMangan;
+    }
+    
+    return self;
+}
+
 - (void)assignScoreWithPlayers:(NSArray *)players bonban:(NSInteger)bonban richiScore:(NSInteger)richiScore {
     
     

@@ -14,6 +14,12 @@
 // 分数的变化情况
 @property(nonatomic, strong) NSMutableArray *scoreChanges;
 
+// 是否流局
+- (BOOL)isDraw;
+
+// 是否换庄
+- (BOOL)changeOYA:(NSUInteger)currentOYAIndex;
+
 // 分配分数
 - (void)assignScoreWithPlayers:(NSArray *)players bonban:(NSInteger)bonban richiScore:(NSInteger)richiScore;
 

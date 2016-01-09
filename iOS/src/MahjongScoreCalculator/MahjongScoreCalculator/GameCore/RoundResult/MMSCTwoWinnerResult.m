@@ -42,8 +42,11 @@
         return distance1 > 0 ? _winner1Index : _winner2Index;
     }
     
-    return distance1 < distance2 ? _winner1Index : _winner2Index; //总之选具体点炮者比较近的
+    return distance1 < distance2 ? _winner1Index : _winner2Index; //总之选距离点炮者比较近的
 }
 
+- (BOOL)changeOYA:(NSUInteger)currentOYAIndex {
+    return currentOYAIndex != self.winner1Index && currentOYAIndex != self.winner2Index;
+}
 
 @end

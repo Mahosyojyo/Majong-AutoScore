@@ -22,4 +22,8 @@
     [self recordScoreChangeAtIndex:_payerIndex player:payer change:-1 * (basicScore + 300 * bonban)];
 }
 
+- (BOOL)changeOYA:(NSUInteger)currentOYAIndex {
+    return currentOYAIndex != self.winnerIndex;
+}
+
 @end
