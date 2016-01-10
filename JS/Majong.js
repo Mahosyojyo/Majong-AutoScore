@@ -170,7 +170,8 @@ function UpdateRank() {
 function ShowPoint(DiffMode) {
     for (var i = 0; i < 4; i++) {
         if (DiffMode) {
-            $('.playerscore', $('.playerinfoarea')[i]).text(player[i].Point - player[mainView].Point * (i != mainView));
+            var score_diff = player[i].Point - player[mainView].Point * (i != mainView);
+            $('.playerscore', $('.playerinfoarea')[i]).text((score_diff>0 && i!=mainView?"+":"")+score_diff);
         } else {
             $('.playerscore', $('.playerinfoarea')[i]).text(player[i].Point);
         }
