@@ -142,4 +142,24 @@
     return topIndex != self.oyaIndex;
 }
 
+- (void)richiAtPlayerIndex:(NSUInteger)playerIndex {
+    MMSCRound *currentRound = [self currentRound];
+    NSAssert(playerIndex < 4, @"这是什么鬼？！");
+    
+    MMSCPlayer *richiPlayer = (MMSCPlayer *)self.players[playerIndex];
+    [currentRound richiAtPlayer:richiPlayer];
+}
+
+- (MMSCPlayer *)getOYA {
+    return (MMSCPlayer *)self.players[self.oyaIndex];
+}
+
+- (MMSCPlayer *)getPlayerAtIndex:(NSInteger)index {
+    return (MMSCPlayer *)self.players[index];
+}
+
+- (MMSCRound *)currentRound {
+    return [self.rounds lastObject];
+}
+
 @end
