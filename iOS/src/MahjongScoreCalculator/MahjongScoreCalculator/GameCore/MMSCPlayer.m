@@ -10,4 +10,16 @@
 
 @implementation MMSCPlayer
 
+- (void)increaseScore:(NSInteger)increment {
+    self.score += increment;
+}
+
+- (void)decreaseScore:(NSInteger)decrement {
+    self.score -= decrement;
+}
+
+- (BOOL)isOYA {
+    return self.wind == MMSCWindEast;
+}
+
 @end
