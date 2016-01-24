@@ -19,7 +19,7 @@
 // 场风
 @property(nonatomic, assign) MMSCWind roundWind;
 
-// 局数
+// 局数(1,2,3,4)
 @property(nonatomic, assign) NSInteger roundNumeber;
 
 // 本场数
