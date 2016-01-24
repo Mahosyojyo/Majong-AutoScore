@@ -31,8 +31,11 @@
 // 场上的立直棒
 @property(nonatomic, assign) NSInteger richiScore;
 
+// 本场立直的玩家
+@property(nonatomic, strong) NSMutableArray *richiPlayerIndexes;
+
 // 立直
-- (void)richiAtPlayer:(MMSCPlayer *)player;
+- (void)richiAtPlayer:(MMSCPlayer *)player index:(NSUInteger)index;
 
 // 结束该局
 - (void)endRoundWithPlayers:(NSArray *)players;

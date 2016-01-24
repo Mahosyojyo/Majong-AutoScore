@@ -19,6 +19,9 @@ typedef NS_ENUM(NSInteger, MMSCWind) {
 
 @interface MMSCUtil : NSObject
 
+// 风名
++ (NSString *)convertWindEnumToCharacter:(MMSCWind)wind;
+
 // 转换为中文
 + (NSString *)convertToCharacterWithNumber:(NSInteger)number;
 

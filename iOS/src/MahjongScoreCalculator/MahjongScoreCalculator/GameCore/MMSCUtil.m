@@ -10,6 +10,19 @@
 
 @implementation MMSCUtil
 
++ (NSString *)convertWindEnumToCharacter:(MMSCWind)wind {
+    switch (wind) {
+        case MMSCWindEast:
+            return @"东";
+        case MMSCWindSouth:
+            return @"南";
+        case MMSCWindWest:
+            return @"西";
+        case MMSCWindNorth:
+            return @"北";
+    }
+}
+
 + (NSString *)convertToCharacterWithNumber:(NSInteger)number {
     
     static NSArray *unitCharacter;

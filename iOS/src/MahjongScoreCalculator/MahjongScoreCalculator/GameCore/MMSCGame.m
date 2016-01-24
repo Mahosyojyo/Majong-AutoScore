@@ -147,7 +147,7 @@
     NSAssert(playerIndex < 4, @"这是什么鬼？！");
     
     MMSCPlayer *richiPlayer = (MMSCPlayer *)self.players[playerIndex];
-    [currentRound richiAtPlayer:richiPlayer];
+    [currentRound richiAtPlayer:richiPlayer index:playerIndex];
 }
 
 - (MMSCPlayer *)getOYA {

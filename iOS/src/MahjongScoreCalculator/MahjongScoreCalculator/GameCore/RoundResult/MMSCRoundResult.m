@@ -36,6 +36,17 @@
     }
 }
 
+- (void)recordRichiChangeWithRichiPlayers:(NSArray *)playerIdxs {
+    for (NSNumber *idxNum in playerIdxs) {
+        NSUInteger idx = idxNum.unsignedIntegerValue;
+        NSInteger currentChange = [self.scoreChanges[idx] integerValue];
+        
+        currentChange -= 1000;
+        
+        self.scoreChanges[idx] = @(currentChange);
+    }
+}
+
 - (instancetype)init {
     if (self = [super init]) {
         _scoreChanges = [NSMutableArray arrayWithArray:@[@0, @0, @0, @0]];

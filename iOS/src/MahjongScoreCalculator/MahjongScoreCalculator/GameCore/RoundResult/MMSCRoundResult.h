@@ -26,6 +26,9 @@
 // 记录分数变化
 - (void)recordScoreChangeAtIndex:(NSUInteger)index player:(MMSCPlayer *)player change:(NSInteger)change;
 
+// 记录立直棒
+- (void)recordRichiChangeWithRichiPlayers:(NSArray *)playerIdxs;
+
 // 计算分数
 - (NSInteger)calculateScoreAtFan:(NSInteger)fan fu:(NSInteger)fu isOYAWin:(BOOL)isOYAWin;
 
