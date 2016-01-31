@@ -7,23 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C86CEA871C3817FC0071D676 /* MMSCGame.m in Sources */ = {isa = PBXBuildFile; fileRef = C86CEA861C3817FC0071D676 /* MMSCGame.m */; };
-		C86CEA8A1C381A370071D676 /* MMSCRound.m in Sources */ = {isa = PBXBuildFile; fileRef = C86CEA891C381A370071D676 /* MMSCRound.m */; };
-		C88BD1EA1C392E990077A253 /* MMSCTwoWinnerResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C88BD1E91C392E990077A253 /* MMSCTwoWinnerResult.m */; };
-		C88BD2031C3956140077A253 /* MMSCNormalWinResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C88BD2021C3956140077A253 /* MMSCNormalWinResult.m */; };
 		C8E212031C3817160007CAA7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212021C3817160007CAA7 /* main.m */; };
 		C8E212061C3817160007CAA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212051C3817160007CAA7 /* AppDelegate.m */; };
-		C8E212091C3817160007CAA7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212081C3817160007CAA7 /* ViewController.m */; };
 		C8E2120C1C3817160007CAA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8E2120A1C3817160007CAA7 /* Main.storyboard */; };
 		C8E2120E1C3817160007CAA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8E2120D1C3817160007CAA7 /* Assets.xcassets */; };
 		C8E212111C3817160007CAA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8E2120F1C3817160007CAA7 /* LaunchScreen.storyboard */; };
 		C8E2121C1C3817160007CAA7 /* MahjongScoreCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E2121B1C3817160007CAA7 /* MahjongScoreCalculatorTests.m */; };
-		C8F99DAB1C381D3400BEAFB2 /* MMSCPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F99DAA1C381D3400BEAFB2 /* MMSCPlayer.m */; };
-		C8F99DB11C381F8900BEAFB2 /* MMSCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F99DB01C381F8900BEAFB2 /* MMSCUtil.m */; };
-		C8F99DB51C382FF900BEAFB2 /* MMSCRoundResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F99DB41C382FF900BEAFB2 /* MMSCRoundResult.m */; };
-		C8F99DB81C383AEA00BEAFB2 /* MMSCDrawManganResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F99DB71C383AEA00BEAFB2 /* MMSCDrawManganResult.m */; };
-		C8F99DBB1C38481200BEAFB2 /* MMSCDrawResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F99DBA1C38481200BEAFB2 /* MMSCDrawResult.m */; };
-		C8F99DBE1C39145300BEAFB2 /* MMSCTsuMoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F99DBD1C39145300BEAFB2 /* MMSCTsuMoResult.m */; };
+		C8E654761C5E0EF50079BF29 /* MMSCFontAndColorUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E654731C5E0EF50079BF29 /* MMSCFontAndColorUtil.m */; };
+		C8E654771C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E654751C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.m */; };
+		C8E6548E1C5E0F130079BF29 /* MMSCGame.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6547A1C5E0F130079BF29 /* MMSCGame.m */; };
+		C8E6548F1C5E0F130079BF29 /* MMSCPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6547C1C5E0F130079BF29 /* MMSCPlayer.m */; };
+		C8E654901C5E0F130079BF29 /* MMSCRound.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6547E1C5E0F130079BF29 /* MMSCRound.m */; };
+		C8E654911C5E0F130079BF29 /* MMSCUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E654801C5E0F130079BF29 /* MMSCUtil.m */; };
+		C8E654921C5E0F130079BF29 /* MMSCDrawManganResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E654831C5E0F130079BF29 /* MMSCDrawManganResult.m */; };
+		C8E654931C5E0F130079BF29 /* MMSCDrawResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E654851C5E0F130079BF29 /* MMSCDrawResult.m */; };
+		C8E654941C5E0F130079BF29 /* MMSCNormalWinResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E654871C5E0F130079BF29 /* MMSCNormalWinResult.m */; };
+		C8E654951C5E0F130079BF29 /* MMSCRoundResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E654891C5E0F130079BF29 /* MMSCRoundResult.m */; };
+		C8E654961C5E0F130079BF29 /* MMSCTsuMoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6548B1C5E0F130079BF29 /* MMSCTsuMoResult.m */; };
+		C8E654971C5E0F130079BF29 /* MMSCTwoWinnerResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6548D1C5E0F130079BF29 /* MMSCTwoWinnerResult.m */; };
+		C8E654991C5E0F620079BF29 /* resource in Resources */ = {isa = PBXBuildFile; fileRef = C8E654981C5E0F620079BF29 /* resource */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,20 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C86CEA851C3817FC0071D676 /* MMSCGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCGame.h; path = MahjongScoreCalculator/GameCore/MMSCGame.h; sourceTree = "<group>"; };
-		C86CEA861C3817FC0071D676 /* MMSCGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCGame.m; path = MahjongScoreCalculator/GameCore/MMSCGame.m; sourceTree = "<group>"; };
-		C86CEA881C381A370071D676 /* MMSCRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCRound.h; path = MahjongScoreCalculator/GameCore/MMSCRound.h; sourceTree = "<group>"; };
-		C86CEA891C381A370071D676 /* MMSCRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCRound.m; path = MahjongScoreCalculator/GameCore/MMSCRound.m; sourceTree = "<group>"; };
-		C88BD1E81C392E990077A253 /* MMSCTwoWinnerResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCTwoWinnerResult.h; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCTwoWinnerResult.h; sourceTree = "<group>"; };
-		C88BD1E91C392E990077A253 /* MMSCTwoWinnerResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCTwoWinnerResult.m; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCTwoWinnerResult.m; sourceTree = "<group>"; };
-		C88BD2011C3956140077A253 /* MMSCNormalWinResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCNormalWinResult.h; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCNormalWinResult.h; sourceTree = "<group>"; };
-		C88BD2021C3956140077A253 /* MMSCNormalWinResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCNormalWinResult.m; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCNormalWinResult.m; sourceTree = "<group>"; };
-		C8E211FE1C3817160007CAA7 /* MahjongScoreCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MahjongScoreCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8E211FE1C3817160007CAA7 /* 日麻计分器.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "日麻计分器.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E212021C3817160007CAA7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C8E212041C3817160007CAA7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C8E212051C3817160007CAA7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C8E212071C3817160007CAA7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C8E212081C3817160007CAA7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		C8E2120B1C3817160007CAA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C8E2120D1C3817160007CAA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C8E212101C3817160007CAA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,18 +50,31 @@
 		C8E212171C3817160007CAA7 /* MahjongScoreCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MahjongScoreCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E2121B1C3817160007CAA7 /* MahjongScoreCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MahjongScoreCalculatorTests.m; sourceTree = "<group>"; };
 		C8E2121D1C3817160007CAA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C8F99DA91C381D3400BEAFB2 /* MMSCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCPlayer.h; path = MahjongScoreCalculator/GameCore/MMSCPlayer.h; sourceTree = "<group>"; };
-		C8F99DAA1C381D3400BEAFB2 /* MMSCPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCPlayer.m; path = MahjongScoreCalculator/GameCore/MMSCPlayer.m; sourceTree = "<group>"; };
-		C8F99DAF1C381F8900BEAFB2 /* MMSCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCUtil.h; path = MahjongScoreCalculator/GameCore/MMSCUtil.h; sourceTree = "<group>"; };
-		C8F99DB01C381F8900BEAFB2 /* MMSCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCUtil.m; path = MahjongScoreCalculator/GameCore/MMSCUtil.m; sourceTree = "<group>"; };
-		C8F99DB31C382FF900BEAFB2 /* MMSCRoundResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCRoundResult.h; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCRoundResult.h; sourceTree = "<group>"; };
-		C8F99DB41C382FF900BEAFB2 /* MMSCRoundResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCRoundResult.m; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCRoundResult.m; sourceTree = "<group>"; };
-		C8F99DB61C383AEA00BEAFB2 /* MMSCDrawManganResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCDrawManganResult.h; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCDrawManganResult.h; sourceTree = "<group>"; };
-		C8F99DB71C383AEA00BEAFB2 /* MMSCDrawManganResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCDrawManganResult.m; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCDrawManganResult.m; sourceTree = "<group>"; };
-		C8F99DB91C38481200BEAFB2 /* MMSCDrawResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCDrawResult.h; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCDrawResult.h; sourceTree = "<group>"; };
-		C8F99DBA1C38481200BEAFB2 /* MMSCDrawResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCDrawResult.m; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCDrawResult.m; sourceTree = "<group>"; };
-		C8F99DBC1C39145300BEAFB2 /* MMSCTsuMoResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMSCTsuMoResult.h; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCTsuMoResult.h; sourceTree = "<group>"; };
-		C8F99DBD1C39145300BEAFB2 /* MMSCTsuMoResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMSCTsuMoResult.m; path = MahjongScoreCalculator/GameCore/RoundResult/MMSCTsuMoResult.m; sourceTree = "<group>"; };
+		C8E654721C5E0EF50079BF29 /* MMSCFontAndColorUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCFontAndColorUtil.h; sourceTree = "<group>"; };
+		C8E654731C5E0EF50079BF29 /* MMSCFontAndColorUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCFontAndColorUtil.m; sourceTree = "<group>"; };
+		C8E654741C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCPlayerNameAndSeatController.h; sourceTree = "<group>"; };
+		C8E654751C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCPlayerNameAndSeatController.m; sourceTree = "<group>"; };
+		C8E654791C5E0F130079BF29 /* MMSCGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCGame.h; sourceTree = "<group>"; };
+		C8E6547A1C5E0F130079BF29 /* MMSCGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCGame.m; sourceTree = "<group>"; };
+		C8E6547B1C5E0F130079BF29 /* MMSCPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCPlayer.h; sourceTree = "<group>"; };
+		C8E6547C1C5E0F130079BF29 /* MMSCPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCPlayer.m; sourceTree = "<group>"; };
+		C8E6547D1C5E0F130079BF29 /* MMSCRound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCRound.h; sourceTree = "<group>"; };
+		C8E6547E1C5E0F130079BF29 /* MMSCRound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCRound.m; sourceTree = "<group>"; };
+		C8E6547F1C5E0F130079BF29 /* MMSCUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCUtil.h; sourceTree = "<group>"; };
+		C8E654801C5E0F130079BF29 /* MMSCUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCUtil.m; sourceTree = "<group>"; };
+		C8E654821C5E0F130079BF29 /* MMSCDrawManganResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCDrawManganResult.h; sourceTree = "<group>"; };
+		C8E654831C5E0F130079BF29 /* MMSCDrawManganResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCDrawManganResult.m; sourceTree = "<group>"; };
+		C8E654841C5E0F130079BF29 /* MMSCDrawResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCDrawResult.h; sourceTree = "<group>"; };
+		C8E654851C5E0F130079BF29 /* MMSCDrawResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCDrawResult.m; sourceTree = "<group>"; };
+		C8E654861C5E0F130079BF29 /* MMSCNormalWinResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCNormalWinResult.h; sourceTree = "<group>"; };
+		C8E654871C5E0F130079BF29 /* MMSCNormalWinResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCNormalWinResult.m; sourceTree = "<group>"; };
+		C8E654881C5E0F130079BF29 /* MMSCRoundResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCRoundResult.h; sourceTree = "<group>"; };
+		C8E654891C5E0F130079BF29 /* MMSCRoundResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCRoundResult.m; sourceTree = "<group>"; };
+		C8E6548A1C5E0F130079BF29 /* MMSCTsuMoResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCTsuMoResult.h; sourceTree = "<group>"; };
+		C8E6548B1C5E0F130079BF29 /* MMSCTsuMoResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCTsuMoResult.m; sourceTree = "<group>"; };
+		C8E6548C1C5E0F130079BF29 /* MMSCTwoWinnerResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCTwoWinnerResult.h; sourceTree = "<group>"; };
+		C8E6548D1C5E0F130079BF29 /* MMSCTwoWinnerResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCTwoWinnerResult.m; sourceTree = "<group>"; };
+		C8E654981C5E0F620079BF29 /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resource; path = MahjongScoreCalculator/resource; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,34 +95,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C86CEA831C3817CF0071D676 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = View;
-			sourceTree = "<group>";
-		};
-		C86CEA841C3817D80071D676 /* GameCore */ = {
-			isa = PBXGroup;
-			children = (
-				C8F99DB21C382FAC00BEAFB2 /* RoundResult */,
-				C86CEA851C3817FC0071D676 /* MMSCGame.h */,
-				C86CEA861C3817FC0071D676 /* MMSCGame.m */,
-				C86CEA881C381A370071D676 /* MMSCRound.h */,
-				C86CEA891C381A370071D676 /* MMSCRound.m */,
-				C8F99DA91C381D3400BEAFB2 /* MMSCPlayer.h */,
-				C8F99DAA1C381D3400BEAFB2 /* MMSCPlayer.m */,
-				C8F99DAF1C381F8900BEAFB2 /* MMSCUtil.h */,
-				C8F99DB01C381F8900BEAFB2 /* MMSCUtil.m */,
-			);
-			name = GameCore;
-			sourceTree = "<group>";
-		};
 		C8E211F51C3817160007CAA7 = {
 			isa = PBXGroup;
 			children = (
-				C86CEA841C3817D80071D676 /* GameCore */,
-				C86CEA831C3817CF0071D676 /* View */,
+				C8E654981C5E0F620079BF29 /* resource */,
+				C8E654781C5E0F130079BF29 /* GameCore */,
+				C8E654711C5E0EF50079BF29 /* View */,
 				C8E212001C3817160007CAA7 /* MahjongScoreCalculator */,
 				C8E2121A1C3817160007CAA7 /* MahjongScoreCalculatorTests */,
 				C8E211FF1C3817160007CAA7 /* Products */,
@@ -127,7 +110,7 @@
 		C8E211FF1C3817160007CAA7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C8E211FE1C3817160007CAA7 /* MahjongScoreCalculator.app */,
+				C8E211FE1C3817160007CAA7 /* 日麻计分器.app */,
 				C8E212171C3817160007CAA7 /* MahjongScoreCalculatorTests.xctest */,
 			);
 			name = Products;
@@ -138,8 +121,6 @@
 			children = (
 				C8E212041C3817160007CAA7 /* AppDelegate.h */,
 				C8E212051C3817160007CAA7 /* AppDelegate.m */,
-				C8E212071C3817160007CAA7 /* ViewController.h */,
-				C8E212081C3817160007CAA7 /* ViewController.m */,
 				C8E2120A1C3817160007CAA7 /* Main.storyboard */,
 				C8E2120D1C3817160007CAA7 /* Assets.xcassets */,
 				C8E2120F1C3817160007CAA7 /* LaunchScreen.storyboard */,
@@ -166,23 +147,52 @@
 			path = MahjongScoreCalculatorTests;
 			sourceTree = "<group>";
 		};
-		C8F99DB21C382FAC00BEAFB2 /* RoundResult */ = {
+		C8E654711C5E0EF50079BF29 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C8F99DB31C382FF900BEAFB2 /* MMSCRoundResult.h */,
-				C8F99DB41C382FF900BEAFB2 /* MMSCRoundResult.m */,
-				C8F99DB61C383AEA00BEAFB2 /* MMSCDrawManganResult.h */,
-				C8F99DB71C383AEA00BEAFB2 /* MMSCDrawManganResult.m */,
-				C8F99DB91C38481200BEAFB2 /* MMSCDrawResult.h */,
-				C8F99DBA1C38481200BEAFB2 /* MMSCDrawResult.m */,
-				C8F99DBC1C39145300BEAFB2 /* MMSCTsuMoResult.h */,
-				C8F99DBD1C39145300BEAFB2 /* MMSCTsuMoResult.m */,
-				C88BD1E81C392E990077A253 /* MMSCTwoWinnerResult.h */,
-				C88BD1E91C392E990077A253 /* MMSCTwoWinnerResult.m */,
-				C88BD2011C3956140077A253 /* MMSCNormalWinResult.h */,
-				C88BD2021C3956140077A253 /* MMSCNormalWinResult.m */,
+				C8E654721C5E0EF50079BF29 /* MMSCFontAndColorUtil.h */,
+				C8E654731C5E0EF50079BF29 /* MMSCFontAndColorUtil.m */,
+				C8E654741C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.h */,
+				C8E654751C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.m */,
 			);
-			name = RoundResult;
+			name = View;
+			path = MahjongScoreCalculator/View;
+			sourceTree = "<group>";
+		};
+		C8E654781C5E0F130079BF29 /* GameCore */ = {
+			isa = PBXGroup;
+			children = (
+				C8E654791C5E0F130079BF29 /* MMSCGame.h */,
+				C8E6547A1C5E0F130079BF29 /* MMSCGame.m */,
+				C8E6547B1C5E0F130079BF29 /* MMSCPlayer.h */,
+				C8E6547C1C5E0F130079BF29 /* MMSCPlayer.m */,
+				C8E6547D1C5E0F130079BF29 /* MMSCRound.h */,
+				C8E6547E1C5E0F130079BF29 /* MMSCRound.m */,
+				C8E6547F1C5E0F130079BF29 /* MMSCUtil.h */,
+				C8E654801C5E0F130079BF29 /* MMSCUtil.m */,
+				C8E654811C5E0F130079BF29 /* RoundResult */,
+			);
+			name = GameCore;
+			path = MahjongScoreCalculator/GameCore;
+			sourceTree = "<group>";
+		};
+		C8E654811C5E0F130079BF29 /* RoundResult */ = {
+			isa = PBXGroup;
+			children = (
+				C8E654821C5E0F130079BF29 /* MMSCDrawManganResult.h */,
+				C8E654831C5E0F130079BF29 /* MMSCDrawManganResult.m */,
+				C8E654841C5E0F130079BF29 /* MMSCDrawResult.h */,
+				C8E654851C5E0F130079BF29 /* MMSCDrawResult.m */,
+				C8E654861C5E0F130079BF29 /* MMSCNormalWinResult.h */,
+				C8E654871C5E0F130079BF29 /* MMSCNormalWinResult.m */,
+				C8E654881C5E0F130079BF29 /* MMSCRoundResult.h */,
+				C8E654891C5E0F130079BF29 /* MMSCRoundResult.m */,
+				C8E6548A1C5E0F130079BF29 /* MMSCTsuMoResult.h */,
+				C8E6548B1C5E0F130079BF29 /* MMSCTsuMoResult.m */,
+				C8E6548C1C5E0F130079BF29 /* MMSCTwoWinnerResult.h */,
+				C8E6548D1C5E0F130079BF29 /* MMSCTwoWinnerResult.m */,
+			);
+			path = RoundResult;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,7 +212,7 @@
 			);
 			name = MahjongScoreCalculator;
 			productName = MahjongScoreCalculator;
-			productReference = C8E211FE1C3817160007CAA7 /* MahjongScoreCalculator.app */;
+			productReference = C8E211FE1C3817160007CAA7 /* 日麻计分器.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C8E212161C3817160007CAA7 /* MahjongScoreCalculatorTests */ = {
@@ -267,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8E654991C5E0F620079BF29 /* resource in Resources */,
 				C8E212111C3817160007CAA7 /* LaunchScreen.storyboard in Resources */,
 				C8E2120E1C3817160007CAA7 /* Assets.xcassets in Resources */,
 				C8E2120C1C3817160007CAA7 /* Main.storyboard in Resources */,
@@ -287,19 +298,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C88BD1EA1C392E990077A253 /* MMSCTwoWinnerResult.m in Sources */,
-				C8E212091C3817160007CAA7 /* ViewController.m in Sources */,
-				C88BD2031C3956140077A253 /* MMSCNormalWinResult.m in Sources */,
+				C8E654761C5E0EF50079BF29 /* MMSCFontAndColorUtil.m in Sources */,
 				C8E212061C3817160007CAA7 /* AppDelegate.m in Sources */,
-				C8F99DBE1C39145300BEAFB2 /* MMSCTsuMoResult.m in Sources */,
-				C8F99DB11C381F8900BEAFB2 /* MMSCUtil.m in Sources */,
-				C8F99DB81C383AEA00BEAFB2 /* MMSCDrawManganResult.m in Sources */,
-				C8F99DB51C382FF900BEAFB2 /* MMSCRoundResult.m in Sources */,
+				C8E6548F1C5E0F130079BF29 /* MMSCPlayer.m in Sources */,
+				C8E654941C5E0F130079BF29 /* MMSCNormalWinResult.m in Sources */,
+				C8E654931C5E0F130079BF29 /* MMSCDrawResult.m in Sources */,
+				C8E654911C5E0F130079BF29 /* MMSCUtil.m in Sources */,
+				C8E654971C5E0F130079BF29 /* MMSCTwoWinnerResult.m in Sources */,
 				C8E212031C3817160007CAA7 /* main.m in Sources */,
-				C86CEA8A1C381A370071D676 /* MMSCRound.m in Sources */,
-				C8F99DAB1C381D3400BEAFB2 /* MMSCPlayer.m in Sources */,
-				C8F99DBB1C38481200BEAFB2 /* MMSCDrawResult.m in Sources */,
-				C86CEA871C3817FC0071D676 /* MMSCGame.m in Sources */,
+				C8E654771C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.m in Sources */,
+				C8E654961C5E0F130079BF29 /* MMSCTsuMoResult.m in Sources */,
+				C8E654921C5E0F130079BF29 /* MMSCDrawManganResult.m in Sources */,
+				C8E6548E1C5E0F130079BF29 /* MMSCGame.m in Sources */,
+				C8E654951C5E0F130079BF29 /* MMSCRoundResult.m in Sources */,
+				C8E654901C5E0F130079BF29 /* MMSCRound.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,10 +437,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = MahjongScoreCalculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Fredfx.MahjongScoreCalculator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "日麻计分器";
 			};
 			name = Debug;
 		};
@@ -436,10 +449,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				INFOPLIST_FILE = MahjongScoreCalculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Fredfx.MahjongScoreCalculator;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "日麻计分器";
 			};
 			name = Release;
 		};
