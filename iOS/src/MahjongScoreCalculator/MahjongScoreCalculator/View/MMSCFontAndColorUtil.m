@@ -12,6 +12,8 @@
 
 #pragma mark ---------------Font----------------
 
+// TODO 重构成KeyValue对
+
 + (UIFont *)titleSummaryFont {
     static UIFont *titleSummaryFont = nil;
     static dispatch_once_t titleOnce;

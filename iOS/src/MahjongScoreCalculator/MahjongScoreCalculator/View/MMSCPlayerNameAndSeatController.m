@@ -8,6 +8,7 @@
 
 #import "MMSCPlayerNameAndSeatController.h"
 #import "MMSCFontAndColorUtil.h"
+#import "MMSCRandomSeatTipsController.h"
 
 @interface MMSCPlayerNameAndSeatController () <UITextFieldDelegate>
 
@@ -58,9 +59,10 @@
     [self.view addSubview:_player4Field];
     
     UIButton * randomSeatButton = [self generateStartPageButtonAtCenter:CGPointMake(screenWidth / 2, windLabelCenterY + 80) text:@"随机座位"];
+    [randomSeatButton addTarget:self action:@selector(waitForRandomSeat) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:randomSeatButton];
     
-    UIButton * startBattleButton = [self generateStartPageButtonAtCenter:CGPointMake(screenWidth / 2, randomSeatButton.center.y + 60) text:@"拼上性命开始对日"];
+    UIButton * startBattleButton = [self generateStartPageButtonAtCenter:CGPointMake(screenWidth / 2, randomSeatButton.center.y + 60) text:@"赌上性命开始对日"];
     [self.view addSubview:startBattleButton];
 }
 
@@ -112,7 +114,7 @@
     UIImage *backgroundClickImage = [origClickImage resizableImageWithCapInsets:UIEdgeInsetsMake(resizableHeight, resizableWidth, resizableHeight, resizableWidth)];
     [button setBackgroundImage:backgroundClickImage forState:UIControlStateSelected];
     
-    [button.titleLabel setFont:[MMSCFontAndColorUtil startpageFont]];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:20]]; //[MMSCFontAndColorUtil startpageFont]];
     [button setTitle:text forState:UIControlStateNormal];
     [button setTitleColor:[MMSCFontAndColorUtil startPageLabelFontColor] forState:UIControlStateNormal];
     [button sizeToFit];
@@ -131,5 +133,12 @@
 }
 
 #pragma mark ----------button action--------------
+
+- (void)waitForRandomSeat {
+    MMSCRandomSeatTipsController *controller = [[MMSCRandomSeatTipsController alloc] init];
+    controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    
+    [self presentViewController:controller animated:YES completion:nil];
+}
 
 @end

@@ -26,6 +26,7 @@
 		C8E654961C5E0F130079BF29 /* MMSCTsuMoResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6548B1C5E0F130079BF29 /* MMSCTsuMoResult.m */; };
 		C8E654971C5E0F130079BF29 /* MMSCTwoWinnerResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6548D1C5E0F130079BF29 /* MMSCTwoWinnerResult.m */; };
 		C8E654991C5E0F620079BF29 /* resource in Resources */ = {isa = PBXBuildFile; fileRef = C8E654981C5E0F620079BF29 /* resource */; };
+		C8E6549C1C5E68570079BF29 /* MMSCRandomSeatTipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6549B1C5E68570079BF29 /* MMSCRandomSeatTipsController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		C8E6548C1C5E0F130079BF29 /* MMSCTwoWinnerResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCTwoWinnerResult.h; sourceTree = "<group>"; };
 		C8E6548D1C5E0F130079BF29 /* MMSCTwoWinnerResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCTwoWinnerResult.m; sourceTree = "<group>"; };
 		C8E654981C5E0F620079BF29 /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resource; path = MahjongScoreCalculator/resource; sourceTree = "<group>"; };
+		C8E6549A1C5E68570079BF29 /* MMSCRandomSeatTipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCRandomSeatTipsController.h; sourceTree = "<group>"; };
+		C8E6549B1C5E68570079BF29 /* MMSCRandomSeatTipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCRandomSeatTipsController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,8 @@
 				C8E654731C5E0EF50079BF29 /* MMSCFontAndColorUtil.m */,
 				C8E654741C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.h */,
 				C8E654751C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.m */,
+				C8E6549A1C5E68570079BF29 /* MMSCRandomSeatTipsController.h */,
+				C8E6549B1C5E68570079BF29 /* MMSCRandomSeatTipsController.m */,
 			);
 			name = View;
 			path = MahjongScoreCalculator/View;
@@ -299,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8E654761C5E0EF50079BF29 /* MMSCFontAndColorUtil.m in Sources */,
+				C8E6549C1C5E68570079BF29 /* MMSCRandomSeatTipsController.m in Sources */,
 				C8E212061C3817160007CAA7 /* AppDelegate.m in Sources */,
 				C8E6548F1C5E0F130079BF29 /* MMSCPlayer.m in Sources */,
 				C8E654941C5E0F130079BF29 /* MMSCNormalWinResult.m in Sources */,
@@ -438,6 +444,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MahjongScoreCalculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Fredfx.MahjongScoreCalculator;
@@ -450,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MahjongScoreCalculator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Fredfx.MahjongScoreCalculator;
