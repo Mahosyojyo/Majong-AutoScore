@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, MMSCPlayerViewTag) {
+    MMSCPlayerViewTagPlayer1 = 0x666,
+    MMSCPlayerViewTagPlayer2,
+    MMSCPlayerViewTagPlayer3,
+    MMSCPlayerViewTagPlayer4,
+};
+
 @interface MMSCFontAndColorUtil : NSObject
 
 // 欢迎页顶层字体

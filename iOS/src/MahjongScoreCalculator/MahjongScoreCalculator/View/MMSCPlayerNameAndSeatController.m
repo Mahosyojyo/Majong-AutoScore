@@ -9,13 +9,12 @@
 #import "MMSCPlayerNameAndSeatController.h"
 #import "MMSCFontAndColorUtil.h"
 #import "MMSCRandomSeatTipsController.h"
+#import "MMSCScoreTableController.h"
+#import "MMSCGameManager.h"
 
 @interface MMSCPlayerNameAndSeatController () <UITextFieldDelegate>
 
-@property (nonatomic, strong) UITextField *player1Field;
-@property (nonatomic, strong) UITextField *player2Field;
-@property (nonatomic, strong) UITextField *player3Field;
-@property (nonatomic, strong) UITextField *player4Field;
+@property (nonatomic, strong) NSArray *playerNames;
 
 @end
 
@@ -40,29 +39,34 @@
     CGFloat windLabelInterval = 80;
     CGFloat textFieldCenterX = windLabelCenterX + 126;
     [self generateLabelWind:@"東" center:CGPointMake(windLabelCenterX, windLabelCenterY)];
-    _player1Field = [self generatePlayerNameFieldAtPoint:CGPointMake(textFieldCenterX, windLabelCenterY) tintText:@"天和"];
-    [self.view addSubview:_player1Field];
+    UITextField *player1Field = [self generatePlayerNameFieldAtPoint:CGPointMake(textFieldCenterX, windLabelCenterY) tintText:@"天和"];
+    player1Field.tag = MMSCPlayerViewTagPlayer1;
+    [self.view addSubview:player1Field];
     
     windLabelCenterY += windLabelInterval;
     [self generateLabelWind:@"南" center:CGPointMake(windLabelCenterX, windLabelCenterY)];
-    _player2Field = [self generatePlayerNameFieldAtPoint:CGPointMake(textFieldCenterX, windLabelCenterY) tintText:@"地和"];
-    [self.view addSubview:_player2Field];
+    UITextField *player2Field = [self generatePlayerNameFieldAtPoint:CGPointMake(textFieldCenterX, windLabelCenterY) tintText:@"地和"];
+    player2Field.tag = MMSCPlayerViewTagPlayer2;
+    [self.view addSubview:player2Field];
     
     windLabelCenterY += windLabelInterval;
     [self generateLabelWind:@"西" center:CGPointMake(windLabelCenterX, windLabelCenterY)];
-    _player3Field = [self generatePlayerNameFieldAtPoint:CGPointMake(textFieldCenterX, windLabelCenterY) tintText:@"人和"];
-    [self.view addSubview:_player3Field];
+    UITextField *player3Field = [self generatePlayerNameFieldAtPoint:CGPointMake(textFieldCenterX, windLabelCenterY) tintText:@"人和"];
+    player3Field.tag = MMSCPlayerViewTagPlayer3;
+    [self.view addSubview:player3Field];
     
     windLabelCenterY += windLabelInterval;
     [self generateLabelWind:@"北" center:CGPointMake(windLabelCenterX, windLabelCenterY)];
-    _player4Field = [self generatePlayerNameFieldAtPoint:CGPointMake(textFieldCenterX, windLabelCenterY) tintText:@"炸和"];
-    [self.view addSubview:_player4Field];
+    UITextField *player4Field = [self generatePlayerNameFieldAtPoint:CGPointMake(textFieldCenterX, windLabelCenterY) tintText:@"炸和"];
+    player4Field.tag = MMSCPlayerViewTagPlayer4;
+    [self.view addSubview:player4Field];
     
     UIButton * randomSeatButton = [self generateStartPageButtonAtCenter:CGPointMake(screenWidth / 2, windLabelCenterY + 80) text:@"随机座位"];
     [randomSeatButton addTarget:self action:@selector(waitForRandomSeat) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:randomSeatButton];
     
     UIButton * startBattleButton = [self generateStartPageButtonAtCenter:CGPointMake(screenWidth / 2, randomSeatButton.center.y + 60) text:@"赌上性命开始对日"];
+    [startBattleButton addTarget:self action:@selector(startBattle:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:startBattleButton];
 }
 
@@ -114,7 +118,7 @@
     UIImage *backgroundClickImage = [origClickImage resizableImageWithCapInsets:UIEdgeInsetsMake(resizableHeight, resizableWidth, resizableHeight, resizableWidth)];
     [button setBackgroundImage:backgroundClickImage forState:UIControlStateSelected];
     
-    [button.titleLabel setFont:[UIFont systemFontOfSize:20]]; //[MMSCFontAndColorUtil startpageFont]];
+    [button.titleLabel setFont:[UIFont systemFontOfSize:20]];
     [button setTitle:text forState:UIControlStateNormal];
     [button setTitleColor:[MMSCFontAndColorUtil startPageLabelFontColor] forState:UIControlStateNormal];
     [button sizeToFit];
@@ -123,6 +127,17 @@
     button.center = center;
     
     return button;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (self.playerNames) {
+        for (int i = 0; i < 4; i++) {
+            MMSCPlayerViewTag tag = (MMSCPlayerViewTag)(MMSCPlayerViewTagPlayer1 + i);
+            UITextField *playerField = [self.view viewWithTag:tag];
+            NSString *playerName = (NSString *)self.playerNames[i];
+            playerField.text = playerName;
+        }
+    }
 }
 
 #pragma mark ----------TextFieldDelegate----------
@@ -139,6 +154,31 @@
     controller.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     
     [self presentViewController:controller animated:YES completion:nil];
+    
+    self.playerNames = [[MMSCGameManager instance] randomSeatWithPlayers:[self getPlayerNames]];
+}
+
+- (void)startBattle:(id)sender {
+    if (!self.playerNames) {
+        [[MMSCGameManager instance] initGameWithPlayers:[self getPlayerNames]];
+    }
+    
+    MMSCScoreTableController *scoreTableController = [[MMSCScoreTableController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:scoreTableController];
+    navController.navigationBar.barTintColor = [UIColor whiteColor];
+    
+    [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (NSArray *)getPlayerNames {
+    NSMutableArray *playerNames = [NSMutableArray array];
+    for (MMSCPlayerViewTag tag = MMSCPlayerViewTagPlayer1; tag <= MMSCPlayerViewTagPlayer4; tag++) {
+        UITextField *playerTextField = [self.view viewWithTag:tag];
+        NSString *playerName = playerTextField.text.length > 0 ? playerTextField.text : playerTextField.placeholder;
+        [playerNames addObject:playerName];
+    }
+    
+    return [playerNames copy];
 }
 
 @end

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C8E211FD1C3817160007CAA7"
-               BuildableName = "MahjongScoreCalculator.app"
+               BuildableName = "&#x65e5;&#x9ebb;&#x8ba1;&#x5206;&#x5668;.app"
                BlueprintName = "MahjongScoreCalculator"
                ReferencedContainer = "container:MahjongScoreCalculator.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8E211FD1C3817160007CAA7"
-            BuildableName = "MahjongScoreCalculator.app"
+            BuildableName = "&#x65e5;&#x9ebb;&#x8ba1;&#x5206;&#x5668;.app"
             BlueprintName = "MahjongScoreCalculator"
             ReferencedContainer = "container:MahjongScoreCalculator.xcodeproj">
          </BuildableReference>
@@ -66,7 +66,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8E211FD1C3817160007CAA7"
-            BuildableName = "MahjongScoreCalculator.app"
+            BuildableName = "&#x65e5;&#x9ebb;&#x8ba1;&#x5206;&#x5668;.app"
             BlueprintName = "MahjongScoreCalculator"
             ReferencedContainer = "container:MahjongScoreCalculator.xcodeproj">
          </BuildableReference>
@@ -85,7 +85,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C8E211FD1C3817160007CAA7"
-            BuildableName = "MahjongScoreCalculator.app"
+            BuildableName = "&#x65e5;&#x9ebb;&#x8ba1;&#x5206;&#x5668;.app"
             BlueprintName = "MahjongScoreCalculator"
             ReferencedContainer = "container:MahjongScoreCalculator.xcodeproj">
          </BuildableReference>

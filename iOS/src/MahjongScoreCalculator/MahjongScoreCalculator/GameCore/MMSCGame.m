@@ -14,7 +14,7 @@
 
 - (void)randomSeat {
     
-    NSMutableArray *temp = [NSMutableArray arrayWithArray:_players];
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.players];
     
     for (int i = 0; i < 4; i++) {
         int index = rand() % (4 - i);
@@ -22,7 +22,13 @@
         [temp exchangeObjectAtIndex:i withObjectAtIndex:i + index];
     }
     
-    _players = [NSArray arrayWithArray:temp];
+    self.players = [NSArray arrayWithArray:temp];
+    
+    //分配下风位
+    for (int i = 0; i < 4; i++) {
+        MMSCPlayer *player = (MMSCPlayer *)self.players[i];
+        player.wind = (MMSCWind)(MMSCWindEast + i);
+    }
 }
 
 - (void)endCurrentRoundWithResult:(MMSCRoundResult *)result {

@@ -18,6 +18,9 @@
 // 分数
 @property(nonatomic, assign) NSInteger      score;
 
+// 初始化
+- (instancetype)initWithName:(NSString *)playerName;
+
 // 加分
 - (void)increaseScore:(NSInteger)increment;
 

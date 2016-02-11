@@ -10,6 +10,14 @@
 
 @implementation MMSCPlayer
 
+- (instancetype)initWithName:(NSString *)playerName {
+    if (self = [self init]) {
+        _name = playerName;
+        _score = 25000;
+    }
+    return self;
+}
+
 - (void)increaseScore:(NSInteger)increment {
     self.score += increment;
 }

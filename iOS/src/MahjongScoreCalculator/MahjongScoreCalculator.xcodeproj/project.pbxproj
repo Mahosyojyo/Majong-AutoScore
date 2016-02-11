@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C87C56301C666A9F00D1A6AF /* MMSCScoreTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C562F1C666A9F00D1A6AF /* MMSCScoreTableController.m */; };
+		C87C56491C6B8B9300D1A6AF /* MMSCScoreTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C56481C6B8B9300D1A6AF /* MMSCScoreTableCell.m */; };
+		C87C564C1C6CE46100D1A6AF /* MMSCGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C564B1C6CE46100D1A6AF /* MMSCGameManager.m */; };
 		C8E212031C3817160007CAA7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212021C3817160007CAA7 /* main.m */; };
 		C8E212061C3817160007CAA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212051C3817160007CAA7 /* AppDelegate.m */; };
 		C8E2120C1C3817160007CAA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8E2120A1C3817160007CAA7 /* Main.storyboard */; };
@@ -40,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C87C562E1C666A9F00D1A6AF /* MMSCScoreTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCScoreTableController.h; sourceTree = "<group>"; };
+		C87C562F1C666A9F00D1A6AF /* MMSCScoreTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCScoreTableController.m; sourceTree = "<group>"; };
+		C87C56471C6B8B9300D1A6AF /* MMSCScoreTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCScoreTableCell.h; sourceTree = "<group>"; };
+		C87C56481C6B8B9300D1A6AF /* MMSCScoreTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCScoreTableCell.m; sourceTree = "<group>"; };
+		C87C564A1C6CE46100D1A6AF /* MMSCGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCGameManager.h; sourceTree = "<group>"; };
+		C87C564B1C6CE46100D1A6AF /* MMSCGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCGameManager.m; sourceTree = "<group>"; };
 		C8E211FE1C3817160007CAA7 /* 日麻计分器.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "日麻计分器.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E212021C3817160007CAA7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C8E212041C3817160007CAA7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -159,6 +168,10 @@
 				C8E654751C5E0EF50079BF29 /* MMSCPlayerNameAndSeatController.m */,
 				C8E6549A1C5E68570079BF29 /* MMSCRandomSeatTipsController.h */,
 				C8E6549B1C5E68570079BF29 /* MMSCRandomSeatTipsController.m */,
+				C87C562E1C666A9F00D1A6AF /* MMSCScoreTableController.h */,
+				C87C562F1C666A9F00D1A6AF /* MMSCScoreTableController.m */,
+				C87C56471C6B8B9300D1A6AF /* MMSCScoreTableCell.h */,
+				C87C56481C6B8B9300D1A6AF /* MMSCScoreTableCell.m */,
 			);
 			name = View;
 			path = MahjongScoreCalculator/View;
@@ -176,6 +189,8 @@
 				C8E6547F1C5E0F130079BF29 /* MMSCUtil.h */,
 				C8E654801C5E0F130079BF29 /* MMSCUtil.m */,
 				C8E654811C5E0F130079BF29 /* RoundResult */,
+				C87C564A1C6CE46100D1A6AF /* MMSCGameManager.h */,
+				C87C564B1C6CE46100D1A6AF /* MMSCGameManager.m */,
 			);
 			name = GameCore;
 			path = MahjongScoreCalculator/GameCore;
@@ -306,6 +321,7 @@
 				C8E654761C5E0EF50079BF29 /* MMSCFontAndColorUtil.m in Sources */,
 				C8E6549C1C5E68570079BF29 /* MMSCRandomSeatTipsController.m in Sources */,
 				C8E212061C3817160007CAA7 /* AppDelegate.m in Sources */,
+				C87C56491C6B8B9300D1A6AF /* MMSCScoreTableCell.m in Sources */,
 				C8E6548F1C5E0F130079BF29 /* MMSCPlayer.m in Sources */,
 				C8E654941C5E0F130079BF29 /* MMSCNormalWinResult.m in Sources */,
 				C8E654931C5E0F130079BF29 /* MMSCDrawResult.m in Sources */,
@@ -316,6 +332,8 @@
 				C8E654961C5E0F130079BF29 /* MMSCTsuMoResult.m in Sources */,
 				C8E654921C5E0F130079BF29 /* MMSCDrawManganResult.m in Sources */,
 				C8E6548E1C5E0F130079BF29 /* MMSCGame.m in Sources */,
+				C87C56301C666A9F00D1A6AF /* MMSCScoreTableController.m in Sources */,
+				C87C564C1C6CE46100D1A6AF /* MMSCGameManager.m in Sources */,
 				C8E654951C5E0F130079BF29 /* MMSCRoundResult.m in Sources */,
 				C8E654901C5E0F130079BF29 /* MMSCRound.m in Sources */,
 			);
