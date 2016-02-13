@@ -368,7 +368,7 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
 
 // 设置场上立直棒
 - (void)setRichiCount {
-    NSInteger currentRichiCount = [[MMSCGameManager instance] currentRichiPlayers].count;
+    NSInteger currentRichiCount = [[MMSCGameManager instance] currentRichiCount];
     
     UILabel *richiCountLabel = [self.headerview viewWithTag:MMSCRICHICOUNTLABELTAG];
     richiCountLabel.text = [NSString stringWithFormat:@"X%zd", currentRichiCount];

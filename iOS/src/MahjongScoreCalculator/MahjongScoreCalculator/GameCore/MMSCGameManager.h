@@ -54,4 +54,7 @@
 // 立直
 - (void)richiAtPlayers:(NSArray *)richiPlayerIndexes;
 
+// 当前的立直棒数
+- (NSInteger)currentRichiCount;
+
 @end

@@ -160,4 +160,9 @@
     }
 }
 
+- (NSInteger)currentRichiCount {
+    NSInteger currentRichiScore = [self.game currentRound].richiScore;
+    return currentRichiScore / 1000;
+}
+
 @end
