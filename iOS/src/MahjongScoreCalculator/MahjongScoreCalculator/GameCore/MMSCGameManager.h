@@ -36,13 +36,22 @@
 // 玩家的风位
 - (NSArray *)currentPlayerWinds;
 
+// 玩家的分数
+- (NSArray *)currentPlayerScores;
+
 // 某一局的名称
 - (NSString *)roundNameAtIndex:(NSUInteger)index;
 
 // 某一局的分数变化
 - (NSArray *)roundScoreChangesAtIndex:(NSUInteger)index;
 
+// 当前局的分数变化
+- (NSArray *)currentRoundScoreChanges;
+
 // 当前局中立直的人
 - (NSArray *)currentRichiPlayers;
+
+// 立直
+- (void)richiAtPlayers:(NSArray *)richiPlayerIndexes;
 
 @end

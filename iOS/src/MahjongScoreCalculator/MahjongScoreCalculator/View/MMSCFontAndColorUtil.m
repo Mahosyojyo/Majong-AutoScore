@@ -62,4 +62,20 @@
     return spLabelFC;
 }
 
++ (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    UIImage *resizeImage = [image resizableImageWithCapInsets:UIEdgeInsetsMake(0.5f, 0.5f, 0.5f, 0.5f)];
+    
+    return resizeImage;
+}
+
 @end

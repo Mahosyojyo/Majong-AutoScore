@@ -12,8 +12,8 @@
 
 - (void)setScoreChange:(NSArray *)scoreChanges;
 
-- (void)markRichiAtIndex:(NSUInteger)playerIndex;
+- (void)markRichiAtIndexes:(NSArray *)playerIndexes currentRichiPlayers:(NSArray *)currentRichiPlayer;
 
-- (void)cancelRichiAtIndex:(NSInteger)playerIndex;
+- (void)clearRichiMark;
 
 @end

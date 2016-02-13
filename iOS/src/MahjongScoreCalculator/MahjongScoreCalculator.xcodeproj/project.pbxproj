@@ -10,6 +10,7 @@
 		C87C56301C666A9F00D1A6AF /* MMSCScoreTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C562F1C666A9F00D1A6AF /* MMSCScoreTableController.m */; };
 		C87C56491C6B8B9300D1A6AF /* MMSCScoreTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C56481C6B8B9300D1A6AF /* MMSCScoreTableCell.m */; };
 		C87C564C1C6CE46100D1A6AF /* MMSCGameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C564B1C6CE46100D1A6AF /* MMSCGameManager.m */; };
+		C87C56551C6F1F3900D1A6AF /* MMSCRichiController.m in Sources */ = {isa = PBXBuildFile; fileRef = C87C56541C6F1F3900D1A6AF /* MMSCRichiController.m */; };
 		C8E212031C3817160007CAA7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212021C3817160007CAA7 /* main.m */; };
 		C8E212061C3817160007CAA7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E212051C3817160007CAA7 /* AppDelegate.m */; };
 		C8E2120C1C3817160007CAA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C8E2120A1C3817160007CAA7 /* Main.storyboard */; };
@@ -49,6 +50,8 @@
 		C87C56481C6B8B9300D1A6AF /* MMSCScoreTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCScoreTableCell.m; sourceTree = "<group>"; };
 		C87C564A1C6CE46100D1A6AF /* MMSCGameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCGameManager.h; sourceTree = "<group>"; };
 		C87C564B1C6CE46100D1A6AF /* MMSCGameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCGameManager.m; sourceTree = "<group>"; };
+		C87C56531C6F1F3900D1A6AF /* MMSCRichiController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCRichiController.h; sourceTree = "<group>"; };
+		C87C56541C6F1F3900D1A6AF /* MMSCRichiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCRichiController.m; sourceTree = "<group>"; };
 		C8E211FE1C3817160007CAA7 /* 日麻计分器.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "日麻计分器.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E212021C3817160007CAA7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C8E212041C3817160007CAA7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				C87C562F1C666A9F00D1A6AF /* MMSCScoreTableController.m */,
 				C87C56471C6B8B9300D1A6AF /* MMSCScoreTableCell.h */,
 				C87C56481C6B8B9300D1A6AF /* MMSCScoreTableCell.m */,
+				C87C56531C6F1F3900D1A6AF /* MMSCRichiController.h */,
+				C87C56541C6F1F3900D1A6AF /* MMSCRichiController.m */,
 			);
 			name = View;
 			path = MahjongScoreCalculator/View;
@@ -325,6 +330,7 @@
 				C8E6548F1C5E0F130079BF29 /* MMSCPlayer.m in Sources */,
 				C8E654941C5E0F130079BF29 /* MMSCNormalWinResult.m in Sources */,
 				C8E654931C5E0F130079BF29 /* MMSCDrawResult.m in Sources */,
+				C87C56551C6F1F3900D1A6AF /* MMSCRichiController.m in Sources */,
 				C8E654911C5E0F130079BF29 /* MMSCUtil.m in Sources */,
 				C8E654971C5E0F130079BF29 /* MMSCTwoWinnerResult.m in Sources */,
 				C8E212031C3817160007CAA7 /* main.m in Sources */,
@@ -464,6 +470,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MahjongScoreCalculator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Fredfx.MahjongScoreCalculator;
 				PRODUCT_NAME = "日麻计分器";
@@ -477,6 +484,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MahjongScoreCalculator/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Fredfx.MahjongScoreCalculator;
 				PRODUCT_NAME = "日麻计分器";

@@ -97,6 +97,15 @@
     return playerWinds;
 }
 
+- (NSArray *)currentPlayerScores {
+    NSMutableArray *playerScores = [NSMutableArray array];
+    for (MMSCPlayer *player in self.game.players) {
+        [playerScores addObject:@(player.score)];
+    }
+    
+    return playerScores;
+}
+
 - (NSString *)convertWindEnumToCharacter:(MMSCWind)wind {
     switch (wind) {
         case MMSCWindEast:
@@ -124,9 +133,31 @@
     return [round roundScoreChanges];
 }
 
+- (NSArray *)currentRoundScoreChanges {
+    MMSCRound *round = [self.game currentRound];
+    return [round roundScoreChanges];
+}
+
 - (NSArray *)currentRichiPlayers {
     MMSCRound *currentRound = [self.game currentRound];
     return currentRound.richiPlayerIndexes;
+}
+
+- (void)richiAtPlayers:(NSArray *)richiPlayerIndexes {
+    NSMutableArray *currentRichiPlayers = [[self currentRichiPlayers] mutableCopy];
+    for (NSNumber *playerIndex in richiPlayerIndexes) {
+        if ([currentRichiPlayers containsObject:playerIndex]) { // 之前已经立直过了
+            [currentRichiPlayers removeObject:playerIndex];
+        } else {
+            [self.game richiAtPlayerIndex:playerIndex.unsignedIntegerValue];
+        }
+    }
+    
+    if (currentRichiPlayers.count > 0) { // 有取消的情况发生
+        for (NSNumber *playerIndex in currentRichiPlayers) {
+            [self.game cancelRichiAtPlayerIndex:playerIndex.unsignedIntegerValue];
+        }
+    }
 }
 
 @end

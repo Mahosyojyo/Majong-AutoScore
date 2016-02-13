@@ -36,6 +36,9 @@
 // 立直
 - (void)richiAtPlayerIndex:(NSUInteger)playerIndex;
 
+// 取消立直
+- (void)cancelRichiAtPlayerIndex:(NSUInteger)playerIndex;
+
 // 获取庄家
 - (MMSCPlayer *)getOYA;
 

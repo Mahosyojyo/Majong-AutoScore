@@ -167,6 +167,14 @@
     [currentRound richiAtPlayer:richiPlayer index:playerIndex];
 }
 
+- (void)cancelRichiAtPlayerIndex:(NSUInteger)playerIndex {
+    MMSCRound *currentRound = [self currentRound];
+    NSAssert(playerIndex < 4, @"这是什么鬼？！");
+    
+    MMSCPlayer *richiPlayer = (MMSCPlayer *)self.players[playerIndex];
+    [currentRound cancelRichiAtPlayer:richiPlayer index:playerIndex];
+}
+
 - (MMSCPlayer *)getOYA {
     return (MMSCPlayer *)self.players[self.oyaIndex];
 }

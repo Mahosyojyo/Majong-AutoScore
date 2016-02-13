@@ -49,6 +49,23 @@
     return !playerView;
 }
 
+- (void)markRichiAtIndexes:(NSArray *)playerIndexes currentRichiPlayers:(NSArray *)currentRichiPlayerIndexes {
+    NSMutableArray *currentRichiPlayers = [currentRichiPlayerIndexes mutableCopy];
+    for (NSNumber *playerIndex in playerIndexes) {
+        if ([currentRichiPlayers containsObject:playerIndex]) { // 之前已经立直过了
+            [currentRichiPlayers removeObject:playerIndex];
+        }
+        
+        [self markRichiAtIndex:playerIndex.unsignedIntegerValue];
+    }
+    
+    if (currentRichiPlayers.count > 0) { // 有取消的情况发生
+        for (NSNumber *playerIndex in currentRichiPlayers) {
+            [self cancelRichiAtIndex:playerIndex.unsignedIntegerValue];
+        }
+    }
+}
+
 - (void)markRichiAtIndex:(NSUInteger)playerIndex {
     NSAssert(playerIndex < 4, @"playerIndex out of bound");
     
@@ -76,6 +93,12 @@
     UIImageView *richiMaskView = [self.contentView viewWithTag:MMSCPlayerViewTagPlayer1 + playerIndex + MMSCRICHIMASKVIEWTAGOFFSET];
     
     richiMaskView.hidden = YES;
+}
+
+- (void)clearRichiMark {
+    for (int i = 0; i < 4; i++) {
+        [self cancelRichiAtIndex:i];
+    }
 }
 
 @end

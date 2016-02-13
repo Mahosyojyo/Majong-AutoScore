@@ -33,4 +33,7 @@ typedef NS_ENUM(NSInteger, MMSCPlayerViewTag) {
 // 欢迎页Label字体颜色
 + (UIColor *)startPageLabelFontColor;
 
+// Color2Image
++ (UIImage *)imageWithColor:(UIColor *)color;
+
 @end
