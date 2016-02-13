@@ -37,10 +37,20 @@
 }
 
 - (void)initGameWithPlayers:(NSArray *)playerNames {
+    self.game.players = [self createPlayersWithNames:playerNames];
     
+    [self.game gameInit];
 }
 
 - (NSArray *)randomSeatWithPlayers:(NSArray *)playerNames {
+    
+    self.game.players = [self createPlayersWithNames:playerNames];
+    [self.game randomSeat];
+    
+    return [self playerNames];
+}
+
+- (NSArray *)createPlayersWithNames:(NSArray *)playerNames {
     NSMutableArray *players = [NSMutableArray array];
     
     for (NSString *playerName in playerNames) {
@@ -48,19 +58,75 @@
         [players addObject:player];
     }
     
-    self.game.players = [players copy];
-    [self.game randomSeat];
-    
-    NSMutableArray *randomPlayerNames = [NSMutableArray array];
-    for (MMSCPlayer *player in self.game.players) {
-        [randomPlayerNames addObject:player.name];
-    }
-    
-    return [randomPlayerNames copy];
+    return [players copy];
 }
 
 - (NSInteger)roundCount {
     return self.game.rounds.count;
+}
+
+- (NSString *)currentRoundName {
+    MMSCRound *currentRound = [self.game currentRound];
+    return [currentRound roundName];
+}
+
+- (NSString *)currentOYAName {
+    MMSCPlayer *oya = [self.game getOYA];
+    return oya.name;
+}
+
+- (NSUInteger)currentOYAIndex {
+    return self.game.oyaIndex;
+}
+
+- (NSArray *)playerNames {
+    NSMutableArray *playerNames = [NSMutableArray array];
+    for (MMSCPlayer *player in self.game.players) {
+        [playerNames addObject:player.name];
+    }
+    
+    return [playerNames copy];
+}
+
+- (NSArray *)currentPlayerWinds {
+    NSMutableArray *playerWinds = [NSMutableArray array];
+    for (MMSCPlayer *player in self.game.players) {
+        [playerWinds addObject:[self convertWindEnumToCharacter:player.wind]];
+    }
+    
+    return playerWinds;
+}
+
+- (NSString *)convertWindEnumToCharacter:(MMSCWind)wind {
+    switch (wind) {
+        case MMSCWindEast:
+            return @"東";
+        case MMSCWindSouth:
+            return @"南";
+        case MMSCWindWest:
+            return @"西";
+        case MMSCWindNorth:
+            return @"北";
+    }
+}
+
+- (NSString *)roundNameAtIndex:(NSUInteger)index {
+    NSAssert(index < self.game.rounds.count, @"round index out of bound");
+    
+    MMSCRound *round = self.game.rounds[index];
+    return round.roundName;
+}
+
+- (NSArray *)roundScoreChangesAtIndex:(NSUInteger)index {
+    NSAssert(index < self.game.rounds.count, @"round index out of bound");
+    
+    MMSCRound *round = self.game.rounds[index];
+    return [round roundScoreChanges];
+}
+
+- (NSArray *)currentRichiPlayers {
+    MMSCRound *currentRound = [self.game currentRound];
+    return currentRound.richiPlayerIndexes;
 }
 
 @end

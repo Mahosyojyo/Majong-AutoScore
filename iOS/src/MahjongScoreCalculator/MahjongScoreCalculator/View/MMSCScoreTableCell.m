@@ -19,22 +19,22 @@
         [self createScoreChangeLabels];
     }
     
-    [self markRichiAtIndex:1];
-    [self markRichiAtIndex:3];
-    
-    [self cancelRichiAtIndex:3];
+    for (int i = 0; i < 4; i++) {
+        UILabel *scoreLabel = [self.contentView viewWithTag:MMSCPlayerViewTagPlayer1 + i];
+        NSInteger scoreChange = [scoreChanges[i] integerValue];
+        scoreLabel.text = [NSString stringWithFormat:@"%zd", scoreChange];
+    }
 }
 
 - (void)createScoreChangeLabels {
     CGFloat interval = [UIScreen mainScreen].bounds.size.width / 4;
     CGFloat windLabelOffset = 0;
     for (int i = 0; i < 4; i++) {
-        UILabel *finalScoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(windLabelOffset, 2, interval, self.frame.size.height)];
-        finalScoreLabel.text = @"-1000";
-        finalScoreLabel.font = [UIFont systemFontOfSize:15];
-        finalScoreLabel.textAlignment = NSTextAlignmentCenter;
-        finalScoreLabel.tag = (MMSCPlayerViewTag)(MMSCPlayerViewTagPlayer1 + i);
-        [self.contentView addSubview:finalScoreLabel];
+        UILabel *scoreLabel = [[UILabel alloc] initWithFrame:CGRectMake(windLabelOffset, 2, interval, self.frame.size.height)];
+        scoreLabel.font = [UIFont systemFontOfSize:15];
+        scoreLabel.textAlignment = NSTextAlignmentCenter;
+        scoreLabel.tag = (MMSCPlayerViewTag)(MMSCPlayerViewTagPlayer1 + i);
+        [self.contentView addSubview:scoreLabel];
         
         UIView *sLine = [[UIView alloc] initWithFrame:CGRectMake(windLabelOffset + interval, 5, 0.5f, self.frame.size.height - 6)];
         sLine.backgroundColor = [UIColor lightGrayColor];
@@ -61,6 +61,7 @@
         richiMaskView.backgroundColor = [UIColor clearColor];
         richiMaskView.image = [UIImage imageNamed:@"resource/richiIcon-horizontal.png"];
         richiMaskView.alpha = 0.6f;
+        richiMaskView.tag = labelTag + MMSCRICHIMASKVIEWTAGOFFSET;
         [self.contentView addSubview:richiMaskView];
     }
     

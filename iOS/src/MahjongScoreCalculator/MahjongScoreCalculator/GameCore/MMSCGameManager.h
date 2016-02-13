@@ -21,4 +21,28 @@
 // 局数
 - (NSInteger)roundCount;
 
+// 当前局名
+- (NSString *)currentRoundName;
+
+// 当前庄家
+- (NSString *)currentOYAName;
+
+// 当前OYAIndex
+- (NSUInteger)currentOYAIndex;
+
+// 玩家的名称
+- (NSArray *)playerNames;
+
+// 玩家的风位
+- (NSArray *)currentPlayerWinds;
+
+// 某一局的名称
+- (NSString *)roundNameAtIndex:(NSUInteger)index;
+
+// 某一局的分数变化
+- (NSArray *)roundScoreChangesAtIndex:(NSUInteger)index;
+
+// 当前局中立直的人
+- (NSArray *)currentRichiPlayers;
+
 @end

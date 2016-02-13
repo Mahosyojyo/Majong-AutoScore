@@ -37,8 +37,14 @@
 // 立直
 - (void)richiAtPlayer:(MMSCPlayer *)player index:(NSUInteger)index;
 
+// 取消立直
+- (void)cancelRichiAtPlayer:(MMSCPlayer *)player index:(NSUInteger)index;
+
 // 结束该局
 - (void)endRoundWithPlayers:(NSArray *)players;
+
+// 该局的分数变化
+- (NSArray *)roundScoreChanges;
 
 // 此局名称
 - (NSString *)roundName;

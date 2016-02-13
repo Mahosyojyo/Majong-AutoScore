@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MMSCRound.h"
 
 @class MMSCRoundResult;
 @class MMSCPlayer;
-@class MMSCRound;
 
 @interface MMSCGame : NSObject
 
@@ -21,6 +21,8 @@
 // 对局们
 @property(nonatomic, strong) NSMutableArray    *rounds;
 
+// 初始化游戏
+- (void)gameInit;
 
 // 随机座位
 - (void)randomSeat;

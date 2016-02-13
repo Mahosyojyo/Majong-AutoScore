@@ -24,11 +24,22 @@
     
     self.players = [NSArray arrayWithArray:temp];
     
+    [self gameInit];
+}
+
+- (void)gameInit {
     //分配下风位
     for (int i = 0; i < 4; i++) {
         MMSCPlayer *player = (MMSCPlayer *)self.players[i];
         player.wind = (MMSCWind)(MMSCWindEast + i);
     }
+    
+    self.rounds = [NSMutableArray array];
+    MMSCRound *firstRound = [MMSCRound new];
+    firstRound.roundWind = MMSCWindEast;
+    firstRound.roundNumeber = 1;
+    
+    [self.rounds addObject:firstRound];
 }
 
 - (void)endCurrentRoundWithResult:(MMSCRoundResult *)result {

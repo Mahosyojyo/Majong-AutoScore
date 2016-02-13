@@ -11,9 +11,10 @@
 #import "MMSCFontAndColorUtil.h"
 #import "MMSCGameManager.h"
 
-#define MMSCCURRENTROUNDLABELTAG    0x2333
-#define MMSCCURRENTOYALABELTAG      0x23333
-#define MMSCRICHICOUNTLABELTAG      0x233333
+#define MMSCCURRENTROUNDLABELTAG    0x233
+#define MMSCCURRENTOYALABELTAG      0x234
+#define MMSCRICHICOUNTLABELTAG      0x235
+#define MMSCWINDLABELTAGOFFSET      0x236
 
 #define MMSCSECTIONHEIGHT           15
 #define MMSCTABLEVIEWHEADERHEIGHT   64
@@ -107,11 +108,10 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     curTipLabel.font = textFont;
     [headerView addSubview:curTipLabel];
     
-    CGFloat roundLabelWidth = 110;
+    CGFloat roundLabelWidth = 114;
     currentX += tipLabelWidth + labelOffset;
     UILabel *roundLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, roundLabelWidth, textLabelHeight)];
     roundLabel.tag = MMSCCURRENTROUNDLABELTAG;
-    roundLabel.text = @"东三局10本场";
     roundLabel.font = textFont;
     [headerView addSubview:roundLabel];
     
@@ -124,7 +124,6 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     currentX += tipLabelWidth + labelOffset;
     UILabel *oyaLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, roundLabelWidth, textLabelHeight)];
     oyaLabel.tag = MMSCCURRENTOYALABELTAG;
-    oyaLabel.text = @"冯大水大冯";
     oyaLabel.font = textFont;
     [headerView addSubview:oyaLabel];
     
@@ -138,11 +137,10 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     CGFloat richiCountLabelWidth = 35;
     UILabel *richiCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(currentX, 0, richiCountLabelWidth, textLabelHeight)];
     richiCountLabel.tag = MMSCRICHICOUNTLABELTAG;
-    richiCountLabel.text = @"X10";
-    richiCountLabel.font = textFont;
+    richiCountLabel.text = @"X0";
+    richiCountLabel.font = [UIFont systemFontOfSize:15];
     [headerView addSubview:richiCountLabel];
     
-    NSArray *windNames = @[@"東", @"南", @"西", @"北"];
     CGFloat interval = frame.size.width / 4;
     CGFloat windLabelOffset = 0;
     CGFloat labelHeight = 33;
@@ -150,18 +148,17 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     CGFloat labelYOffset = frame.size.height - labelHeight - 2;
     for (int i = 0 ; i < 4; i++) {
         UILabel *windLabel = [[UILabel alloc] initWithFrame:CGRectMake(windLabelOffset, labelYOffset, windLabelWidth, labelHeight)];
-        windLabel.text = windNames[i];
         windLabel.layer.borderColor = [UIColor blackColor].CGColor;
         windLabel.layer.borderWidth = 3;
         windLabel.font = [UIFont systemFontOfSize:20];
         windLabel.textAlignment = NSTextAlignmentCenter;
-        windLabel.tag = (MMSCPlayerViewTag)(MMSCPlayerViewTagPlayer1 + i);
+        windLabel.tag = MMSCPlayerViewTagPlayer1 + MMSCWINDLABELTAGOFFSET + i;
         [headerView addSubview:windLabel];
         
         UILabel *playerLabel = [[UILabel alloc] initWithFrame:CGRectMake(windLabelOffset + windLabelWidth, labelYOffset, interval - windLabelWidth, labelHeight)];
-        playerLabel.text = @"冯大水大冯";
         playerLabel.font = [UIFont systemFontOfSize:15];
         playerLabel.textAlignment = NSTextAlignmentCenter;
+        playerLabel.tag = (MMSCPlayerViewTag)(MMSCPlayerViewTagPlayer1 + i);
         [headerView addSubview:playerLabel];
         
         windLabelOffset += interval;
@@ -204,6 +201,12 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     }
     
     return footerView;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [self setCurrentRoundInfo];
+    [self setScoreTablePlayerNames];
+    [self setWindLabel];
 }
 
 #pragma mark ------------navigationItemClickEvent---------
@@ -249,8 +252,7 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     MMSCScoreTableCell *cell = (MMSCScoreTableCell *)[tableView dequeueReusableCellWithIdentifier:kTableviewCellReuseIdentifier forIndexPath:indexPath];
     
-    [cell setScoreChange:nil];
-    
+    [cell setScoreChange:[[MMSCGameManager instance] roundScoreChangesAtIndex:indexPath.section]];
     return cell;
 }
 
@@ -259,17 +261,72 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, MMSCSECTIONHEIGHT)];
-    sectionHeaderLabel.backgroundColor = [UIColor colorWithRed:236/255.f green:219/255.f blue:212/255.f alpha:0.5];
-    sectionHeaderLabel.font = [UIFont systemFontOfSize:10];
-    sectionHeaderLabel.textColor = [UIColor darkGrayColor];
-    sectionHeaderLabel.text = [NSString stringWithFormat:@"东一局%zd本场", section];
     
-    return sectionHeaderLabel;
+    static NSString * kMMSCSectionHeaderIdentifier = @"MMSCSectionHeaderIdentifier";
+    static NSInteger kHeaderLabelTag = 0x888;
+    
+    UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:kMMSCSectionHeaderIdentifier];
+    if (!headerView) {
+        headerView = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:kMMSCSectionHeaderIdentifier];
+        UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, MMSCSECTIONHEIGHT)];
+        sectionHeaderLabel.backgroundColor = [UIColor colorWithRed:236/255.f green:219/255.f blue:212/255.f alpha:0.5];
+        sectionHeaderLabel.font = [UIFont systemFontOfSize:10];
+        sectionHeaderLabel.textColor = [UIColor darkGrayColor];
+        sectionHeaderLabel.tag = kHeaderLabelTag;
+        [headerView addSubview:sectionHeaderLabel];
+    }
+    
+    UILabel *sectionHeaderLabel = [headerView viewWithTag:kHeaderLabelTag];
+    sectionHeaderLabel.text = [[MMSCGameManager instance] roundNameAtIndex:section];
+    
+    return headerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 28;
+}
+
+#pragma mark ----------------设置界面-----------------
+
+// 当前局名，庄家
+- (void)setCurrentRoundInfo {
+    // 局名
+    UILabel *currentRoundLabel = [self.headerview viewWithTag:MMSCCURRENTROUNDLABELTAG];
+    currentRoundLabel.text = [[MMSCGameManager instance] currentRoundName];
+    
+    // 庄家名
+    UILabel *currentOYALabel = [self. headerview viewWithTag:MMSCCURRENTOYALABELTAG];
+    currentOYALabel.text = [[MMSCGameManager instance] currentOYAName];
+}
+
+// 设置Header里的玩家名字
+- (void)setScoreTablePlayerNames {
+    NSArray *playerNames = [[MMSCGameManager instance] playerNames];
+    for (int i = 0; i < 4; i++) {
+        UILabel *playerLabel = [self.headerview viewWithTag:(MMSCPlayerViewTagPlayer1 + i)];
+        NSString *playerName = playerNames[i];
+        playerLabel.text = playerName;
+    }
+}
+
+// 设置风位
+- (void)setWindLabel {
+    NSArray *playerWinds = [[MMSCGameManager instance] currentPlayerWinds];
+    NSUInteger oyaIndex = [[MMSCGameManager instance] currentOYAIndex];
+    
+    for (int i = 0; i < 4; i++) {
+        UILabel *windLabel = [self.headerview viewWithTag:(MMSCPlayerViewTagPlayer1 + MMSCWINDLABELTAGOFFSET + i)];
+        NSString *playerWind = playerWinds[i];
+        windLabel.text = playerWind;
+        
+        if (oyaIndex == i) {
+            windLabel.layer.borderColor = [UIColor redColor].CGColor;
+            windLabel.textColor = [UIColor redColor];
+        } else {
+            windLabel.layer.borderColor = [UIColor blackColor].CGColor;
+            windLabel.textColor = [UIColor blackColor];
+        }
+    }
 }
 
 @end
