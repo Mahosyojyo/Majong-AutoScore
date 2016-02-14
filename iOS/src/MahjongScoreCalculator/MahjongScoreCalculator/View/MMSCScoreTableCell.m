@@ -22,7 +22,8 @@
     for (int i = 0; i < 4; i++) {
         UILabel *scoreLabel = [self.contentView viewWithTag:MMSCPlayerViewTagPlayer1 + i];
         NSInteger scoreChange = [scoreChanges[i] integerValue];
-        scoreLabel.text = [NSString stringWithFormat:@"%zd", scoreChange];
+        NSString *scoreText = [NSString stringWithFormat:scoreChange > 0 ? @"+%zd" : @"%zd", scoreChange];
+        scoreLabel.text = scoreText;
     }
 }
 

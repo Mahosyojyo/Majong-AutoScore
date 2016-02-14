@@ -27,7 +27,7 @@
     [players enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         MMSCPlayer *player = (MMSCPlayer *)obj;
         
-        if ([_tenpaiPlayerIndexes containsIndex:idx]) {
+        if ([_tenpaiPlayerIndexes containsObject:@(idx)]) {
             [self recordScoreChangeAtIndex:idx player:player change:incresement];
         } else {
             [self recordScoreChangeAtIndex:idx player:player change:-1 * decresement];
@@ -45,7 +45,7 @@
             return YES;
         case MMSCDrawType_DrawMangan:
         case MMSCDrawType_Normal:
-            return ![self.tenpaiPlayerIndexes containsIndex:currentOYAIndex];
+            return ![self.tenpaiPlayerIndexes containsObject:@(currentOYAIndex)];
         default:
             return NO;
     }

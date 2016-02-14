@@ -49,7 +49,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _scoreChanges = [NSMutableArray arrayWithArray:@[@0, @0, @0, @0]];
+        _scoreChanges = [NSMutableArray arrayWithArray:@[@(0), @(0), @(0), @(0)]];
     }
     return self;
 }
@@ -73,7 +73,7 @@
     
     NSInteger result;
     
-    switch (false) {
+    switch (fan) {
         case 3:
         case 4:
         case 5:

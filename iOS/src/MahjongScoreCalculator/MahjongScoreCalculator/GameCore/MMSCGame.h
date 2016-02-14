@@ -48,4 +48,7 @@
 // 获取当前的一局
 - (MMSCRound *)currentRound;
 
+// 排位
+- (NSArray *)playerRank;
+
 @end

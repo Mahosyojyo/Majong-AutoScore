@@ -13,4 +13,6 @@
 
 @property(nonatomic, strong) NSArray *manganPlayerIndexes;
 
+@property(nonatomic, assign) BOOL oyaTenpai;
+
 @end

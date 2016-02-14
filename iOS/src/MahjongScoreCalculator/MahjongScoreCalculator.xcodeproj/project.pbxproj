@@ -31,6 +31,7 @@
 		C8E654971C5E0F130079BF29 /* MMSCTwoWinnerResult.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6548D1C5E0F130079BF29 /* MMSCTwoWinnerResult.m */; };
 		C8E654991C5E0F620079BF29 /* resource in Resources */ = {isa = PBXBuildFile; fileRef = C8E654981C5E0F620079BF29 /* resource */; };
 		C8E6549C1C5E68570079BF29 /* MMSCRandomSeatTipsController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8E6549B1C5E68570079BF29 /* MMSCRandomSeatTipsController.m */; };
+		C8FEB9EC1C6FB41700A9A40A /* MMSCRoundResulltController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8FEB9EB1C6FB41700A9A40A /* MMSCRoundResulltController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		C8E654981C5E0F620079BF29 /* resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = resource; path = MahjongScoreCalculator/resource; sourceTree = "<group>"; };
 		C8E6549A1C5E68570079BF29 /* MMSCRandomSeatTipsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCRandomSeatTipsController.h; sourceTree = "<group>"; };
 		C8E6549B1C5E68570079BF29 /* MMSCRandomSeatTipsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCRandomSeatTipsController.m; sourceTree = "<group>"; };
+		C8FEB9EA1C6FB41700A9A40A /* MMSCRoundResulltController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMSCRoundResulltController.h; sourceTree = "<group>"; };
+		C8FEB9EB1C6FB41700A9A40A /* MMSCRoundResulltController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMSCRoundResulltController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 				C87C56481C6B8B9300D1A6AF /* MMSCScoreTableCell.m */,
 				C87C56531C6F1F3900D1A6AF /* MMSCRichiController.h */,
 				C87C56541C6F1F3900D1A6AF /* MMSCRichiController.m */,
+				C8FEB9EA1C6FB41700A9A40A /* MMSCRoundResulltController.h */,
+				C8FEB9EB1C6FB41700A9A40A /* MMSCRoundResulltController.m */,
 			);
 			name = View;
 			path = MahjongScoreCalculator/View;
@@ -329,6 +334,7 @@
 				C87C56491C6B8B9300D1A6AF /* MMSCScoreTableCell.m in Sources */,
 				C8E6548F1C5E0F130079BF29 /* MMSCPlayer.m in Sources */,
 				C8E654941C5E0F130079BF29 /* MMSCNormalWinResult.m in Sources */,
+				C8FEB9EC1C6FB41700A9A40A /* MMSCRoundResulltController.m in Sources */,
 				C8E654931C5E0F130079BF29 /* MMSCDrawResult.m in Sources */,
 				C87C56551C6F1F3900D1A6AF /* MMSCRichiController.m in Sources */,
 				C8E654911C5E0F130079BF29 /* MMSCUtil.m in Sources */,

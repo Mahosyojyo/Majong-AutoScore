@@ -9,6 +9,10 @@
 #import "MMSCGameManager.h"
 #import "MMSCGame.h"
 #import "MMSCPlayer.h"
+#import "MMSCTsuMoResult.h"
+#import "MMSCTwoWinnerResult.h"
+#import "MMSCNormalWinResult.h"
+#import "MMSCDrawManganResult.h"
 
 @interface MMSCGameManager ()
 
@@ -163,6 +167,77 @@
 - (NSInteger)currentRichiCount {
     NSInteger currentRichiScore = [self.game currentRound].richiScore;
     return currentRichiScore / 1000;
+}
+
+- (void)tsumoAtPlayer:(NSUInteger)playerIndex fan:(NSInteger)fan fu:(NSInteger)fu {
+    
+    MMSCTsuMoResult *tsumoResult = [[MMSCTsuMoResult alloc] init];
+    tsumoResult.winnerIndex = playerIndex;
+    tsumoResult.fan = fan;
+    tsumoResult.fu  = fu;
+    
+    [self.game endCurrentRoundWithResult:tsumoResult];
+}
+
+- (void)ronAtPlayers:(NSArray *)winners loser:(NSUInteger)loserIndex fan:(NSArray *)fan fu:(NSArray *)fu {
+    MMSCRoundResult *result = nil;
+    if (winners.count > 1) {
+        MMSCTwoWinnerResult *twoWinResult = [[MMSCTwoWinnerResult alloc] init];
+        twoWinResult.winner1Index = [winners[0] unsignedIntegerValue];
+        twoWinResult.winner2Index = [winners[1] unsignedIntegerValue];
+        
+        twoWinResult.fanOfWiiner1 = [fan[0] integerValue];
+        twoWinResult.fanOfWinner2 = [fan[1] integerValue];
+        
+        twoWinResult.fuOfWinner1 = [fu[0] integerValue];
+        twoWinResult.fuOfWinner2 = [fu[1] integerValue];
+        
+        twoWinResult.payerIndex = loserIndex;
+        result = twoWinResult;
+    } else {
+        MMSCNormalWinResult *normalResult = [[MMSCNormalWinResult alloc] init];
+        normalResult.winnerIndex = [winners[0] unsignedIntegerValue];
+        normalResult.fan = [fan[0] integerValue];
+        normalResult.fu = [fu[0] integerValue];
+        
+        normalResult.payerIndex = loserIndex;
+        result= normalResult;
+    }
+    
+    [self.game endCurrentRoundWithResult:result];
+}
+
+- (void)drawForType:(NSInteger)type players:(NSArray *)players oyaTenpai:(BOOL)oyaTenpai {
+    MMSCRoundResult *result = nil;
+    if (type == MMSCDrawType_DrawMangan) {
+        MMSCDrawManganResult *drawMangan = [[MMSCDrawManganResult alloc] init];
+        drawMangan.type = type;
+        drawMangan.manganPlayerIndexes = players;
+        drawMangan.oyaTenpai = oyaTenpai;
+        result = drawMangan;
+    } else {
+        MMSCDrawResult *drawResult = [[MMSCDrawResult alloc] init];
+        drawResult.type = type;
+        drawResult.tenpaiPlayerIndexes = players;
+        result = drawResult;
+    }
+    
+    [self.game endCurrentRoundWithResult:result];
+}
+
+- (BOOL)isGameEnded {
+    return [self.game isGameEnded];
+}
+
+- (NSArray *)sortedPlayers {
+    NSArray *sortedPlayers = [self.game playerRank];
+    
+    NSMutableArray *playerNames = [NSMutableArray array];
+    for (MMSCPlayer *player in sortedPlayers) {
+        [playerNames addObject:player.name];
+    }
+    
+    return [playerNames copy];
 }
 
 @end

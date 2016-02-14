@@ -11,6 +11,7 @@
 #import "MMSCFontAndColorUtil.h"
 #import "MMSCGameManager.h"
 #import "MMSCRichiController.h"
+#import "MMSCRoundResulltController.h"
 
 #define MMSCCURRENTROUNDLABELTAG    0x233
 #define MMSCCURRENTOYALABELTAG      0x234
@@ -22,7 +23,7 @@
 
 static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_identifier";
 
-@interface MMSCScoreTableController () <MMSCRichiDelegate>
+@interface MMSCScoreTableController () <MMSCRichiDelegate, MMSCRoundResultDelegate>
 
 @property (nonatomic, strong) UITableView *tableview;
 @property (nonatomic, strong) UIView *headerview;
@@ -86,6 +87,9 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     [leftItemButton addTarget:self action:@selector(leftItemClicked:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:leftItemButton];
     self.navigationItem.leftBarButtonItem = leftItem;
+    
+    [self setScoreTablePlayerNames];
+    [self setTableInfo];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -203,28 +207,22 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     return footerView;
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [self setCurrentRoundInfo];
-    [self setScoreTablePlayerNames];
-    [self setWindLabel];
-    [self setPlayerScore];
-    [self setRichiCount];
-}
-
 #pragma mark ------------navigationItemClickEvent---------
 - (void)rightItemClicked:(id)sender {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
-    UIAlertAction *richiAction = [UIAlertAction actionWithTitle:@"立直/取消立直" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self handleRichi];
-    }];
-    [alert addAction:richiAction];
-    
-    NSString *roundEndTitle = [NSString stringWithFormat:@"%@完了", [[MMSCGameManager instance] currentRoundName]];
-    UIAlertAction *roundEndAction = [UIAlertAction actionWithTitle:roundEndTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    if (![[MMSCGameManager instance] isGameEnded]) {
+        UIAlertAction *richiAction = [UIAlertAction actionWithTitle:@"立直/取消立直" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self handleRichi];
+        }];
+        [alert addAction:richiAction];
         
-    }];
-    [alert addAction:roundEndAction];
+        NSString *roundEndTitle = [NSString stringWithFormat:@"%@完了", [[MMSCGameManager instance] currentRoundName]];
+        UIAlertAction *roundEndAction = [UIAlertAction actionWithTitle:roundEndTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self handleRoundEnd];
+        }];
+        [alert addAction:roundEndAction];
+    }
     
     UIAlertAction *gameRestartAction = [UIAlertAction actionWithTitle:@"战局再开" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self handleBattleRestart];
@@ -259,6 +257,42 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     richiCtrl.delegate = self;
     
     [self.navigationController presentViewController:richiCtrl animated:YES completion:nil];
+}
+
+- (void)handleRoundEnd {
+    NSString *roundEndTitle = [NSString stringWithFormat:@"%@完了", [[MMSCGameManager instance] currentRoundName]];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:roundEndTitle message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *tsumoAction = [UIAlertAction actionWithTitle:@"自摸" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self goRoundResultDetailWithType:MMSCRoundResultTypeTsumo];
+    }];
+    [alert addAction:tsumoAction];
+    
+    UIAlertAction *ronAction = [UIAlertAction actionWithTitle:@"放铳" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self goRoundResultDetailWithType:MMSCRoundResultTypeRon];
+    }];
+    [alert addAction:ronAction];
+    
+    UIAlertAction *drawAction = [UIAlertAction actionWithTitle:@"流局" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self goRoundResultDetailWithType:MMSCRoundResultTypeDraw];
+    }];
+    [alert addAction:drawAction];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)goRoundResultDetailWithType:(MMSCRoundResultType)type {
+    MMSCRoundResulltController *roundEndCtrl = [[MMSCRoundResulltController alloc] init];
+    self.navigationController.definesPresentationContext = YES;
+    roundEndCtrl.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    roundEndCtrl.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    roundEndCtrl.delegate = self;
+    roundEndCtrl.type = type;
+    
+    [self.navigationController presentViewController:roundEndCtrl animated:YES completion:nil];
 }
 
 - (void)leftItemClicked:(id)sender {
@@ -374,21 +408,21 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     richiCountLabel.text = [NSString stringWithFormat:@"X%zd", currentRichiCount];
 }
 
+- (void)setTableInfo {
+    [self setCurrentRoundInfo];
+    [self setWindLabel];
+    [self setPlayerScore];
+    [self setRichiCount];
+}
+
 #pragma mark -----------------Richi RoundResult delegate--------------
 
 - (void)richiPlayersSelected:(NSArray *)richiPlayerIndexes {
     
-    NSInteger lastSectionIndex = [self.tableview numberOfSections] - 1;
-    if (lastSectionIndex == -1) {
+    MMSCScoreTableCell *lastCell = [self lastCell];
+    if (!lastCell) {
         return;
     }
-    NSInteger lastCellIndex = [self.tableview numberOfRowsInSection:lastSectionIndex] - 1;
-    if (lastCellIndex == -1) {
-        return;
-    }
-    
-    NSIndexPath *lastCellIndexPath = [NSIndexPath indexPathForRow:lastCellIndex inSection:lastSectionIndex];
-    MMSCScoreTableCell *lastCell = (MMSCScoreTableCell *)[self.tableview cellForRowAtIndexPath:lastCellIndexPath];
     
     [lastCell markRichiAtIndexes:richiPlayerIndexes currentRichiPlayers:[[MMSCGameManager instance] currentRichiPlayers]];
     
@@ -398,6 +432,65 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     
     [self setPlayerScore];
     [self setRichiCount];
+}
+
+#pragma mark -----------------RoundEndDelegate----------------------
+
+- (void)tsumoResultSelected:(NSUInteger)playerIndex fan:(NSInteger)fan fu:(NSInteger)fu {
+    [[MMSCGameManager instance] tsumoAtPlayer:playerIndex fan:fan fu:fu];
+    [self refreshTable];
+    [self checkGameEnded];
+}
+
+- (void)ronResultSelected:(NSArray *)winnerArray loser:(NSUInteger)loserIndex fan:(NSArray *)fan fu:(NSArray *)fu {
+    [[MMSCGameManager instance] ronAtPlayers:winnerArray loser:loserIndex fan:fan fu:fu];
+    [self refreshTable];
+    [self checkGameEnded];
+}
+
+- (void)drawResultSelected:(NSInteger)drawType players:(NSArray *)players oyaTenpai:(BOOL)oyaTenpai {
+    [[MMSCGameManager instance] drawForType:drawType players:players oyaTenpai:oyaTenpai];
+    [self refreshTable];
+    [self checkGameEnded];
+}
+
+- (void)refreshTable {
+    MMSCScoreTableCell *lastCell = [self lastCell];
+    if (!lastCell) {
+        return;
+    }
+    
+    [lastCell clearRichiMark]; // 一局结束了把立直标志清掉
+    [self.tableview reloadData];
+    [self setTableInfo];
+}
+
+- (MMSCScoreTableCell *)lastCell {
+    NSInteger lastSectionIndex = [self.tableview numberOfSections] - 1;
+    if (lastSectionIndex == -1) {
+        return nil;
+    }
+    NSInteger lastCellIndex = [self.tableview numberOfRowsInSection:lastSectionIndex] - 1;
+    if (lastCellIndex == -1) {
+        return nil;
+    }
+    
+    NSIndexPath *lastCellIndexPath = [NSIndexPath indexPathForRow:lastCellIndex inSection:lastSectionIndex];
+    MMSCScoreTableCell *lastCell = (MMSCScoreTableCell *)[self.tableview cellForRowAtIndexPath:lastCellIndexPath];
+    
+    return lastCell;
+}
+
+- (void)checkGameEnded {
+    BOOL gameEnded = [[MMSCGameManager instance] isGameEnded];
+    
+    if (gameEnded) {
+        NSString *message = [NSString stringWithFormat:@"对局结束，大Top是%@", [[MMSCGameManager instance] sortedPlayers][0]];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"半庄结束" message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"ok" style:UIAlertActionStyleDefault handler:nil];
+        [alert addAction:action];
+        [self.navigationController presentViewController:alert animated:YES completion:nil];
+    }
 }
 
 @end

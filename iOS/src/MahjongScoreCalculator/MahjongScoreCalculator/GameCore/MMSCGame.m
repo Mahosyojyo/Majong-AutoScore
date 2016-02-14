@@ -111,10 +111,10 @@
 }
 
 - (MMSCWind)nextWind:(MMSCWind)currentWind {
-    MMSCWind result = currentWind + 1;
+    MMSCWind result = currentWind - 1;
     
-    if (result > MMSCWindNorth) {
-        result = MMSCWindEast;
+    if (result < 0) {
+        result = MMSCWindNorth;
     }
     
     return result;
@@ -185,6 +185,25 @@
 
 - (MMSCRound *)currentRound {
     return [self.rounds lastObject];
+}
+
+- (NSArray *)playerRank {
+    NSArray *sortedPlayers = [self.players sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        MMSCPlayer *player1 = (MMSCPlayer *)obj1;
+        MMSCPlayer *player2 = (MMSCPlayer *)obj2;
+        
+        if (player1.score == player2.score) {
+            return NSOrderedSame;
+        }
+        
+        if (player1.score < player2.score) {
+            return NSOrderedDescending;
+        }
+        
+        return NSOrderedAscending;
+    }];
+    
+    return sortedPlayers;
 }
 
 @end

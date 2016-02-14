@@ -19,7 +19,7 @@
     self.view.backgroundColor = backgroundColor;
     
     CGFloat viewWidth = 270;
-    CGFloat viewHeight = 240;
+    CGFloat viewHeight = 260;
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
     CGFloat screenHeigt = [UIScreen mainScreen].bounds.size.height;
     
@@ -46,7 +46,7 @@
     
     NSArray *playerNames = [[MMSCGameManager instance] playerNames];
     NSArray *currentRichiPlayers = [[MMSCGameManager instance] currentRichiPlayers];
-    CGFloat labelInterval = 40;
+    CGFloat labelInterval = 45;
     CGFloat labelX = dialogView.frame.origin.x + 40;
     CGFloat switchX = dialogView.frame.origin.x + 150;
     CGFloat labelY = dialogView.frame.origin.y + 30;

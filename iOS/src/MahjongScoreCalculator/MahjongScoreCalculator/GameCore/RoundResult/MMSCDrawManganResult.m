@@ -49,4 +49,8 @@
     }
 }
 
+- (BOOL)changeOYA:(NSUInteger)currentOYAIndex {
+    return !self.oyaTenpai;
+}
+
 @end

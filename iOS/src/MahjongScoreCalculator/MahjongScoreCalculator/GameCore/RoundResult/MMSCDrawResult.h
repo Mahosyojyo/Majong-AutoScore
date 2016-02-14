@@ -26,6 +26,6 @@ typedef NS_ENUM(NSInteger, MMSCDrawType) {
 @property(nonatomic, assign) MMSCDrawType type;
 
 // 听牌的人
-@property(nonatomic, strong) NSIndexSet *tenpaiPlayerIndexes;
+@property(nonatomic, strong) NSArray *tenpaiPlayerIndexes;
 
 @end

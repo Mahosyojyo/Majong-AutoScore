@@ -57,4 +57,19 @@
 // 当前的立直棒数
 - (NSInteger)currentRichiCount;
 
+// 自摸
+- (void)tsumoAtPlayer:(NSUInteger)playerIndex fan:(NSInteger)fan fu:(NSInteger)fu;
+
+// 放铳
+- (void)ronAtPlayers:(NSArray *)winners loser:(NSUInteger)loserIndex fan:(NSArray *)fan fu:(NSArray *)fu;
+
+// 流局
+- (void)drawForType:(NSInteger)type players:(NSArray *)players oyaTenpai:(BOOL)oyaTenpai;
+
+// 游戏是否结束
+- (BOOL)isGameEnded;
+
+// 玩家排位
+- (NSArray *)sortedPlayers;
+
 @end
