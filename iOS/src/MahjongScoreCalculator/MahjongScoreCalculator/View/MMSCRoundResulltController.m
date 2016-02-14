@@ -336,7 +336,7 @@
         }
     }
     
-    if (playerArray.count <= 0) {
+    if ((drawType == 0 || drawType == 6) && playerArray.count <= 0) {
         return;
     }
     
