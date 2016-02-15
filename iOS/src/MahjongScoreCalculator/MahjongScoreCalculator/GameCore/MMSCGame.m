@@ -64,6 +64,7 @@
     
     BOOL isDraw = [currentResult isDraw];
     BOOL changeOYA = [currentResult changeOYA:self.oyaIndex];
+    currentRound.oyaChanged = changeOYA;
     
     // 设置场风和局数，换庄
     if (!changeOYA) {
@@ -96,6 +97,18 @@
     }
     
     for (MMSCPlayer *player in self.players) {
+        player.wind = [self previousWind:player.wind];
+    }
+}
+
+- (void)setPreviousOYAAndPlayersWind {
+    self.oyaIndex--;
+    
+    if (self.oyaIndex < 0) {
+        self.oyaIndex = 3;
+    }
+    
+    for (MMSCPlayer *player in self.players) {
         player.wind = [self nextWind:player.wind];
     }
 }
@@ -105,7 +118,7 @@
     MMSCWind nextRoundWind = currentRound.roundWind;
     
     if (nextRoundNumber > 4) {
-        nextRoundWind = nextRoundWind + 1;
+        nextRoundWind = [self nextWind:nextRoundWind];
         nextRoundNumber = 1;
     }
     
@@ -114,6 +127,16 @@
 }
 
 - (MMSCWind)nextWind:(MMSCWind)currentWind {
+    MMSCWind result = currentWind + 1;
+    
+    if (result > MMSCWindNorth) {
+        result = MMSCWindEast;
+    }
+    
+    return result;
+}
+
+- (MMSCWind)previousWind:(MMSCWind)currentWind {
     MMSCWind result = currentWind - 1;
     
     if (result < 0) {
@@ -210,7 +233,39 @@
 }
 
 - (void)cancelLastRound {
+    if (![self isGameEnded]) {
+        // 当前未完的一局
+        MMSCRound *currentRound = [self currentRound];
+        [self.rounds removeObject:currentRound];
+    }
     
+    // 真正要取消的一局
+    MMSCRound *roundToCancel = [self currentRound];
+    [self.rounds removeObject:roundToCancel];
+    
+    // 恢复分数
+    NSArray *scoreChanges = [roundToCancel roundScoreChanges];
+    for (int i = 0; i < 4; i++) {
+        NSInteger scoreChange = [scoreChanges[i] integerValue];
+        MMSCPlayer *player = self.players[i];
+        [player decreaseScore:scoreChange];
+    }
+    
+    // 恢复风位
+    BOOL changeOYA = roundToCancel.oyaChanged;
+    if (changeOYA) {
+        [self setPreviousOYAAndPlayersWind];
+    }
+    MMSCRound *currentRound = [self currentRound];
+    if (!currentRound) {
+        [self gameInit];
+        return;
+    }
+    if (currentRound.oyaChanged) { // 先恢复到结算之前的状态
+        [self setPreviousOYAAndPlayersWind];
+    }
+        
+    [self setNextRound:currentRound]; // 重新结算下风位
 }
 
 @end

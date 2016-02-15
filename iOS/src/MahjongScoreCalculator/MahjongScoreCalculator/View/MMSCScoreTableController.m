@@ -224,10 +224,12 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
         [alert addAction:roundEndAction];
     }
     
-    UIAlertAction *cancelLastRound = [UIAlertAction actionWithTitle:@"撤销上局" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [self handleCancelLastRound];
-    }];
-    [alert addAction:cancelLastRound];
+    if ([[MMSCGameManager instance] roundCount] > 1) { // 没有已经结算的一局就别撤消了
+        UIAlertAction *cancelLastRound = [UIAlertAction actionWithTitle:@"撤销上局" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self handleCancelLastRound];
+        }];
+        [alert addAction:cancelLastRound];
+    }
     
     UIAlertAction *gameRestartAction = [UIAlertAction actionWithTitle:@"战局再开" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self handleBattleRestart];
@@ -290,8 +292,17 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
 }
 
 - (void)handleCancelLastRound {
-    [[MMSCGameManager instance] cancelLastRound];
-    [self refreshTable];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:@"是否撤销上局？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [[MMSCGameManager instance] cancelLastRound];
+        [self refreshTable];
+    }];
+    
+    UIAlertAction *noAction = [UIAlertAction actionWithTitle:@"不好" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alert addAction:yesAction];
+    [alert addAction:noAction];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)goRoundResultDetailWithType:(MMSCRoundResultType)type {
@@ -448,35 +459,52 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
 
 - (void)tsumoResultSelected:(NSUInteger)playerIndex fan:(NSInteger)fan fu:(NSInteger)fu {
     [[MMSCGameManager instance] tsumoAtPlayer:playerIndex fan:fan fu:fu];
+    [self clearLastCellRichiMark];
     [self refreshTable];
     [self checkGameEnded];
 }
 
 - (void)ronResultSelected:(NSArray *)winnerArray loser:(NSUInteger)loserIndex fan:(NSArray *)fan fu:(NSArray *)fu {
     [[MMSCGameManager instance] ronAtPlayers:winnerArray loser:loserIndex fan:fan fu:fu];
+    [self clearLastCellRichiMark];
     [self refreshTable];
     [self checkGameEnded];
 }
 
 - (void)drawResultSelected:(NSInteger)drawType players:(NSArray *)players oyaTenpai:(BOOL)oyaTenpai {
     [[MMSCGameManager instance] drawForType:drawType players:players oyaTenpai:oyaTenpai];
+    [self clearLastCellRichiMark];
     [self refreshTable];
     [self checkGameEnded];
 }
 
 - (void)refreshTable {
+    [self.tableview reloadData];
+    [self setTableInfo];
+    [self.tableview scrollToRowAtIndexPath:[self lastCellIndexPath] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+}
+
+- (void)clearLastCellRichiMark {
     MMSCScoreTableCell *lastCell = [self lastCell];
     if (!lastCell) {
         return;
     }
     
     [lastCell clearRichiMark]; // 一局结束了把立直标志清掉
-    [self.tableview reloadData];
-    [self setTableInfo];
-    [self.tableview setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
 }
 
 - (MMSCScoreTableCell *)lastCell {
+    NSIndexPath *lastCellIndexPath = [self lastCellIndexPath];
+    if (!lastCellIndexPath) {
+        return nil;
+    }
+    
+    MMSCScoreTableCell *lastCell = (MMSCScoreTableCell *)[self.tableview cellForRowAtIndexPath:lastCellIndexPath];
+    
+    return lastCell;
+}
+
+- (NSIndexPath *)lastCellIndexPath {
     NSInteger lastSectionIndex = [self.tableview numberOfSections] - 1;
     if (lastSectionIndex == -1) {
         return nil;
@@ -487,9 +515,7 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     }
     
     NSIndexPath *lastCellIndexPath = [NSIndexPath indexPathForRow:lastCellIndex inSection:lastSectionIndex];
-    MMSCScoreTableCell *lastCell = (MMSCScoreTableCell *)[self.tableview cellForRowAtIndexPath:lastCellIndexPath];
-    
-    return lastCell;
+    return lastCellIndexPath;
 }
 
 - (void)checkGameEnded {

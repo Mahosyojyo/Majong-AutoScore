@@ -34,6 +34,9 @@
 // 本场立直的玩家
 @property(nonatomic, strong) NSMutableArray *richiPlayerIndexes;
 
+// 换庄
+@property(nonatomic, assign) BOOL oyaChanged;
+
 // 立直
 - (void)richiAtPlayer:(MMSCPlayer *)player index:(NSUInteger)index;
 
