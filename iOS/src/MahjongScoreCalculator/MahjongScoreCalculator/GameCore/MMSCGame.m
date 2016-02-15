@@ -28,6 +28,9 @@
 }
 
 - (void)gameInit {
+    
+    self.oyaIndex = 0;
+    
     //分配下风位
     for (int i = 0; i < 4; i++) {
         MMSCPlayer *player = (MMSCPlayer *)self.players[i];
@@ -102,7 +105,7 @@
     MMSCWind nextRoundWind = currentRound.roundWind;
     
     if (nextRoundNumber > 4) {
-        nextRoundWind = [self nextWind:nextRoundWind]; // 虽然不太可能，但是还是保护一下吧
+        nextRoundWind = nextRoundWind + 1;
         nextRoundNumber = 1;
     }
     
@@ -146,7 +149,7 @@
     
     MMSCRound *currentRound = [self currentRound];
     MMSCPlayer *topPlayer = (MMSCPlayer *)self.players[topIndex];
-    BOOL isAllLast = currentRound.roundWind >= MMSCWindNorth && currentRound.roundNumeber >= 4;
+    BOOL isAllLast = (currentRound.roundWind == MMSCWindSouth && currentRound.roundNumeber >= 4) || currentRound.roundWind > MMSCWindSouth;
     
     if (!isAllLast || (isAllLast && topPlayer.score < 30000)) { // 不是all last 或者 没人上三万分（可能要西入）
         return NO;
@@ -204,6 +207,10 @@
     }];
     
     return sortedPlayers;
+}
+
+- (void)cancelLastRound {
+    
 }
 
 @end

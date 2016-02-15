@@ -240,4 +240,8 @@
     return [playerNames copy];
 }
 
+- (void)cancelLastRound {
+    [self.game cancelLastRound];
+}
+
 @end

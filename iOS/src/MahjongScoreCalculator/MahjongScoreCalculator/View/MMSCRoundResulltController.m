@@ -87,6 +87,14 @@
     [self createConfirmViewWithFrame:CGRectMake(horizontalSepX + margin, dialogView.frame.origin.y + margin, seperatorWidth - 2 * margin, viewHeight - 2 * margin - buttonHeight)];
     
     [self.view addSubview:confirmButton];
+    
+    if (self.fanFuPickerView) {
+        [self.fanFuPickerView selectRow:2 inComponent:1 animated:NO];
+    }
+    
+    if (self.fanfu2PickerView) {
+        [self.fanfu2PickerView selectRow:2 inComponent:1 animated:NO];
+    }
 }
 
 - (CGFloat)heightForConfirmView {
@@ -226,7 +234,6 @@
     }
     
     UILabel *oyaTenpaiLabel = [self createLabelWithTitle:@"庄家听牌:" frame:CGRectMake(labelXOffset, labelYOffset + 105 + 4 * interval, 130, labelHeight)];
-//    oyaTenpaiLabel.textAlignment = NSTextAlignmentCenter;
     oyaTenpaiLabel.tag = MMSCPYATENPAILABELTAG;
     oyaTenpaiLabel.hidden = YES;
     [self.view addSubview:oyaTenpaiLabel];
@@ -312,12 +319,16 @@
     
     NSUInteger winner2Index = [self.winnerPickerView selectedRowInComponent:1];
     if (winner2Index > 0 && winner2Index != winner1Index + 1) { // 一炮双响
-        [winnerArray addObject:@(winner2Index)];
+        [winnerArray addObject:@(winner2Index - 1)];
         
         NSInteger fan2 = [self getFanFromSelectedIndex:[self.fanfu2PickerView selectedRowInComponent:0]];
         NSInteger fu2 = [self getFuFromSelectedIndex:[self.fanfu2PickerView selectedRowInComponent:1]];
         [fansArray addObject:@(fan2)];
         [fusArray addObject:@(fu2)];
+    }
+    
+    if ([winnerArray containsObject:@(loserIndex)]) {
+        return;
     }
     
     if ([self.delegate respondsToSelector:@selector(ronResultSelected:loser:fan:fu:)]) {

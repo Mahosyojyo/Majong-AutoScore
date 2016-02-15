@@ -106,7 +106,7 @@
 
 - (NSInteger)calculateNormalAtFan:(NSInteger)fan fu:(NSInteger)fu isOYAWin:(BOOL)isOYAWin {
     
-    NSInteger basic = fu * (NSInteger)pow(fan + 2, 2);
+    NSInteger basic = fu * (NSInteger)pow(2, fan + 2);
     
     if (isOYAWin) {
         return [MMSCUtil increaseToHundredForScore:basic * 6];

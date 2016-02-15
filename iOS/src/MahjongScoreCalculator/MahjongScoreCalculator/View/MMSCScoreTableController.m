@@ -224,6 +224,11 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
         [alert addAction:roundEndAction];
     }
     
+    UIAlertAction *cancelLastRound = [UIAlertAction actionWithTitle:@"撤销上局" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self handleCancelLastRound];
+    }];
+    [alert addAction:cancelLastRound];
+    
     UIAlertAction *gameRestartAction = [UIAlertAction actionWithTitle:@"战局再开" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [self handleBattleRestart];
     }];
@@ -282,6 +287,11 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     [alert addAction:cancelAction];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)handleCancelLastRound {
+    [[MMSCGameManager instance] cancelLastRound];
+    [self refreshTable];
 }
 
 - (void)goRoundResultDetailWithType:(MMSCRoundResultType)type {
@@ -463,6 +473,7 @@ static NSString * const kTableviewCellReuseIdentifier = @"mmsc_tableviewcell_ide
     [lastCell clearRichiMark]; // 一局结束了把立直标志清掉
     [self.tableview reloadData];
     [self setTableInfo];
+    [self.tableview setContentOffset:CGPointMake(0, CGFLOAT_MAX)];
 }
 
 - (MMSCScoreTableCell *)lastCell {

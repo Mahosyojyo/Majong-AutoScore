@@ -51,4 +51,7 @@
 // 排位
 - (NSArray *)playerRank;
 
+// 撤销上一局
+- (void)cancelLastRound;
+
 @end

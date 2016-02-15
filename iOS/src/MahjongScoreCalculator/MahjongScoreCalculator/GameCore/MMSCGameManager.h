@@ -72,4 +72,7 @@
 // 玩家排位
 - (NSArray *)sortedPlayers;
 
+// 撤销上一局
+- (void)cancelLastRound;
+
 @end
